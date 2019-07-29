@@ -31,5 +31,20 @@ func Init() {
 	}
 	fmt.Printf("[ + ] successfully initialized assignments table!!!!!11elf!\n")
 
+	fmt.Printf("[ ~ ] initializing users table...\n")
+	err = initUsersTable()
+	if err != nil {
+		fmt.Printf("[ - ] error initializing users table: %s\n", err.Error())
+		return
+	}
+	fmt.Printf("[ + ] successfully initialized users table!!!!!11elf!\n")
+
+	fmt.Printf("[ ~ ] initializing sessionsns table...\n")
+	err = initSessionsTable()
+	if err != nil {
+		fmt.Printf("[ - ] error initializing sessions table: %s\n", err.Error())
+		return
+	}
+	fmt.Printf("[ + ] successfully initialized sessions table!!!!!11elf!\n")
 
 }

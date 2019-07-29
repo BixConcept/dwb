@@ -20,7 +20,10 @@ func main() {
 
 	// define routes
 	r.HandleFunc("/assignment/", handlers.Assignment)
-	r.HandleFunc("/user/", nil)
+
+	r.HandleFunc("/user/", handlers.User)
+	r.HandleFunc("/user/{id}", handlers.User)
+	r.HandleFunc("/user/login/", handlers.User)
 	r.HandleFunc("/team/", nil)
 
 	// start server
