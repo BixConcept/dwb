@@ -21,7 +21,7 @@ import { CookiesProvider, withCookies } from "react-cookie";
 class App extends Component {
   componentDidMount() {
     console.log(this.props.cookies.session);
-    let authenticated = this.props.cookies.session !== undefined;
+    let authenticated = this.props.cookies.get("session") !== undefined;
     store.dispatch({
       type: "SET_AUTHENTICATED",
       payload: authenticated

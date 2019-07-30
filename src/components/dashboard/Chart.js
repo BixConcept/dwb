@@ -8,9 +8,6 @@ class Chart extends Component {
     }
   };
 
-  constructor(props) {
-    super(props);
-  }
 
   componentWillReceiveProps(newProps) {
     console.log(newProps.assignments);
