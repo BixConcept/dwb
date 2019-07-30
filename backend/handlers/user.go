@@ -114,7 +114,7 @@ func getUserBySession(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("[ * ] user: %+v \n", user)
 
 	user.PasswordHash = ""
-	json.NewEncoder(w).Encode(user)
+	_ = json.NewEncoder(w).Encode(user)
 }
 
 func getUserByID(w http.ResponseWriter, r *http.Request) {

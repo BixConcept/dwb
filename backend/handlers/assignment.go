@@ -20,7 +20,7 @@ func Assignment(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func getAssignments(w http.ResponseWriter, r *http.Request) {
+func getAssignments(w http.ResponseWriter, _ *http.Request) {
 	fmt.Printf("--- getAssignments request ---\n")
 
 	assignments, err := db.GetAssignments()
@@ -29,7 +29,6 @@ func getAssignments(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json.NewEncoder(w).Encode(assignments)
+	_ = json.NewEncoder(w).Encode(assignments)
 
 }
-
