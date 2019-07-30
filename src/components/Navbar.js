@@ -25,8 +25,8 @@ class Navbar extends Component {
     this.props.logout();
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.isAuthenticated) {
+  updateLinks(authenticated) {
+    if (authenticated) {
       this.setState({
         items: [
           { link: "/getstarted", text: "get started" },
@@ -44,6 +44,14 @@ class Navbar extends Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    this.updateLinks(newProps.isAuthenticated);
+  }
+
+  componentDidMount() {
+    this.updateLinks(this.props.isAuthenticated);
+  }
+
   render() {
     return (
       <header>
@@ -58,7 +66,7 @@ class Navbar extends Component {
               if (element.type === "logout") {
                 return (
                   <li key="logout">
-                    <a href="#" onClick={this.handleLogout}>
+                    <a href="/" onClick={this.handleLogout}>
                       logout
                     </a>
                   </li>
