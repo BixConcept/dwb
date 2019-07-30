@@ -6,7 +6,7 @@ import (
 
 type Assignment struct {
 	ID          int       `json:"id"`
-	CreatedAt   time.Time `json:"created_at"`
+	CreatedAt   time.Time `json:string`
 	DueDate     time.Time `json:"due_date"`
 	Text        string    `json:"text"`
 	Subject     string    `json:"subject"`

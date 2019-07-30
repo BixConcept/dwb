@@ -11,8 +11,8 @@ import (
 )
 
 func User(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("access-contol-allow-origin", r.Header.Get("origin"))
-	w.Header().Set("access-contol-allow-credentials", "true")
+	w.Header().Set("access-control-allow-origin", r.Header.Get("origin"))
+	w.Header().Set("access-control-allow-credentials", "true")
 
 	fmt.Printf("\n-*- %s user %s -*-\n", r.Method, r.URL.Path)
 
@@ -75,6 +75,7 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("[ * ] session: %+v\n", session)
 
 	sessionCookie := &http.Cookie{
+		Path:    "/",
 		Name:    "session",
 		Value:   session.UUID,
 		Expires: time.Now().Add(time.Hour * 24 * 365),
@@ -184,6 +185,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	cookie := http.Cookie{
+		Path:    "/",
 		Name:    "session",
 		Value:   session.UUID,
 		Expires: time.Now().Add(time.Hour * 24 * 365),
