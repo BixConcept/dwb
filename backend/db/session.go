@@ -11,7 +11,7 @@ func CreateSession(userID int) (structs.Session, error) {
 	sessionID := sessionIDRaw.String()
 
 	newSession := structs.Session{
-		UUID: sessionID,
+		UUID:   sessionID,
 		UserID: userID,
 	}
 
@@ -20,4 +20,14 @@ func CreateSession(userID int) (structs.Session, error) {
 
 	err := row.Scan(&newSession.ID)
 	return newSession, err
+}
+
+func GetSession(uuid string) (structs.Session, error) {
+	query := "select * from sessions where uuid = $1"
+	row := Database.QueryRow(query, uuid)
+
+	session := structs.Session{}
+
+	err := row.Scan(&session.ID, &session.UUID, &session.UserID)
+	return session, err
 }

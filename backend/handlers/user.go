@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/mux"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 func User(w http.ResponseWriter, r *http.Request) {
@@ -16,15 +17,21 @@ func User(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("\n-*- %s user %s -*-\n", r.Method, r.URL.Path)
 
 	if r.URL.Path == "/user/login/" {
-		login(w,r)
+		login(w, r)
 		return
 	}
 
 	switch r.Method {
 	case "POST":
-		createUser(w,r)
+		createUser(w, r)
 	case "GET":
-		getUser(w,r)
+		if len(mux.Vars(r)) != 0 {
+			getUserByID(w, r)
+		} else {
+			getUserBySession(w, r)
+		}
+	default:
+		w.WriteHeader(404)
 	}
 }
 
@@ -38,11 +45,13 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 
 	username, ok := foo["username"]
 	if !ok {
+		w.WriteHeader(400)
 		return
 	}
 
 	password, ok := foo["password"]
 	if !ok {
+		w.WriteHeader(400)
 		return
 	}
 
@@ -56,9 +65,59 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Printf("[ * ] userID: %d \n", id)
 
+	session, err := db.CreateSession(id)
+	if err != nil {
+		fmt.Printf("[ - ] error creating session: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
+
+	fmt.Printf("[ * ] session: %+v\n", session)
+
+	sessionCookie := &http.Cookie{
+		Name:    "session",
+		Value:   session.UUID,
+		Expires: time.Now().Add(time.Hour * 24 * 365),
+	}
+
+	http.SetCookie(w, sessionCookie)
+
 }
 
-func getUser(w http.ResponseWriter, r *http.Request) {
+func getUserBySession(w http.ResponseWriter, r *http.Request) {
+	sessionCookie, err := r.Cookie("session")
+
+	if err != nil {
+		w.WriteHeader(http.StatusUnauthorized)
+		return
+	}
+
+	fmt.Printf("[ * ] session cookie: %+v \n", sessionCookie)
+	session, err := db.GetSession(sessionCookie.Value)
+
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving session: %v \n", err)
+		w.WriteHeader(http.StatusUnauthorized)
+		return
+	}
+
+	fmt.Printf("[ * ] session: %+v \n", session)
+
+	user, err := db.GetUserByID(session.UserID)
+
+	if err != nil {
+		fmt.Printf("[ - ] error rertrieving user: %v \n", err)
+		w.WriteHeader(500)
+		return
+	}
+
+	fmt.Printf("[ * ] user: %+v \n", user)
+
+	user.PasswordHash = ""
+	json.NewEncoder(w).Encode(user)
+}
+
+func getUserByID(w http.ResponseWriter, r *http.Request) {
 	rawID, ok := mux.Vars(r)["id"]
 	if !ok {
 		return
@@ -75,8 +134,8 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("[ * ] user: %+v\n", user)
 
 	_ = json.NewEncoder(w).Encode(map[string]interface{}{
-		"id": user.ID,
-		"username": user.Username,
+		"id":         user.ID,
+		"username":   user.Username,
 		"permission": user.Permission,
 	})
 }
@@ -125,8 +184,9 @@ func login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	cookie := http.Cookie{
-		Name:"session",
-		Value:session.UUID,
+		Name:    "session",
+		Value:   session.UUID,
+		Expires: time.Now().Add(time.Hour * 24 * 365),
 	}
 
 	http.SetCookie(w, &cookie)
