@@ -3,10 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getAssignments, deleteAssignment } from "../../actions/assignments";
 
-
 import CreateAssignmentForm from "./CreateAssignmentForm";
-import Chart from "./Chart"
-
+import Chart from "./Chart";
+import AuthorChart from "./AuthorChart";
 
 class Dashboard extends Component {
   static propTypes = {
@@ -37,7 +36,7 @@ class Dashboard extends Component {
       this.props.history.push("/login/");
       return;
     }
-    
+
     let groups = [[], [], []];
 
     for (let i = 0; i < newProps.assignments.length; i++) {
@@ -65,7 +64,6 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-
     this.props.getAssignments();
   }
 
@@ -90,10 +88,11 @@ class Dashboard extends Component {
             <h3>in the future</h3>
             {this.state.assignmentGroups[2].map(item => (
               <p key={item.id}>{Object.values(item)}</p>
-            ))}
+            ))} 
           </div>
         </div>
         <Chart assignments={this.props.assignments} />
+        <AuthorChart assignments={this.props.assignments} />
       </div>
     );
   }
