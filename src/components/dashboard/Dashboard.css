@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .dashboardHeadline {
   font-size: 40px;
   color: #3498db;
@@ -56,3 +57,13 @@
 .wrapper p {
   color: #000000;
 }
+=======
+.charts {
+    display: flex
+}
+
+canvas {
+
+    width: 50px;
+}
+>>>>>>> 0bb9cc03ad6e3aa0670c737dae520764ef912c93

@@ -93,6 +93,7 @@ class Chart extends Component {
             ]
           }
         }}
+        width={700}
       />
     );
   }

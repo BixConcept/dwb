@@ -3,7 +3,7 @@ import "./Login.css";
 import "./PasswordShowAndHide.js";
 import PasswordShowAndHide from "./PasswordShowAndHide.js";
 import { connect } from "react-redux";
-import { login } from "../../actions/auth"
+import { login } from "../../actions/auth";
 
 class Login extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class Login extends Component {
       [event.target.id]: event.target.value
     });
 
-    console.log(this.state)
+    console.log(this.state);
   }
 
   handleSubmit(event) {
@@ -28,6 +28,11 @@ class Login extends Component {
 
     this.props.login(this.state);
   }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.isAuthenticated) this.props.history.push("/dashboard");
+  }
+
   render() {
     return (
       <div className="main">
@@ -44,7 +49,7 @@ class Login extends Component {
           />
           <i className="fa fa-user" />
           <i className="fa fa-lock" />
-          <PasswordShowAndHide onChange={this.handleChange}/>
+          <PasswordShowAndHide onChange={this.handleChange} />
           <input type="submit" value="Log In" />
           <h4>
             Not Registered? &nbsp;
@@ -58,5 +63,11 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
-export default connect(null, { login })(Login);
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);
