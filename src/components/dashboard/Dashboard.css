@@ -1,0 +1,8 @@
+.charts {
+    display: flex
+}
+
+canvas {
+
+    width: 50px;
+}
