@@ -1,12 +1,29 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getAssignments, deleteAssignment } from "../../actions/assignments";
 
 import CreateAssignmentForm from "./CreateAssignmentForm";
-import Chart from "./Chart";
-import AuthorChart from "./AuthorChart";
+import "./Dashboard.css";
+import "../../actions/auth";
 
+function AssignmentGroup(props) {
+  if (props.assignments.length > 0) {
+    return (
+      <div className={props.className}>
+        <h3>{props.title}</h3>
+        <ul>
+          {props.assignments.map(item => (
+            <li key={item.id}>{item.subject}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  } else {
+    return null;
+  }
+}
 class Dashboard extends Component {
   static propTypes = {
     assignments: PropTypes.array.isRequired,
@@ -15,7 +32,8 @@ class Dashboard extends Component {
   };
 
   state = {
-    assignmentGroups: [[], [], []]
+    assignmentGroups: [[], [], []],
+    countColor: []
   };
 
   dateIsEqual(date1, date2) {
@@ -67,32 +85,63 @@ class Dashboard extends Component {
     this.props.getAssignments();
   }
 
+  /*
+ const colors = ["#22a6b3", "#6ab04c", "#eb4d4b", "#f0932b", "#95afc0", "#ff4444", "#eef00a", "#d600ff", "#e74c3c", "#f1c40f", "#bdc3c7", "#3498db", "#EA2027", "#FFC312", "#fed330"];
+ let i = 0;
+ 
+ setInterval(function () {
+      x = document.getElementsByClassName("ente")[0];
+     changeText();
+ }, 102,4);
+ 
+ function changeText() {
+     if (i == colors.length) {
+         i = 0;
+     }
+     x.style.color = colors[i];
+     
+     i += 1; 
+ }
+ */
+
+  // <p key={item.id}>{item.subject}</p> <- get subject,
   render() {
     return (
       <div>
-        <CreateAssignmentForm />
-        <div>
-          <div>
-            <h3>today</h3>
-            {this.state.assignmentGroups[0].map(item => (
-              <p key={item.id}>{Object.values(item)}</p>
-            ))}
-          </div>
-          <div>
-            <h3>tomorrow</h3>
-            {this.state.assignmentGroups[1].map(item => (
-              <p key={item.id}>{Object.values(item)}</p>
-            ))}
-          </div>
-          <div>
-            <h3>in the future</h3>
-            {this.state.assignmentGroups[2].map(item => (
-              <p key={item.id}>{Object.values(item)}</p>
-            ))} 
+        <h1 className="dashboardHeadline">dashboard</h1>
+        <div className="dashboard">
+          <h6>Hi, here is your current homework!</h6>
+          <h5>
+            Outstanding assignments: &nbsp;
+            <span className="countAssignments">
+              {this.state.assignmentGroups[0].length +
+                this.state.assignmentGroups[1].length +
+                this.state.assignmentGroups[2].length}
+            </span>
+          </h5>
+          <div className="wrapper">
+            <AssignmentGroup
+              title={"today"}
+              className="wrapper_today"
+              assignments={this.state.assignmentGroups[0]}
+            />
+            <AssignmentGroup
+              title={"tommorow"}
+              className="wrapper_tommorow"
+              assignments={this.state.assignmentGroups[1]}
+            />
+            <AssignmentGroup
+              title={"tommorow"}
+              className="wrapper_future"
+              assignments={this.state.assignmentGroups[2]}
+            />
           </div>
         </div>
-        <Chart assignments={this.props.assignments} />
-        <AuthorChart assignments={this.props.assignments} />
+        {/*
+       <Chart assignments={this.props.assignments} />
+        <AuthorChart assignments={this.props.assignments} /> 
+        */}
+        <CreateAssignmentForm />
       </div>
     );
   }

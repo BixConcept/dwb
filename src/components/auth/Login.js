@@ -47,7 +47,7 @@ class Login extends Component {
           <PasswordShowAndHide onChange={this.handleChange}/>
           <input type="submit" value="Log In" />
           <h4>
-            Not Registered?
+            Not Registered? &nbsp;
             <a href="/#/register" className="CreateAcc">
               Create an Account
             </a>

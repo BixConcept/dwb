@@ -1,8 +1,4 @@
-import {
-  GET_ASSIGNMENTS,
-  CREATE_ASSIGNMENT,
-  DELETE_ASSIGNMENT
-} from "./types";
+import { GET_ASSIGNMENTS, CREATE_ASSIGNMENT, DELETE_ASSIGNMENT } from "./types";
 import axios from "axios";
 
 // GET_ASSIGNMENTS
@@ -20,7 +16,7 @@ export const getAssignments = () => dispatch => {
 
 // CREATE_ASSIGNMENTS
 export const createAssignment = assignment => dispatch => {
-  assignment.due_date = new Date(assignment.due_date)
+  assignment.due_date = new Date(assignment.due_date);
 
   axios
     .post("http://localhost:8000/assignment/", JSON.stringify(assignment), {

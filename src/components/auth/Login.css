@@ -95,6 +95,7 @@
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+/* enlargement of the submit */
 .main input[type="submit"]:hover {
   width: 9.6875em;
   height: 3.25em;
