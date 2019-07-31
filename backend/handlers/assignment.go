@@ -55,10 +55,39 @@ func createAssignments(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Printf("[ * ] assignment: %+v\n", assignment)
 
+	sessionCookie, err := r.Cookie("session")
+	if err != nil {
+		fmt.Printf("[ - ] error extracting session: %v\n", err)
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	fmt.Printf("[ * ] session cookie: %+v\n", sessionCookie)
+
+	session, err := db.GetSession(sessionCookie.Value)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving session from db: %v\n", err)
+		w.WriteHeader(400)
+		return
+	}
+	fmt.Printf("[ * ] session: %+v\n", session)
+
+	user, err := db.GetUserByID(session.UserID)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving user from db: %v\n", err)
+		w.WriteHeader(400)
+		return
+	}
+	fmt.Printf("[ * ] user: %+v\n", user)
+
+	assignment.Author = user.ID
+
 	err = db.CreateAssignments(assignment)
 	if err != nil {
 		fmt.Printf("[ - ] error creating assignment: %v\n", err)
 		w.WriteHeader(500)
 		return
 	}
+
+	_ = json.NewEncoder(w).Encode(assignment)
 }
