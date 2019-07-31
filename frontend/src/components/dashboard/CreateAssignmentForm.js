@@ -28,7 +28,6 @@ export class CreateAssignmentForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.createAssignment(this.state);
-    window.location.reload(); // reload page
   }
 
   render() {
