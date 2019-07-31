@@ -1,0 +1,58 @@
+.dashboardHeadline {
+  font-size: 40px;
+  color: #3498db;
+  margin-bottom: 0.5%;
+  margin-top: 3%;
+  margin-left: 5%;
+}
+
+.dashboard {
+  margin-left: 5%;
+  margin-bottom: 5%;
+  margin-right: 5%;
+  background-color: #3498db;
+  border-radius: 5px;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
+  color: #fff;
+}
+
+.dashboard h6 {
+  color: #ffffff;
+  font-size: 25px;
+  margin: 0;
+  padding-top: 1.5%;
+}
+
+.wrapper {
+  display: grid;
+  margin-top: 2%;
+  border-radius: 0.3em;
+  padding-bottom: 2%;
+}
+
+.wrapper_today {
+  background-color: #e74c3c;
+  border-radius: 0.3em;
+  margin-right: 2.5%;
+}
+
+.wrapper_tomorrow {
+  background-color: #f1c40f;
+  border-radius: 0.3em;
+}
+
+.wrapper_future {
+  background-color: #2ecc71;
+  border-radius: 0.3em;
+  margin-left: 2.5%;
+}
+
+.wrapper h3 {
+  color: #ffffff;
+  padding-left: 4.5%;
+}
+
+.wrapper p {
+  color: #000000;
+}
