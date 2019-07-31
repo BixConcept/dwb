@@ -8,7 +8,6 @@ class Chart extends Component {
     }
   };
 
-
   componentWillReceiveProps(newProps) {
     console.log(newProps.assignments);
 
@@ -68,6 +67,7 @@ class Chart extends Component {
   render() {
     return (
       <Bar
+        className=""
         data={this.state.chartData}
         options={{
           scales: {
