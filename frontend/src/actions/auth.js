@@ -40,7 +40,7 @@ export const getUser = () => dispatch => {
         .then(res => {
             dispatch({
                 type: GET_USER,
-                payload: res.data
+                payload: res.data,
             })
         })
 }
