@@ -8,6 +8,9 @@ import CreateAssignmentForm from "./CreateAssignmentForm";
 import "./Dashboard.css";
 import "../../actions/auth";
 
+import Chart from "./Chart";
+import AuthorChart from "./AuthorChart";
+
 function AssignmentGroup(props) {
   if (props.assignments.length > 0) {
     return (
@@ -108,7 +111,6 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
         <h1 className="dashboardHeadline">dashboard</h1>
         <div className="dashboard">
           <h6>Hi, here is your current homework!</h6>
@@ -132,44 +134,15 @@ class Dashboard extends Component {
               assignments={this.state.assignmentGroups[1]}
             />
             <AssignmentGroup
-              title={"tommorow"}
+              title={"die zukunft"}
               className="wrapper_future"
               assignments={this.state.assignmentGroups[2]}
             />
           </div>
         </div>
-        {/*
-       <Chart assignments={this.props.assignments} />
-        <AuthorChart assignments={this.props.assignments} /> 
-        */}
+        <Chart assignments={this.props.assignments} />
+        <AuthorChart assignments={this.props.assignments} />
         <CreateAssignmentForm />
-=======
-        <CreateAssignmentForm />
-        <div>
-          <div>
-            <h3>today</h3>
-            {this.state.assignmentGroups[0].map(item => (
-              <p key={item.id}>{Object.values(item)}</p>
-            ))}
-          </div>
-          <div>
-            <h3>tomorrow</h3>
-            {this.state.assignmentGroups[1].map(item => (
-              <p key={item.id}>{Object.values(item)}</p>
-            ))}
-          </div>
-          <div>
-            <h3>in the future</h3>
-            {this.state.assignmentGroups[2].map(item => (
-              <p key={item.id}>{Object.values(item)}</p>
-            ))}
-          </div>
-        </div>
-        <div className="charts">
-          <Chart assignments={this.props.assignments} className="chart" />
-          <AuthorChart assignments={this.props.assignments} className="chart" />
-        </div>
->>>>>>> 0bb9cc03ad6e3aa0670c737dae520764ef912c93
       </div>
     );
   }
