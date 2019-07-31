@@ -88,11 +88,13 @@ class Dashboard extends Component {
             <h3>in the future</h3>
             {this.state.assignmentGroups[2].map(item => (
               <p key={item.id}>{Object.values(item)}</p>
-            ))} 
+            ))}
           </div>
         </div>
-        <Chart assignments={this.props.assignments} />
-        <AuthorChart assignments={this.props.assignments} />
+        <div className="charts">
+          <Chart assignments={this.props.assignments} className="chart" />
+          <AuthorChart assignments={this.props.assignments} className="chart" />
+        </div>
       </div>
     );
   }
