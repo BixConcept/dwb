@@ -23,11 +23,13 @@ export const createAssignment = assignment => dispatch => {
   assignment.due_date = new Date(assignment.due_date)
 
   axios
-    .post("http://localhost:8000/assignment/", JSON.stringify(assignment))
+    .post("http://localhost:8000/assignment/", JSON.stringify(assignment), {
+      withCredentials: true
+    })
     .then(res => {
       dispatch({
         type: CREATE_ASSIGNMENT,
-        payload: res
+        payload: res.data
       });
     })
     .catch(err => console.log(err));
