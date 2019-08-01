@@ -31,21 +31,23 @@
   padding-bottom: 2%;
 }
 
-.wrapper_today {
+.wrapper-today {
   background-color: #e74c3c;
   border-radius: 0.3em;
-  margin-right: 2.5%;
+  margin: 2.5%
 }
 
-.wrapper_tomorrow {
+.wrapper-tomorrow {
   background-color: #f1c40f;
   border-radius: 0.3em;
+ margin: 2.5%
 }
 
-.wrapper_future {
-  background-color: #2ecc71;
+.wrapper-future {
+  background-color: #27ae60;
   border-radius: 0.3em;
-  margin-left: 2.5%;
+  margin: 2.5%;
+ 
 }
 
 .wrapper h3 {
@@ -68,3 +70,4 @@
 .white {
   color: white;
 }
+
