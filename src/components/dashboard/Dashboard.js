@@ -13,7 +13,7 @@ import AuthorChart from "./AuthorChart";
 function AssignmentGroup(props) {
   if (props.assignments.length > 0) {
     return (
-      <div className={props.className}>
+      <div className={props.classIdentifier}>
         <h3>{props.title}</h3>
         {props.assignments.map(item => (
           <ul>
@@ -94,18 +94,23 @@ class Dashboard extends Component {
     let i = 0;
     for (let group of groups) {
       // if date is today title = "today"
-      if (this.dateIsEqual(group.date, Date.now())) groups[i].title = "today";
+      if (this.dateIsEqual(group.date, Date.now())) {
+        groups[i].title = "today";
+        groups[i].classIdentifier = "wrapper-today";
+      }
       // if date is tomorrow title = "tomorrow"
-      else if (this.dateIsEqual(group.date, Date.now() + 1000 * 60 * 60 * 24))
+      else if (this.dateIsEqual(group.date, Date.now() + 1000 * 60 * 60 * 24)) {
         groups[i].title = "tomorrow";
+        groups[i].classIdentifier = "wrapper-tomorrow";
+      }
       // if date is something else
       else {
-        console.log(group)
-
+        console.log(group);
         let date = new Date(parseInt(group.date));
         console.log(date);
         groups[i].title = `${date.getDate()}.${date.getMonth() +
           1}.${date.getFullYear()}`;
+        groups[i].classIdentifier = "wrapper-future";
       }
       i++;
     }
@@ -143,16 +148,17 @@ class Dashboard extends Component {
                 <AssignmentGroup
                   assignments={group.assignments}
                   title={group.title}
+                  classIdentifier={group.classIdentifier}
                 />
               );
             })}
-            <CreateAssignmentForm className="CreateAssignment" />
           </div>
           {/*
         <Chart assignments={this.props.assignments} />
         <AuthorChart assignments={this.props.assignments} />
         */}
         </div>
+        <CreateAssignmentForm className="CreateAssignment" />
       </div>
     );
   }
