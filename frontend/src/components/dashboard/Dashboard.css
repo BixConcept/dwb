@@ -53,6 +53,18 @@
   padding-left: 4.5%;
 }
 
-.wrapper p {
-  color: #000000;
+.subject {
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.text {
+  list-style-type: none;
+  font-weight: 100;
+  font-size: 15px;
+}
+
+.white {
+  color: white;
 }

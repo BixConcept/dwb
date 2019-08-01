@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createAssignment } from "../../actions/assignments";
 import PropTypes from "prop-types";
-import "./CreateAssignment.css";
 
 export class CreateAssignmentForm extends Component {
   constructor(props) {
@@ -27,12 +26,17 @@ export class CreateAssignmentForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
+    this.state.due_date = Date.parse(this.state.due_date);
+
+    console.log(this.state);
+
     this.props.createAssignment(this.state);
   }
 
   render() {
     return (
-      <div className="makeEntry">
+      <div className="assignmentForm">
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
