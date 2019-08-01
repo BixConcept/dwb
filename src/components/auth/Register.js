@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Login.css";
 import "./PasswordShowAndHide.js";
 import PasswordShowAndHide from "./PasswordShowAndHide.js";
-
+import GeneratePassword from '../GenPw/genPw';
 import { register } from "../../actions/auth"
 import { connect } from "react-redux"
 
@@ -48,6 +48,7 @@ class Register extends Component {
           <i className="fa fa-lock" />
           <PasswordShowAndHide onChange={this.handleChange} />
           <input type="submit" value="Sign up" />
+        <GeneratePassword />
         </form>
       </div>
     );

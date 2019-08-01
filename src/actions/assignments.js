@@ -25,7 +25,7 @@ export const createAssignment = assignment => dispatch => {
     .then(res => {
       dispatch({
         type: CREATE_ASSIGNMENT,
-        payload: res.data
+        payload: assignment
       });
     })
     .catch(err => console.log(err));

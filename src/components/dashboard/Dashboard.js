@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getAssignments, deleteAssignment } from "../../actions/assignments";
@@ -16,17 +15,23 @@ function AssignmentGroup(props) {
     return (
       <div className={props.className}>
         <h3>{props.title}</h3>
-        <ul>
-          {props.assignments.map(item => (
-            <li key={item.id}>{item.subject}</li>
-          ))}
-        </ul>
+        {props.assignments.map(item => (
+          <ul>
+            <li>
+              <div className="white">
+                <b>{item.subject}</b>
+                <p>{item.text}</p>
+              </div>
+            </li>
+          </ul>
+        ))}
       </div>
     );
   } else {
     return null;
   }
 }
+
 class Dashboard extends Component {
   static propTypes = {
     assignments: PropTypes.array.isRequired,
@@ -35,8 +40,9 @@ class Dashboard extends Component {
   };
 
   state = {
-    assignmentGroups: [[], [], []],
-    countColor: []
+    assignmentGroups: [],
+    countColor: [],
+    outstandingAssiggnments: 0
   };
 
   dateIsEqual(date1, date2) {
@@ -58,25 +64,56 @@ class Dashboard extends Component {
       return;
     }
 
-    let groups = [[], [], []];
+    var groups = [];
 
-    for (let i = 0; i < newProps.assignments.length; i++) {
-      const assignment = newProps.assignments[i];
+    //console.log(newProps.assignments);
+
+    for (let assignment of newProps.assignments) {
+      //console.log(assignment);
       let date = Date.parse(new Date(assignment.due_date));
       let now = Date.now();
 
-      console.log(assignment);
+      //console.log(date, now);
 
-      if (this.dateIsEqual(date, now)) {
-        groups[0].push(assignment);
-      } else if (this.dateIsEqual(date, now + 1000 * 60 * 60 * 24)) {
-        groups[1].push(assignment);
-      } else if (date > now) {
-        groups[2].push(assignment);
-      }
+      if (date < now - 1000 * 60 * 60 * 24) continue;
+
+      this.state.outstandingAssiggnments++;
+
+      //console.log(`groups: ${groups}`);
+      //groups.forEach(x => console.log(`x: ${x}`));
+
+      let groupid = groups.findIndex(x => x.date === date);
+      //console.log(`group id: ${groupid}`);
+      if (groupid === -1) {
+        groups.push({ date, assignments: [assignment] });
+      } else groups[groupid].assignments.push(assignment);
     }
+
+    //console.log(groups);
+
+    let i = 0;
+    for (let group of groups) {
+      // if date is today title = "today"
+      if (this.dateIsEqual(group.date, Date.now())) groups[i].title = "today";
+      // if date is tomorrow title = "tomorrow"
+      else if (this.dateIsEqual(group.date, Date.now() + 1000 * 60 * 60 * 24))
+        groups[i].title = "tomorrow";
+      // if date is something else
+      else {
+        console.log(group)
+
+        let date = new Date(parseInt(group.date));
+        console.log(date);
+        groups[i].title = `${date.getDate()}.${date.getMonth() +
+          1}.${date.getFullYear()}`;
+      }
+      i++;
+    }
+
     this.setState({
-      assignmentGroups: groups
+      assignmentGroups: groups.sort((a, b) => {
+        return a.date - b.date;
+      })
     });
   }
 
@@ -88,26 +125,6 @@ class Dashboard extends Component {
     this.props.getAssignments();
   }
 
-  /*
- const colors = ["#22a6b3", "#6ab04c", "#eb4d4b", "#f0932b", "#95afc0", "#ff4444", "#eef00a", "#d600ff", "#e74c3c", "#f1c40f", "#bdc3c7", "#3498db", "#EA2027", "#FFC312", "#fed330"];
- let i = 0;
- 
- setInterval(function () {
-      x = document.getElementsByClassName("ente")[0];
-     changeText();
- }, 102,4);
- 
- function changeText() {
-     if (i == colors.length) {
-         i = 0;
-     }
-     x.style.color = colors[i];
-     
-     i += 1; 
- }
- */
-
-  // <p key={item.id}>{item.subject}</p> <- get subject,
   render() {
     return (
       <div>
@@ -117,32 +134,25 @@ class Dashboard extends Component {
           <h5>
             Outstanding assignments: &nbsp;
             <span className="countAssignments">
-              {this.state.assignmentGroups[0].length +
-                this.state.assignmentGroups[1].length +
-                this.state.assignmentGroups[2].length}
+              {this.state.outstandingAssiggnments}
             </span>
           </h5>
           <div className="wrapper">
-            <AssignmentGroup
-              title={"today"}
-              className="wrapper_today"
-              assignments={this.state.assignmentGroups[0]}
-            />
-            <AssignmentGroup
-              title={"tommorow"}
-              className="wrapper_tommorow"
-              assignments={this.state.assignmentGroups[1]}
-            />
-            <AssignmentGroup
-              title={"die zukunft"}
-              className="wrapper_future"
-              assignments={this.state.assignmentGroups[2]}
-            />
+            {Object.values(this.state.assignmentGroups).map(group => {
+              return (
+                <AssignmentGroup
+                  assignments={group.assignments}
+                  title={group.title}
+                />
+              );
+            })}
+            <CreateAssignmentForm className="CreateAssignment" />
           </div>
-        </div>
+          {/*
         <Chart assignments={this.props.assignments} />
         <AuthorChart assignments={this.props.assignments} />
-        <CreateAssignmentForm />
+        */}
+        </div>
       </div>
     );
   }
