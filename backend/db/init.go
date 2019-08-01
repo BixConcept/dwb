@@ -11,6 +11,7 @@ func connectToDB(host string, port int, username string, password string) (*sql.
 	db, err := sql.Open("postgres", psqlInfo)
 	return db, err
 }
+
 func Init() {
 
 	fmt.Printf("[ ~ ] connecting to database...\n")
@@ -46,5 +47,13 @@ func Init() {
 		return
 	}
 	fmt.Printf("[ + ] successfully initialized sessions table!!!!!11elf!\n")
+
+	fmt.Printf("[ ~ ] initializing teams table...\n")
+	err = initTeamsTable()
+	if err != nil {
+		fmt.Printf("[ - ] error initializing teams table: %s\n", err.Error())
+		return
+	}
+	fmt.Printf("[ + ] successfully initialized teams table!!!!!11elf!\n")
 
 }

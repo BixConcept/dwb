@@ -24,7 +24,7 @@ func main() {
 	r.HandleFunc("/user/", handlers.User)
 	r.HandleFunc("/user/{id}", handlers.User)
 	r.HandleFunc("/user/login/", handlers.User)
-	r.HandleFunc("/team/", nil)
+	r.HandleFunc("/team/", handlers.Team)
 
 	// start server
 	fmt.Printf("[ ~ ] starting server on port %d\n", PORT)
