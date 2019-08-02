@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getAssignments, deleteAssignment } from "../../actions/assignments";
-
+import { getUser } from "../../actions/auth";
 import CreateAssignmentForm from "./CreateAssignmentForm";
 import "./Dashboard.css";
 import "../../actions/auth";
@@ -15,16 +15,16 @@ function AssignmentGroup(props) {
     return (
       <div className={props.classIdentifier}>
         <h3>{props.title}</h3>
-        {props.assignments.map(item => (
-          <ul>
-            <li>
+        <ul>
+          {props.assignments.map(item => (
+            <li key={item.text}>
               <div className="white">
                 <b>{item.subject}</b>
                 <p>{item.text}</p>
               </div>
             </li>
-          </ul>
-        ))}
+          ))}
+        </ul>
       </div>
     );
   } else {
@@ -59,6 +59,8 @@ class Dashboard extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    this.state.outstandingAssiggnments = 0;
+
     if (!newProps.isAuthenticated) {
       this.props.history.push("/login/");
       return;
@@ -77,7 +79,7 @@ class Dashboard extends Component {
 
       if (date < now - 1000 * 60 * 60 * 24) continue;
 
-      this.state.outstandingAssiggnments++;
+      this.state.outstandingAssiggnments += 1;
 
       //console.log(`groups: ${groups}`);
       //groups.forEach(x => console.log(`x: ${x}`));
@@ -105,9 +107,9 @@ class Dashboard extends Component {
       }
       // if date is something else
       else {
-        console.log(group);
+        //console.log(group);
         let date = new Date(parseInt(group.date));
-        console.log(date);
+        //console.log(date);
         groups[i].title = `${date.getDate()}.${date.getMonth() +
           1}.${date.getFullYear()}`;
         groups[i].classIdentifier = "wrapper-future";
@@ -123,11 +125,12 @@ class Dashboard extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state);
+    //console.log(this.state);
   }
 
   componentDidMount() {
     this.props.getAssignments();
+    this.props.getUser();
   }
 
   render() {
@@ -135,30 +138,33 @@ class Dashboard extends Component {
       <div>
         <h1 className="dashboardHeadline">dashboard</h1>
         <div className="dashboard">
-          <h6>Hi, here is your current homework!</h6>
-          <h5>
-            Outstanding assignments: &nbsp;
-            <span className="countAssignments">
-              {this.state.outstandingAssiggnments}
-            </span>
-          </h5>
-          <div className="wrapper">
-            {Object.values(this.state.assignmentGroups).map(group => {
-              return (
-                <AssignmentGroup
-                  assignments={group.assignments}
-                  title={group.title}
-                  classIdentifier={group.classIdentifier}
-                />
-              );
-            })}
+          <h2>
+            meun, servus, meun, <u>{this.props.user.username}</u>!
+          </h2>
+          <div className="container">
+            <h3 className="container-headline">
+              assignments due: &nbsp;
+              <span>{this.state.outstandingAssiggnments}</span>
+            </h3>
+            <div className="wrapper">
+              {Object.values(this.state.assignmentGroups).map(group => {
+                return (
+                  <AssignmentGroup
+                    key={group.date}
+                    assignments={group.assignments}
+                    title={group.title}
+                    classIdentifier={group.classIdentifier}
+                  />
+                );
+              })}
+            </div>
           </div>
           {/*
         <Chart assignments={this.props.assignments} />
         <AuthorChart assignments={this.props.assignments} />
         */}
         </div>
-        <CreateAssignmentForm className="CreateAssignment" />
+        <CreateAssignmentForm />
       </div>
     );
   }
@@ -174,6 +180,7 @@ export default connect(
   mapStateToProps,
   {
     getAssignments,
-    deleteAssignment
+    deleteAssignment,
+    getUser
   }
 )(Dashboard);

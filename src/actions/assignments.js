@@ -3,7 +3,9 @@ import axios from "axios";
 
 // GET_ASSIGNMENTS
 export const getAssignments = () => dispatch => {
-  fetch("http://localhost:8000/assignment/")
+  fetch("http://localhost:8000/assignment/", {
+    credentials: "include"
+  })
     .then(res => res.json())
     .then(res => {
       dispatch({
