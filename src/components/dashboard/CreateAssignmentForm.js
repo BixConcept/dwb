@@ -74,8 +74,7 @@ export class CreateAssignmentForm extends Component {
             ))}
           </select>
           <input
-            type="text"
-            placeholder="text"
+            placeholder="&nbsp;text"
             id="text"
             onChange={this.handleChange}
             autoComplete="off"
@@ -88,7 +87,7 @@ export class CreateAssignmentForm extends Component {
             onChange={this.handleChange}
             autoComplete="off"
           />
-          <input type="submit" />
+          <input type="submit" value="send"/>
         </form>
       </div>
     );
