@@ -11,6 +11,11 @@ h1 {
   margin-bottom: 1vh;
 }
 
+.row {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
 .dashboard {
   margin: 5vw;
   margin-top: 1vh;
@@ -35,14 +40,12 @@ h1 {
 }
 
 .container {
+  margin-top: 1vh;
+  margin-right: .5vh;
+  margin-left: .5vh;
   padding: 1vh;
   background-color: #fff;
   border-radius: 0.3em;
-}
-
-.assignment-form.container {
-  margin-top: 1vh;
-  max-width: 45%;
 }
 
 .wrapper {

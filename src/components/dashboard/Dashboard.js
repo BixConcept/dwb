@@ -13,6 +13,8 @@ import "./Dashboard.css";
 
 // components
 import CreateAssignmentForm from "./CreateAssignmentForm";
+import Team from "./Team";
+
 import Chart from "./Chart";
 import AuthorChart from "./AuthorChart";
 
@@ -168,8 +170,13 @@ class Dashboard extends Component {
               })}
             </div>
           </div>
-          <div className="container assignment-form">
-            <CreateAssignmentForm />
+          <div className="row">
+            <div className="container assignment-form">
+              <CreateAssignmentForm />
+            </div>
+            <div className="container team">
+              <Team />
+            </div>
           </div>
           {/*
         <Chart assignments={this.props.assignments} />
