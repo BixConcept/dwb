@@ -1,0 +1,44 @@
+.assignmentForm {
+  margin: auto;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: #3498db;
+  border-radius: 5px;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
+  color: #fff;
+  justify-content: center;
+  display: flex;
+}
+
+.assignmentForm input[type="text"] {
+  outline: none;
+  color: #3498db;
+  font-size: 14px;
+  padding: 26px;
+  font-weight: 300;
+  border: 1px solid #3498db;
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.assignmentForm input[type="submit"] {
+  vertical-align: middle;
+  font-size: 18px;
+  color: #2ecc71;
+  border: 0.5px solid;
+  padding: 0.5em 1em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.assignmentForm input[type="submit"]:hover {
+  background: #2ecc71;
+  color: #fff;
+  border-color: #2ecc71;
+}
+
+#subject {
+}

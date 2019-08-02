@@ -3,6 +3,26 @@ import { connect } from "react-redux";
 import { createAssignment } from "../../actions/assignments";
 import PropTypes from "prop-types";
 
+import "./CreateAssignment.css";
+
+const subjects = [
+  "deutsch",
+  "erdkunde",
+  "geschichte",
+  "politik",
+  "mathematik",
+  "biologie",
+  "physik",
+  "chemie",
+  "englisch",
+  "kunst",
+  "musik",
+  "katholische Religion",
+  "evangelische Religion",
+  "philosophie",
+  "sport"
+].sort();
+
 export class CreateAssignmentForm extends Component {
   constructor(props) {
     super(props);
@@ -27,8 +47,10 @@ export class CreateAssignmentForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.state.due_date = Date.parse(this.state.due_date);
-
+    // this.state.due_date = Date.parse(this.state.due_date);
+    this.setState({
+      due_date: Date.parse(this.state.due_date)
+    });
     console.log(this.state);
 
     this.props.createAssignment(this.state);
@@ -38,14 +60,19 @@ export class CreateAssignmentForm extends Component {
     return (
       <div className="assignmentForm">
         <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="subject"
-            id="subject"
+          <select
             onChange={this.handleChange}
-            autoComplete="off"
+            id="subject"
             required
-          />
+            defaultValue={""}
+          >
+            <option value="" disabled>
+              select your subject
+            </option>
+            {subjects.map(subject => (
+              <option key={subject}>{subject}</option>
+            ))}
+          </select>
           <input
             type="text"
             placeholder="text"
@@ -53,13 +80,6 @@ export class CreateAssignmentForm extends Component {
             onChange={this.handleChange}
             autoComplete="off"
             required
-          />
-          <input
-            type="text"
-            placeholder="description"
-            id="description"
-            onChange={this.handleChange}
-            autoComplete="off"
           />
           <input
             type="date"

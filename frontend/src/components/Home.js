@@ -2,6 +2,21 @@ import React, { Component } from "react";
 
 import "./Home.css";
 
+/*
+LOL
+SPD
+*/
+
+// Anti-Jakob-Abwehrsystem
+const FBINotOpenUp = function YmxvY2tGMTI(e) {
+  console.log(e.key);
+  if (e.key === "F12") {
+    return false;
+  }
+};
+
+document.onkeydown = FBINotOpenUp;
+
 export default class Home extends Component {
   render() {
     return (
@@ -65,7 +80,7 @@ export default class Home extends Component {
             </div>
             <div className="wrapper-item">
               <h3>ayberk</h3>
-              <span>SLATT</span>
+              <span>Slime Love All The Time</span>
             </div>
             <div className="wrapper-item">
               <h3>sanberk</h3>
