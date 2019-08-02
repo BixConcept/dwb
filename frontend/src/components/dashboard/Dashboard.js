@@ -148,7 +148,7 @@ class Dashboard extends Component {
         <h1 className="dashboardHeadline">dashboard</h1>
         <div className="dashboard">
           <h2 className="greeting">
-            meun, servus, meun, <u>{this.props.user.username}</u>!
+            hi, <u>{this.props.user.username}</u>!
           </h2>
           <div className="container">
             <h3 className="container-headline">
@@ -168,12 +168,14 @@ class Dashboard extends Component {
               })}
             </div>
           </div>
+          <div className="container assignment-form">
+            <CreateAssignmentForm />
+          </div>
           {/*
         <Chart assignments={this.props.assignments} />
         <AuthorChart assignments={this.props.assignments} />
         */}
         </div>
-        <CreateAssignmentForm />
       </div>
     );
   }

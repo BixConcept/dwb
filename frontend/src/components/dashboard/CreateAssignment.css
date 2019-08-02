@@ -1,12 +1,4 @@
 .assignmentForm {
-  margin: auto;
-  margin-left: 5%;
-  margin-right: 5%;
-  max-width: 45%;
-  background-color: #3498db;
-  border-radius: 5px;
-  padding: 1vh;
-  color: #fff;
 }
 
 .assignmentForm input, select {
