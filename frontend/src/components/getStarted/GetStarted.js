@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class Get_Started extends Component {
+export default class GetStarted extends Component {
   render() {
     return (
       <div>
