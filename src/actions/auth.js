@@ -10,7 +10,8 @@ export const login = user => dispatch => {
       dispatch({
         type: LOGIN
       });
-    });
+    })
+    .catch(err => window.location.href = "/");
 };
 
 export const register = user => dispatch => {
