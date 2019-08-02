@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import "./Login.css";
-import "./PasswordShowAndHide.js";
-import PasswordShowAndHide from "./PasswordShowAndHide.js";
 import { connect } from "react-redux";
+
 import { login } from "../../actions/auth";
+
+import PasswordShowAndHide from "./PasswordShowAndHide.js";
+
+import "./Login.css";
 
 class Login extends Component {
   constructor(props) {

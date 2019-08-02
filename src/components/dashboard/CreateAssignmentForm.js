@@ -59,6 +59,8 @@ export class CreateAssignmentForm extends Component {
   render() {
     return (
       <div className="assignmentForm">
+        <h3 className="container-headline"> create assignment </h3>
+
         <form onSubmit={this.handleSubmit}>
           <select
             onChange={this.handleChange}
@@ -87,7 +89,7 @@ export class CreateAssignmentForm extends Component {
             onChange={this.handleChange}
             autoComplete="off"
           />
-          <input type="submit" value="send"/>
+          <input type="submit" value="send" />
         </form>
       </div>
     );
