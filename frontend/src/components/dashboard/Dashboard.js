@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+
+import { withCookies } from "react-cookie";
+
+// actions
 import { getAssignments, deleteAssignment } from "../../actions/assignments";
 import { getUser } from "../../actions/auth";
-import CreateAssignmentForm from "./CreateAssignmentForm";
-import "./Dashboard.css";
-import "../../actions/auth";
 
+// css
+import "./Dashboard.css";
+
+// components
+import CreateAssignmentForm from "./CreateAssignmentForm";
 import Chart from "./Chart";
 import AuthorChart from "./AuthorChart";
 
@@ -129,6 +135,9 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
+    if (this.props.cookies.get("session") === undefined)
+      this.props.history.push("/login");
+
     this.props.getAssignments();
     this.props.getUser();
   }
@@ -183,4 +192,4 @@ export default connect(
     deleteAssignment,
     getUser
   }
-)(Dashboard);
+)(withCookies(Dashboard));
