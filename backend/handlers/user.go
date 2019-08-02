@@ -89,6 +89,7 @@ func getUserBySession(w http.ResponseWriter, r *http.Request) {
 	sessionCookie, err := r.Cookie("session")
 
 	if err != nil {
+		fmt.Printf("[ - ] error extracting session cookie: %v \n", err)
 		w.WriteHeader(http.StatusUnauthorized)
 		return
 	}

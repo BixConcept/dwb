@@ -19,7 +19,9 @@ type User struct {
 	ID           int    `json:"id"`
 	Username     string `json:"username"`
 	PasswordHash string
-	Permission   int `json:"permission"`
+	Permission   int  `json:"permission"`
+	Team         int  `json:"team"`
+	IsTeamMember bool `json:"team_member"`
 }
 
 type Session struct {

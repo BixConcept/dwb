@@ -10,7 +10,6 @@ import (
 func CreateUser(username, password string, permission int) (int, error) {
 	user := structs.User{}
 
-
 	// hash password
 	hashedPass, err := HashPassword(password)
 	if err != nil {
@@ -28,11 +27,9 @@ func CreateUser(username, password string, permission int) (int, error) {
 	return id, err
 }
 
-
-
 // GetUsers -> fetch all user data from database
 func GetUsers() ([]structs.User, error) {
-	users := []structs.User{}
+	var users []structs.User
 
 	query := "SELECT * FROM users;"
 	rows, err := Database.Query(query)
@@ -43,8 +40,7 @@ func GetUsers() ([]structs.User, error) {
 	for rows.Next() {
 		newUser := structs.User{}
 
-
-		err = rows.Scan(&newUser.ID, &newUser.Username, &newUser.PasswordHash, &newUser.Permission)
+		err = rows.Scan(&newUser.ID, &newUser.Username, &newUser.PasswordHash, &newUser.Team, &newUser.IsTeamMember, &newUser.Permission)
 		if err != nil {
 			return users, err
 		}
@@ -58,7 +54,6 @@ func GetUsers() ([]structs.User, error) {
 // GetUserByName -> return user with specified name
 func GetUserByName(name string) (structs.User, error) {
 	users, err := GetUsers()
-
 
 	if err != nil {
 		return structs.User{}, err
@@ -92,6 +87,7 @@ func GetUserByID(id int) (structs.User, error) {
 	return user, err
 
 }
+
 // HashPassword hashes the password
 // using with bcrypt algorithm
 func HashPassword(password string) (string, error) {
@@ -99,10 +95,8 @@ func HashPassword(password string) (string, error) {
 	return string(bytes), err
 }
 
-
 // CheckPasswordHash checks the passwords hash
 func CheckPasswordHash(password, hash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	return err == nil
 }
-

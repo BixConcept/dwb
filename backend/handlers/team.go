@@ -10,13 +10,70 @@ import (
 
 func Team(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("access-control-allow-origin", r.Header.Get("origin"))
+	w.Header().Set("access-control-allow-credentials", "true")
 
 	fmt.Printf("\n-*- %s %s -*-\n", r.Method, r.URL.Path)
 
 	switch r.Method {
 	case "POST":
 		createTeam(w, r)
+	case "GET":
+		getTeam(w, r)
 	}
+}
+
+func getTeam(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("-*- getTeam -*-\n")
+
+	sessionCookie, err := r.Cookie("session")
+	if err != nil {
+		fmt.Printf("[ - ] error extracting session cookie: %v\n", err)
+		w.WriteHeader(http.StatusUnauthorized)
+		return
+	}
+
+	fmt.Printf("[ * ] session cookie: %+v\n", sessionCookie)
+
+	session, err := db.GetSession(sessionCookie.Value)
+	if err != nil {
+		fmt.Printf("[ * ] error retrieving session from database: %v\n", err)
+		w.WriteHeader(http.StatusUnauthorized)
+		return
+	}
+	fmt.Printf("[ * ] session: %+v\n", session)
+
+	user, err := db.GetUserByID(session.UserID)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving user from database: %v\n", err)
+		w.WriteHeader(http.StatusUnauthorized)
+		return
+	}
+	fmt.Printf("[ * ] user: %+v\n", user)
+
+	if !user.IsTeamMember {
+		fmt.Printf("[ - ] user is not even member of a team!\n")
+		w.WriteHeader(500)
+		return
+	}
+
+	team, err := db.GetTeamByID(user.Team)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving team: %v\n", err)
+		w.WriteHeader(404)
+		return
+	}
+	fmt.Printf("[ * ] team: %+v\n", team)
+
+	members, err := db.GetTeamMembers(team.ID)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving members: %v\n", err)
+		return
+	}
+
+	_ = json.NewEncoder(w).Encode(map[string]interface{}{
+		"team":    team,
+		"members": members,
+	})
 }
 
 func createTeam(w http.ResponseWriter, r *http.Request) {
@@ -64,7 +121,7 @@ func createTeam(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Printf("[ * ] team: %+v\n", team)
-	
+
 	_ = json.NewEncoder(w).Encode(team)
 
 }
