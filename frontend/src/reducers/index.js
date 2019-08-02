@@ -3,9 +3,11 @@ import {
 } from "redux"
 import assignments from "./assignments";
 import auth from "./auth"
+import teams from "./teams";
 
 
 export default combineReducers({
     assignments,
-    auth
+    auth,
+    teams
 })
