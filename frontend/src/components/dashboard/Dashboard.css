@@ -1,9 +1,14 @@
-.dashboardHeadline {
+h1 {
   font-size: 40px;
   color: #3498db;
-  margin-bottom: 0.5%;
-  margin-top: 3%;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
   margin-left: 5%;
+}
+
+.greeting {
+  margin: 0;
+  margin-bottom: 1vh;
 }
 
 .dashboard {
@@ -13,7 +18,7 @@
 
   background-color: #3498db;
   border-radius: 5px;
-  padding: 1.5%;
+  padding: 1.5vh;
   color: #fff;
 }
 

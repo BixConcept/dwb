@@ -138,7 +138,7 @@ class Dashboard extends Component {
       <div>
         <h1 className="dashboardHeadline">dashboard</h1>
         <div className="dashboard">
-          <h2>
+          <h2 className="greeting">
             meun, servus, meun, <u>{this.props.user.username}</u>!
           </h2>
           <div className="container">
