@@ -6,21 +6,30 @@ import PropTypes from "prop-types";
 import "./CreateAssignment.css";
 
 const subjects = [
-  "deutsch",
-  "erdkunde",
-  "geschichte",
-  "politik",
-  "mathematik",
-  "biologie",
-  "physik",
-  "chemie",
-  "englisch",
-  "kunst",
-  "musik",
-  "katholische Religion",
-  "evangelische Religion",
-  "philosophie",
-  "sport"
+  // normal
+  "deutsch 🇩🇪",
+  "erdkunde 🗺",
+  "geschichte 🏛️",
+  "politik 🌍",
+  "mathematik ➗",
+  "biologie 🧬",
+  "physik ⚛️",
+  "chemie 🧪",
+  "englisch 🇺🇸",
+  "kunst 🎨󠁧󠁢󠁥",
+  "musik 🎹",
+  "katholische religion ✝️",
+  "evangelische religion ✝️",
+  "philosophie 🗿",
+  "sport 🏃‍",
+
+  // diff   
+  "informatik 👾",
+  "culture studies 🇬🇧",
+  "spanisch 🇪🇸",
+  "ökologie 🌳",
+
+  "sonstiges 🍌"
 ].sort();
 
 export class CreateAssignmentForm extends Component {
