@@ -51,7 +51,13 @@ func getAssignments(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Printf("[ * ] user: %+v\n", user)
 
-	assignments, err := db.GetAssignments()
+	assignments := []structs.Assignment{}
+	if !user.IsTeamMember {
+		assignments, err = db.GetAssignmentsByOwner(user.ID)
+	} else {
+		assignments, err = db.GetAssignmentsByTeam(user.Team)
+	}
+
 	if err != nil {
 		fmt.Printf("[ - ] error fetching assignments: %v\n", err)
 		return

@@ -2,9 +2,9 @@ package db
 
 import "git.3nt3.de/3nt3/dwb/structs"
 
-func GetAssignments() ([]structs.Assignment, error) {
-	query := "SELECT * FROM assignments;"
-	rows, err := Database.Query(query)
+func GetAssignmentsByOwner(ownerID int) ([]structs.Assignment, error) {
+	query := "SELECT * FROM assignments WHERE author = $1;"
+	rows, err := Database.Query(query, ownerID)
 	if err != nil {
 		return nil, err
 	}
@@ -21,6 +21,46 @@ func GetAssignments() ([]structs.Assignment, error) {
 		assignments = append(assignments, assignment)
 	}
 
+	return assignments, nil
+}
+
+func GetAssignmentsByTeam(teamID int) ([]structs.Assignment, error) {
+	query := "SELECT id FROM users WHERE is_team_member = true AND team = $1"
+	rows, err := Database.Query(query, teamID)
+	if err != nil {
+		return nil, err
+	}
+
+	users := []int{}
+
+	for rows.Next() {
+		id := 0
+		err := rows.Scan(&id)
+		if err != nil {
+			return nil, err
+		}
+
+		users = append(users, id)
+	}
+
+	assignments := []structs.Assignment{}
+
+	for _, user := range users {
+		query := "SELECT * FROM assignments WHERE author = $1"
+		rows, err = Database.Query(query, user)
+		if err != nil {
+			return nil, err
+		}
+
+		for rows.Next() {
+			a := structs.Assignment{}
+			err := rows.Scan(&a.ID, &a.CreatedAt, &a.DueDate, &a.Text, &a.Subject, &a.Description, &a.Author)
+			if err != nil {
+				return nil, err
+			}
+			assignments = append(assignments, a)
+		}
+	}
 	return assignments, nil
 }
 
