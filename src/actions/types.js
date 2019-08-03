@@ -8,3 +8,5 @@ export const GET_USER = "GET_USER";
 export const SET_AUTHENTICATED = "SET_AUTHENTICATED";
 
 export const GET_TEAM = "GET_TEAM";
+
+export const GET_ERRORS = "GET_ERRORS";
