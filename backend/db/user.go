@@ -18,7 +18,7 @@ func CreateUser(username, password string, permission int) (int, error) {
 
 	user.PasswordHash = hashedPass
 
-	query := "INSERT INTO users VALUES (default, $1, $2, $3) returning id;"
+	query := "INSERT INTO users  VALUES (default, $1, $2, 0, false, $3) returning id;"
 	row := Database.QueryRow(query, username, hashedPass, permission)
 
 	id := 0
