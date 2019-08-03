@@ -58,6 +58,7 @@ export class Team extends Component {
   }
 
   componentDidMount() {
+    if (!this.props.isTeamMember) return
     this.props.getTeam();
   }
 
