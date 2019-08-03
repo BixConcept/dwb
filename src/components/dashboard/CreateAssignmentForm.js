@@ -23,7 +23,7 @@ const subjects = [
   "philosophie 🗿",
   "sport 🏃‍",
 
-  // diff   
+  // diff
   "informatik 👾",
   "culture studies 🇬🇧",
   "spanisch 🇪🇸",
