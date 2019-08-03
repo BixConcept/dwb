@@ -45,7 +45,7 @@ func GetTeamByID(teamID int) (structs.Team, error) {
 }
 
 func CreateTeam(newTeam structs.Team) (structs.Team, error) {
-	query := "INSERT INTO teams VALUES (default, $1, $2) RETURNING id"
+	query := "INSERT INTO teams VALUES (default, $1, $2) RETURNING id;"
 	row := Database.QueryRow(query, newTeam.Name, newTeam.Owner)
 	err := row.Scan(&newTeam.ID)
 	return newTeam, err

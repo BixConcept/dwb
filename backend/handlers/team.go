@@ -16,7 +16,12 @@ func Team(w http.ResponseWriter, r *http.Request) {
 
 	switch r.Method {
 	case "POST":
-		createTeam(w, r)
+		if r.URL.Path == "/team/addMember/" {
+			addMember(w, r)
+		} else {
+			createTeam(w, r)
+		}
+
 	case "GET":
 		getTeam(w, r)
 	}
@@ -122,6 +127,13 @@ func createTeam(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Printf("[ * ] team: %+v\n", team)
 
+	err = db.AddTeamMember(team.ID, user.ID)
+	if err != nil {
+		fmt.Printf("[ - ] error adding user to team: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
+
 	_ = json.NewEncoder(w).Encode(team)
 
 }
@@ -154,23 +166,12 @@ func addMember(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Printf("[ * ] user: %+v\n", user)
 
-	rawTeam := structs.Team{}
-	err = json.NewDecoder(r.Body).Decode(&rawTeam)
-	if err != nil {
-		fmt.Printf("[ - ] error decoding team: %v\n", err)
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
-	rawTeam.Owner = user.ID
-	fmt.Printf("[ * ] raw team: %+v\n", rawTeam)
 
-	team, err := db.CreateTeam(rawTeam)
+	team, err := db.GetTeamByID(user.Team)
 	if err != nil {
-		fmt.Printf("[ - ] error creating team: %v\n", err)
-		w.WriteHeader(500)
-		return
+		fmt.Printf("[ - ] error retrieving team from db: %v\n", err)
 	}
-	fmt.Printf("[ * ] team: %+v\n", team)
+
 
 	if team.Owner != user.ID {
 		fmt.Printf("[ - ] this guy is not allowed to do this kind of action. call the police!!\n")
@@ -178,11 +179,18 @@ func addMember(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	teamUser := structs.User{}
-	err = json.NewDecoder(r.Body).Decode(&teamUser)
+	teamUsername := ""
+	err = json.NewDecoder(r.Body).Decode(&teamUsername)
 	if err != nil {
 		fmt.Printf("[ - ] error decoding team user: %v\n", err)
 		w.WriteHeader(500)
+		return
+	}
+
+	teamUser, err := db.GetUserByName(teamUsername)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving team user from db: %v\n")
+		w.WriteHeader(404)
 		return
 	}
 

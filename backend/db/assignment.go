@@ -25,7 +25,7 @@ func GetAssignmentsByOwner(ownerID int) ([]structs.Assignment, error) {
 }
 
 func GetAssignmentsByTeam(teamID int) ([]structs.Assignment, error) {
-	query := "SELECT id FROM users WHERE is_team_member = true AND team = $1"
+	query := "SELECT id FROM users WHERE team = $1"
 	rows, err := Database.Query(query, teamID)
 	if err != nil {
 		return nil, err
@@ -64,7 +64,7 @@ func GetAssignmentsByTeam(teamID int) ([]structs.Assignment, error) {
 	return assignments, nil
 }
 
-func CreateAssignments(assignment structs.Assignment) error {
+func CreateAssignment(assignment structs.Assignment) error {
 	query := "insert into assignments values (default, now(), $1, $2, $3, $4, $5)"
 	_, err := Database.Exec(query, assignment.DueDate, assignment.Text, assignment.Subject, assignment.Description, assignment.Author)
 	return err

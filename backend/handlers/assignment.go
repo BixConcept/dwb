@@ -112,7 +112,7 @@ func createAssignments(w http.ResponseWriter, r *http.Request) {
 
 	assignment.Author = user.ID
 
-	err = db.CreateAssignments(assignment)
+	err = db.CreateAssignment(assignment)
 	if err != nil {
 		fmt.Printf("[ - ] error creating assignment: %v\n", err)
 		w.WriteHeader(500)
