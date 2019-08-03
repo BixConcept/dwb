@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 h1 {
   font-size: 40px;
   color: #3498db;
@@ -89,4 +91,11 @@ h1 {
 
 .white {
   color: white;
+}
+.TeamText {
+  font-family: 'Montserrat';
+  font-size: 17px
+}
+input [type="submit"] {
+  
 }

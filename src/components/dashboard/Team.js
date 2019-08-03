@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 
 import { getTeam, addUserToTeam, createTeam } from "../../actions/teams";
 
+import './Dashboard.css'
+
 const TeamMemberList = props => {
   if (props.members === undefined) {
     return null;
@@ -84,7 +86,7 @@ export class Team extends Component {
   render() {
     if (!this.props.isTeamMember) {
       return (
-        <div>
+        <div className="TeamText">
           <h3 className="container-headline">you are not part of a team.</h3>
           <p>
             loneliness is unhealthy. join a team or create one yourself (つ ͡° ͜ʖ
