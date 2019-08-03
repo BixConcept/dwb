@@ -137,8 +137,6 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    if (this.props.cookies.get("session") === undefined)
-      this.props.history.push("/login");
 
     this.props.getAssignments();
     this.props.getUser();
