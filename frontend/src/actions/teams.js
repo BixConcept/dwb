@@ -11,7 +11,7 @@ import store from "../store";
 // GET_TEAM
 export const getTeam = () => dispatch => {
   axios
-    .get("http://localhost:8000/team/", {
+    .get("https://api.3nt3.de/team/", {
       withCredentials: true
     })
     .then(res => {
@@ -24,7 +24,7 @@ export const getTeam = () => dispatch => {
 
 export const createTeam = (name) => dispatch => {
   axios
-    .post("http://localhost:8000/team/", JSON.stringify({
+    .post("https://api.3nt3.de/team/", JSON.stringify({
       name
     }), {
       withCredentials: true
@@ -47,7 +47,7 @@ export const createTeam = (name) => dispatch => {
 // ADD_USER_TO_TEAM
 export const addUserToTeam = (username) => dispatch => {
   axios
-    .post("http://localhost:8000/team/addMember/", JSON.stringify(username), {
+    .post("https://api.3nt3.de/team/addMember/", JSON.stringify(username), {
       withCredentials: true
     })
     .then(res => {

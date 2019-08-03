@@ -7,7 +7,7 @@ import axios from "axios";
 
 // GET_ASSIGNMENTS
 export const getAssignments = () => dispatch => {
-  fetch("http://localhost:8000/assignment/", {
+  fetch("https://api.3nt3.de/assignment/", {
       credentials: "include"
     })
     .then(res => res.json())
@@ -24,7 +24,7 @@ export const getAssignments = () => dispatch => {
 export const createAssignment = assignment => dispatch => {
   assignment.due_date = new Date(assignment.due_date);
   axios
-    .post("http://localhost:8000/assignment/", JSON.stringify(assignment), {
+    .post("https://api.3nt3.de/assignment/", JSON.stringify(assignment), {
       withCredentials: true
     })
     .then(res => {
@@ -41,7 +41,7 @@ export const createAssignment = assignment => dispatch => {
 export const deleteAssignment = assignment => dispatch => {
   //console.log(assignment)
   axios
-    .delete(`http://localhost:8000/assignment/${assignment.id}/`)
+    .delete(`https://api.3nt3.de/assignment/${assignment.id}/`)
     .then(res => {
       console.log(assignment);
       dispatch({

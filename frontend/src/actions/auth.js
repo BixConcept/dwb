@@ -3,7 +3,7 @@ import { LOGIN, REGISTER, GET_USER, SET_AUTHENTICATED } from "./types";
 
 export const login = user => dispatch => {
   axios
-    .post("http://localhost:8000/user/login/", JSON.stringify(user), {
+    .post("https://api.3nt3.de/user/login/", JSON.stringify(user), {
       withCredentials: true
     })
     .then(res => {
@@ -16,7 +16,7 @@ export const login = user => dispatch => {
 
 export const register = user => dispatch => {
   axios
-    .post("http://localhost:8000/user/register", JSON.stringify(user), {
+    .post("https://api.3nt3.de/user/register", JSON.stringify(user), {
       withCredentials: true
     })
     .then(res => {
@@ -28,7 +28,7 @@ export const register = user => dispatch => {
 
 export const getUser = () => dispatch => {
   axios
-    .get("http://localhost:8000/user/",  {
+    .get("https://api.3nt3.de/user/",  {
       withCredentials: true
     })
     .then(res => {
