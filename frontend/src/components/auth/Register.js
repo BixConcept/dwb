@@ -29,6 +29,13 @@ class Register extends Component {
 
 
   }
+
+  componentWillReceiveProps(newProps) {
+    console.log(newProps);
+    if (newProps.isAuthenticated) this.props.history.push("/dashboard");
+  }
+
+
   render() {
     return (
       <div className="main">
@@ -55,4 +62,9 @@ class Register extends Component {
   }
 }
 
-export default connect(null, { register })(Register)
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+
+export default connect(mapStateToProps, { register })(Register)
