@@ -2,7 +2,8 @@ import {
     LOGIN,
     REGISTER,
     GET_USER,
-    SET_AUTHENTICATED
+    SET_AUTHENTICATED,
+    SET_IS_TEAM_MEMBER
 } from "../actions/types";
 
 const initialState = {
@@ -31,7 +32,12 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isAuthenticated: action.payload
-            }
+            };
+            case SET_IS_TEAM_MEMBER:
+                return {
+                    ...state,
+                    user: {team_member: action.payload}
+                }
         default:
             return state;
     }
