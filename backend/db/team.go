@@ -50,3 +50,9 @@ func CreateTeam(newTeam structs.Team) (structs.Team, error) {
 	err := row.Scan(&newTeam.ID)
 	return newTeam, err
 }
+
+func AddTeamMember(teamID int, userID int) error {
+	query := "UPDATE users SET team = $1, is_team_member = true WHERE id = $2"
+	_, err := Database.Exec(query, teamID, userID)
+	return err
+}

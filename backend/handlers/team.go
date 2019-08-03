@@ -125,3 +125,72 @@ func createTeam(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(team)
 
 }
+
+func addMember(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("-*- addMember -*-\n")
+
+	sessionCookie, err := r.Cookie("session")
+	if err != nil {
+		fmt.Printf("[ - ] error extracting session cookie: %v\n", err)
+		w.WriteHeader(http.StatusUnauthorized)
+		return
+	}
+
+	fmt.Printf("[ * ] session cookie: %+v\n", sessionCookie)
+
+	session, err := db.GetSession(sessionCookie.Value)
+	if err != nil {
+		fmt.Printf("[ * ] error retrieving session from database: %v\n", err)
+		w.WriteHeader(http.StatusUnauthorized)
+		return
+	}
+	fmt.Printf("[ * ] session: %+v\n", session)
+
+	user, err := db.GetUserByID(session.UserID)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving user from database: %v\n", err)
+		w.WriteHeader(http.StatusUnauthorized)
+		return
+	}
+	fmt.Printf("[ * ] user: %+v\n", user)
+
+	rawTeam := structs.Team{}
+	err = json.NewDecoder(r.Body).Decode(&rawTeam)
+	if err != nil {
+		fmt.Printf("[ - ] error decoding team: %v\n", err)
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	rawTeam.Owner = user.ID
+	fmt.Printf("[ * ] raw team: %+v\n", rawTeam)
+
+	team, err := db.CreateTeam(rawTeam)
+	if err != nil {
+		fmt.Printf("[ - ] error creating team: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
+	fmt.Printf("[ * ] team: %+v\n", team)
+
+	if team.Owner != user.ID {
+		fmt.Printf("[ - ] this guy is not allowed to do this kind of action. call the police!!\n")
+		w.WriteHeader(401)
+		return
+	}
+
+	teamUser := structs.User{}
+	err = json.NewDecoder(r.Body).Decode(&teamUser)
+	if err != nil {
+		fmt.Printf("[ - ] error decoding team user: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
+
+	err = db.AddTeamMember(team.ID, teamUser.ID)
+	if err != nil {
+		fmt.Printf("[ - ] error adding user to team: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
+
+}
