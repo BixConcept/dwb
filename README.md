@@ -1,22 +1,32 @@
-This **open-source project** was programed by the 3nt3rt41ment GbR [niels, ayberk & sanberk].
+# dwb frontend
 
-## install it
-#### 1. Step: Install [NodeJS](https://nodejs.org/en/) because the NodeJS packet manager is needed to run this app.
+This **open-source project** was developed by the 3nt3rt41ment GbR [niels, ayberk & sanberk] in 2019 as part of a computer science project. It is the frontend counterparrt for the [dwb api](https://git.3nt3.de/3nt3/dwb).
+Installation of the api is **required**.
 
-#### 2. Step: Install [Go](https://golang.org/).
+## installation
 
-#### 3. Step: Open your terminal.
+### step 1: Install [NodeJS](https://nodejs.org/en/) because the NodeJS packet manager is needed to run this app.
 
-#### 4. Step: type in these commands: 
-     $ go get git.3nt3.de/3nt3/dwb
-     $ git clone git.3nt3.de/3nt3/dwb-fronted - you also have to install git if you haven't install it yet
+### step 2: clone the repo
 
-#### 5. Step: Install PostgreSQL and create a database in the Go project's folder.
+`git clone git.3nt3.de/3nt3/dwb-fronted && cd dwb-frontend` (you also have to install git if you haven't install it yet)
 
-#### 6. Step: type in these command (***you have to be still the the dwb folder***): 
-     $ go run main.go or $ go build
-     $ ./dwb
+### step 3: run / deploy
 
-#### 7. Step: run the frontend: $ npm start
+#### development
 
-#### 8. Step: open your browser (if it does not opened  mn m nb ,b nm)
+if you want to run dwb for development purposes and just want a development server you can run
+
+```bash
+npm start
+```
+
+a development server should now be running on `localhost:3000`.
+
+#### production
+
+if you want to run dwb in production you can run the following command and copy the compiled files in `build/` to your webroot.
+
+```bash
+npm run build
+```
