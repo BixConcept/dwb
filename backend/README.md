@@ -10,4 +10,4 @@ its purpose help manage assignments.
 ### installation
 * `go get` the package
 * (change database credentials?)
-* `run it`
+* run it
