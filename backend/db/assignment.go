@@ -13,7 +13,7 @@ func GetAssignmentsByOwner(ownerID int) ([]structs.Assignment, error) {
 	for rows.Next() {
 		assignment := structs.Assignment{}
 
-		err := rows.Scan(&assignment.ID, &assignment.CreatedAt, &assignment.DueDate, &assignment.Text, &assignment.Subject, &assignment.Description, &assignment.Author)
+		err := rows.Scan(&assignment.ID, &assignment.CreatedAt, &assignment.DueDate, &assignment.Text, &assignment.Subject, &assignment.Description, &assignment.Author, &assignment.AuthorName)
 		if err != nil {
 			return nil, err
 		}
@@ -54,7 +54,7 @@ func GetAssignmentsByTeam(teamID int) ([]structs.Assignment, error) {
 
 		for rows.Next() {
 			a := structs.Assignment{}
-			err := rows.Scan(&a.ID, &a.CreatedAt, &a.DueDate, &a.Text, &a.Subject, &a.Description, &a.Author)
+			err := rows.Scan(&a.ID, &a.CreatedAt, &a.DueDate, &a.Text, &a.Subject, &a.Description, &a.Author, &a.AuthorName)
 			if err != nil {
 				return nil, err
 			}
@@ -65,7 +65,7 @@ func GetAssignmentsByTeam(teamID int) ([]structs.Assignment, error) {
 }
 
 func CreateAssignment(assignment structs.Assignment) error {
-	query := "insert into assignments values (default, now(), $1, $2, $3, $4, $5)"
-	_, err := Database.Exec(query, assignment.DueDate, assignment.Text, assignment.Subject, assignment.Description, assignment.Author)
+	query := "insert into assignments values (default, now(), $1, $2, $3, $4, $5, $6)"
+	_, err := Database.Exec(query, assignment.DueDate, assignment.Text, assignment.Subject, assignment.Description, assignment.Author, assignment.AuthorName)
 	return err
 }

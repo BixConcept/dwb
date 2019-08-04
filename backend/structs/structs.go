@@ -12,7 +12,7 @@ type Assignment struct {
 	Subject     string    `json:"subject"`
 	Description string    `json:"description"`
 	Author      int       `json:"author"`
-	Team        int       `json:"team"`
+	AuthorName  string    `json:"author_name"`
 }
 
 type User struct {

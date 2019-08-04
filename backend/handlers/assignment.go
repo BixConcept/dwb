@@ -111,6 +111,7 @@ func createAssignments(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("[ * ] user: %+v\n", user)
 
 	assignment.Author = user.ID
+	assignment.AuthorName = user.Username
 
 	err = db.CreateAssignment(assignment)
 	if err != nil {
