@@ -11,7 +11,7 @@ This **open-source project** was programed by the 3nt3rt41ment GbR [niels, ayber
      $ go get git.3nt3.de/3nt3/dwb
      $ git clone git.3nt3.de/3nt3/dwb-fronted - you also have to install git if you haven't install it yet
 
-#### 5. Step: Install PostgresQL and create a database in the Go project's folder.
+#### 5. Step: Install PostgreSQL and create a database in the Go project's folder.
 
 #### 6. Step: type in these command (***you have to be still the the dwb folder***): 
      $ go run main.go or $ go build and then $ ./dwb
