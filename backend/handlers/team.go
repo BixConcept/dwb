@@ -57,7 +57,7 @@ func getTeam(w http.ResponseWriter, r *http.Request) {
 
 	if !user.IsTeamMember {
 		fmt.Printf("[ - ] user is not even member of a team!\n")
-		w.WriteHeader(500)
+		w.WriteHeader(http.StatusNoContent)
 		return
 	}
 

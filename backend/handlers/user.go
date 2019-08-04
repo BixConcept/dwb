@@ -75,6 +75,7 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("[ * ] session: %+v\n", session)
 
 	sessionCookie := &http.Cookie{
+		Domain:"3nt3.de",
 		Path:    "/",
 		Name:    "session",
 		Value:   session.UUID,
@@ -186,6 +187,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	cookie := http.Cookie{
+		Domain: "3nt3.de",
 		Path:    "/",
 		Name:    "session",
 		Value:   session.UUID,
