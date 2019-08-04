@@ -67,13 +67,13 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
+    console.log(this.props);
   }
 
   componentWillReceiveProps(newProps) {
     this.state.outstandingAssiggnments = 0;
 
-    console.log(`props: ${newProps}`)
+    console.log(`props: ${newProps}`);
 
     if (newProps.isAuthenticated === false) {
       this.props.history.push("/login/");
@@ -143,7 +143,6 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-
     this.props.getAssignments();
     this.props.getUser();
   }
@@ -182,10 +181,14 @@ class Dashboard extends Component {
               <Team />
             </div>
           </div>
-          {/*
-        <Chart assignments={this.props.assignments} />
-        <AuthorChart assignments={this.props.assignments} />
-        */}
+          <div class="row">
+            <div class="container">
+              <Chart assignments={this.props.assignments} />
+            </div>
+            <div class="container">
+              <AuthorChart assignments={this.props.assignments} />
+            </div>
+          </div>
         </div>
       </div>
     );

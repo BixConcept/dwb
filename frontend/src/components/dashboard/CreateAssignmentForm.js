@@ -60,9 +60,8 @@ export class CreateAssignmentForm extends Component {
     this.setState({
       due_date: Date.parse(this.state.due_date)
     });
-    console.log(this.state);
 
-    this.props.createAssignment(this.state);
+    this.props.createAssignment({...this.state, author_name: this.props.username});
   }
 
   render() {
@@ -105,7 +104,11 @@ export class CreateAssignmentForm extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  username: state.auth.user.username
+})
+
 export default connect(
-  null,
+  mapStateToProps,
   { createAssignment }
 )(CreateAssignmentForm);
