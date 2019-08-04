@@ -14,7 +14,8 @@ This **open-source project** was programed by the 3nt3rt41ment GbR [niels, ayber
 #### 5. Step: Install PostgreSQL and create a database in the Go project's folder.
 
 #### 6. Step: type in these command (***you have to be still the the dwb folder***): 
-     $ go run main.go or $ go build and then $ ./dwb
+     $ go run main.go or $ go build
+     $ ./dwb
 
 #### 7. Step: run the frontend: $ npm start
 
