@@ -53,12 +53,8 @@ export class Team extends Component {
 
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps.team)
-  }
 
   componentDidMount() {
-    if (!this.props.isTeamMember) return
     this.props.getTeam();
   }
 
