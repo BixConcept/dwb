@@ -21,7 +21,7 @@ class Navbar extends Component {
 
   handleLogout(e) {
     e.preventDefault();
-    console.log(this.props.cookies.remove("session"));
+    //console.log(this.props.cookies.remove("session"));
     this.props.logout();
   }
 
@@ -58,9 +58,9 @@ class Navbar extends Component {
         <nav className={"nav"}>
           <ul>
             <li>
-              <a className="nav-brand" href="/">
-                Digital White Board
-              </a>
+              <Link className="nav-brand" to="/">
+                digital white board
+              </Link>
             </li>
             {this.state.items.map(element => {
               if (element.type === "logout") {
