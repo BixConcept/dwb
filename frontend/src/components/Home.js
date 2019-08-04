@@ -73,17 +73,17 @@ export default class Home extends Component {
           <h2 className="section-header">team</h2>
           <div className="wrapper">
             <div className="wrapper-item">
-              <h3>
-                3nt3 <i className="fas fa-duck" />
-              </h3>
+              <h3>🦆</h3>
               <span>mag brotkrümel</span>
             </div>
             <div className="wrapper-item">
-              <h3>ayberk</h3>
-              <span>Slime Love All The Time</span>
+              <h3>🥚⛰</h3>
+              <span>
+                <b>S</b>lime <b>L</b>ove <b>A</b>ll <b>T</b>he <b>T</b>ime
+              </span>
             </div>
             <div className="wrapper-item">
-              <h3>sanberk</h3>
+              <h3>☀️⛰</h3>
               <span>hat einen verbreiteten namen</span>
             </div>
           </div>
