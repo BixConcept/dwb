@@ -6,7 +6,6 @@ import Home from "./Home";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Dashboard from "./dashboard/Dashboard";
-import GetStarted from "./getStarted/GetStarted";
 
 // router
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
@@ -40,7 +39,6 @@ class App extends Component {
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
                 <Route path="/dashboard" component={Dashboard} />
-                <Route path="/getStarted" component={GetStarted} />
               </Switch>
             </Fragment>
           </Router>

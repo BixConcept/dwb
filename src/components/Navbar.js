@@ -28,11 +28,7 @@ class Navbar extends Component {
   updateLinks(authenticated) {
     if (authenticated) {
       this.setState({
-        items: [
-          { link: "/getstarted", text: "get started" },
-          { link: "/dashboard", text: "dashboard" },
-          { type: "logout" }
-        ]
+        items: [{ link: "/dashboard", text: "dashboard" }, { type: "logout" }]
       });
     } else {
       this.setState({
