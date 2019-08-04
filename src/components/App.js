@@ -39,7 +39,6 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route path="/dashboard" component={Dashboard} />
-              <Route path="/getStarted" component={GetStarted} />
             </Switch>
           </Fragment>
         </Router>

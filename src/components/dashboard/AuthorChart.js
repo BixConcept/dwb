@@ -68,11 +68,11 @@ class Chart extends Component {
     let data = {};
 
     rawData.forEach(element => {
-      if (data[element.author] === undefined) {
-        data[element.author] = 1;
+      if (data[element.author_name] === undefined) {
+        data[element.author_name] = 1;
         return;
       }
-      data[element.author]++;
+      data[element.author_name]++;
     });
 
     return data;
@@ -93,8 +93,8 @@ class Chart extends Component {
             ]
           }
         }}
-        width={700}
-      />
+
+        />
     );
   }
 }

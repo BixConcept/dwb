@@ -21,7 +21,7 @@ class Navbar extends Component {
 
   handleLogout(e) {
     e.preventDefault();
-    //console.log(this.props.cookies.remove("session"));
+    this.props.cookies.remove("session");
     this.props.logout();
   }
 
