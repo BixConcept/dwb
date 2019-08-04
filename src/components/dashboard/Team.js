@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { getTeam, addUserToTeam, createTeam } from "../../actions/teams";
 
-import './Dashboard.css'
+import "./Team.css";
 
 const TeamMemberList = props => {
   if (props.members === undefined) {
@@ -33,8 +33,6 @@ export class Team extends Component {
     team: PropTypes.object.isRequired
   };
 
- 
-
   constructor(props) {
     super(props);
     this.state = {
@@ -45,16 +43,15 @@ export class Team extends Component {
         name: ""
       }
     };
-  this.handleChange = this.handleChange.bind(this);
-  this.handleSubmit = this.handleSubmit.bind(this);
-  
-  this.createTeamChange = this.createTeamChange.bind(this);
-  this.createTeamSubmit = this.createTeamSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
+    this.createTeamChange = this.createTeamChange.bind(this);
+    this.createTeamSubmit = this.createTeamSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.team)
+    console.log(nextProps.team);
   }
 
   componentDidMount() {
@@ -88,18 +85,19 @@ export class Team extends Component {
       return (
         <div className="TeamText">
           <h3 className="container-headline">you are not part of a team.</h3>
+          <br />
           <p>
-            loneliness is unhealthy. join a team or create one yourself (つ ͡° ͜ʖ
-            ͡°)つ
+            loneliness is unhealthy. join a team or create one yourself. <br />
+            (つ ͡° ͜ʖ ͡°)つ
           </p>
-          <div>
+          <div className="teamForm">
             <form onSubmit={this.createTeamSubmit}>
               <input
-                placeholder="enter a name for your team"
+                placeholder="&nbsp;enter a name for your team"
                 id="name"
                 onChange={this.createTeamChange}
               />
-              <input type="submit" />
+              <input type="submit" value="submit" />
             </form>
           </div>
         </div>
@@ -119,7 +117,7 @@ export class Team extends Component {
           </div>
           <div className="add-user-form">
             <form onSubmit={this.handleSubmit}>
-              <input id="username" onChange={this.handleChange} />
+              <input type="text" id="username" onChange={this.handleChange} />
               <input type="submit" />
             </form>
           </div>

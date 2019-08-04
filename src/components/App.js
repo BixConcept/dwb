@@ -8,6 +8,8 @@ import Register from "./auth/Register";
 import Dashboard from "./dashboard/Dashboard";
 import GetStarted from "./getStarted/GetStarted";
 
+import generatePassword from "./auth/GeneratePassword"
+
 // router
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -20,7 +22,7 @@ import { CookiesProvider, withCookies } from "react-cookie";
 
 class App extends Component {
   componentDidMount() {
-    console.log(this.props.cookies.session);
+    // console.log(this.props.cookies.session);
     let authenticated = this.props.cookies.get("session") !== undefined;
     store.dispatch({
       type: "SET_AUTHENTICATED",
@@ -41,6 +43,7 @@ class App extends Component {
                 <Route path="/register" component={Register} />
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/getStarted" component={GetStarted} />
+                <Route path="/genPw" component={generatePassword} />
               </Switch>
             </Fragment>
           </Router>
