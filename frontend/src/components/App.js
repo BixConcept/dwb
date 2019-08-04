@@ -6,7 +6,6 @@ import Home from "./Home";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Dashboard from "./dashboard/Dashboard";
-import GetStarted from "./getStarted/GetStarted";
 
 import generatePassword from "./auth/GeneratePassword"
 
@@ -14,21 +13,22 @@ import generatePassword from "./auth/GeneratePassword"
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 // redux
-import { Provider } from "react-redux";
-import store from "../store";
+import { setAuthenticated } from "../actions/auth";
+import { connect } from "react-redux";
 
 // keksen
 import { CookiesProvider, withCookies } from "react-cookie";
 
 class App extends Component {
   componentDidMount() {
-    // console.log(this.props.cookies.session);
-    let authenticated = this.props.cookies.get("session") !== undefined;
-    store.dispatch({
-      type: "SET_AUTHENTICATED",
-      payload: authenticated
-    });
+    this.props.setAuthenticated(this.props.cookies.get("session") !== undefined);
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.props.setAuthenticated(nextProps.cookies.get("session") !== undefined);
+  }
+
+
 
   render() {
     return (
@@ -53,4 +53,7 @@ class App extends Component {
   }
 }
 
-export default withCookies(App);
+export default connect(
+  undefined,
+  { setAuthenticated }
+)(withCookies(App));
