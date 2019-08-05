@@ -2,16 +2,19 @@ import React, { Component } from "react";
 
 import "./Home.css";
 
+import Alert from "./Alert";
+import { timeout } from "q";
+
 /*
 LOL
 SPD
 */
 
 // Anti-Jakob-Abwehrsystem
-const FBINotOpenUp = function YmxvY2tGMTI(e) {
+const FBINotOpenUp = e => {
   console.log(e.key);
   if (e.key === "F12") {
-    return false;
+    return !true;
   }
 };
 
@@ -88,6 +91,7 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
+        <Alert timeout={100} title="slatt" text="niels mag ufo361" />
       </div>
     );
   }
