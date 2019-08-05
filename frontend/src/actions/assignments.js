@@ -1,15 +1,13 @@
-import {
-  GET_ASSIGNMENTS,
-  CREATE_ASSIGNMENT,
-  DELETE_ASSIGNMENT
-} from "./types";
+import { GET_ASSIGNMENTS, CREATE_ASSIGNMENT, DELETE_ASSIGNMENT } from "./types";
 import axios from "axios";
+
+import { API_HOST } from "../index";
 
 // GET_ASSIGNMENTS
 export const getAssignments = () => dispatch => {
-  fetch("https://api.3nt3.de/assignment/", {
-      credentials: "include"
-    })
+  fetch(API_HOST + "/assignment/", {
+    credentials: "include"
+  })
     .then(res => res.json())
     .then(res => {
       dispatch({
@@ -24,7 +22,7 @@ export const getAssignments = () => dispatch => {
 export const createAssignment = assignment => dispatch => {
   assignment.due_date = new Date(assignment.due_date);
   axios
-    .post("https://api.3nt3.de/assignment/", JSON.stringify(assignment), {
+    .post(API_HOST + "/assignment/", JSON.stringify(assignment), {
       withCredentials: true
     })
     .then(res => {

@@ -1,9 +1,12 @@
 import axios from "axios";
 import { LOGIN, REGISTER, GET_USER, SET_AUTHENTICATED } from "./types";
+import { GET_ERROR } from "./types";
+
+import { API_HOST } from "../index";
 
 export const login = user => dispatch => {
   axios
-    .post("https://api.3nt3.de/user/login/", JSON.stringify(user), {
+    .post(API_HOST + "/user/login/", JSON.stringify(user), {
       withCredentials: true
     })
     .then(res => {
@@ -11,12 +14,25 @@ export const login = user => dispatch => {
         type: LOGIN
       });
     })
-    .catch(err => window.location.href = "/");
+    .catch(err => {
+      console.log(err);
+
+      let error =
+        err.status === 500 ? "some error happened" : "invalid credentials";
+
+      dispatch({
+        type: GET_ERROR,
+        payload: {
+          type: "login",
+          error
+        }
+      });
+    });
 };
 
 export const register = user => dispatch => {
   axios
-    .post("https://api.3nt3.de/user/register", JSON.stringify(user), {
+    .post(API_HOST + "/user/register", JSON.stringify(user), {
       withCredentials: true
     })
     .then(res => {
@@ -28,7 +44,7 @@ export const register = user => dispatch => {
 
 export const getUser = () => dispatch => {
   axios
-    .get("https://api.3nt3.de/user/",  {
+    .get(API_HOST + "/user/", {
       withCredentials: true
     })
     .then(res => {
