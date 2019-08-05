@@ -66,10 +66,16 @@ class Dashboard extends Component {
     );
   }
 
+  componentDidMount() {
+    console.log(this.props)
+  }
+
   componentWillReceiveProps(newProps) {
     this.state.outstandingAssiggnments = 0;
 
-    if (!newProps.isAuthenticated) {
+    console.log(`props: ${newProps}`)
+
+    if (newProps.isAuthenticated === false) {
       this.props.history.push("/login/");
       return;
     }
@@ -137,8 +143,6 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    if (this.props.cookies.get("session") === undefined)
-      this.props.history.push("/login");
 
     this.props.getAssignments();
     this.props.getUser();

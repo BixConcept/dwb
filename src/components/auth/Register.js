@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import "./Login.css";
-import "./PasswordShowAndHide.js";
 import PasswordShowAndHide from "./PasswordShowAndHide.js";
-import GeneratePassword from '../GenPw/genPw';
-import { register } from "../../actions/auth"
-import { connect } from "react-redux"
+import { register } from "../../actions/auth";
+import { connect } from "react-redux";
+import GeneratePassword from "./GeneratePassword";
 
 class Register extends Component {
   constructor(props) {
@@ -26,8 +25,6 @@ class Register extends Component {
     console.log(this.state);
 
     this.props.register(this.state);
-
-
   }
 
   componentWillReceiveProps(newProps) {
@@ -35,28 +32,29 @@ class Register extends Component {
     if (newProps.isAuthenticated) this.props.history.push("/dashboard");
   }
 
-
   render() {
     return (
-      <div className="main">
-        <div className="logo">
-          <h3>dwb</h3>
+      <div>
+        <div className="main">
+          <div className="logo">
+            <h3>dwb</h3>
+          </div>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              id="username"
+              onChange={this.handleChange}
+              type="username"
+              placeholder="username"
+              autoComplete="off"
+              required
+            />
+            <i className="fa fa-user" />
+            <i className="fa fa-lock" />
+            <PasswordShowAndHide onChange={this.handleChange} />
+            <input type="submit" value="Sign up" />
+          </form>
         </div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            id="username"
-            onChange={this.handleChange}
-            type="username"
-            placeholder="username"
-            autoComplete="off"
-            required
-          />
-          <i className="fa fa-user" />
-          <i className="fa fa-lock" />
-          <PasswordShowAndHide onChange={this.handleChange} />
-          <input type="submit" value="Sign up" />
         <GeneratePassword />
-        </form>
       </div>
     );
   }
@@ -66,5 +64,7 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-
-export default connect(mapStateToProps, { register })(Register)
+export default connect(
+  mapStateToProps,
+  { register }
+)(Register);
