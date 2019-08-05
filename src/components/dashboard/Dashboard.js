@@ -66,14 +66,12 @@ class Dashboard extends Component {
     );
   }
 
-  componentDidMount() {
-    console.log(this.props)
-  }
-
   componentWillReceiveProps(newProps) {
-    this.state.outstandingAssiggnments = 0;
-
-    console.log(`props: ${newProps}`)
+    // this.state.outstandingAssiggnments = 0;
+    this.setState({
+      outstandingAssiggnments: 0
+    });
+    console.log(`props: ${newProps}`);
 
     if (newProps.isAuthenticated === false) {
       this.props.history.push("/login/");
@@ -93,7 +91,10 @@ class Dashboard extends Component {
 
       if (date < now - 1000 * 60 * 60 * 24) continue;
 
-      this.state.outstandingAssiggnments += 1;
+      // this.state.outstandingAssiggnments += 1;
+      this.setState({
+        outstandingAssiggnments: this.state.outstandingAssiggnments + 1
+      });
 
       //console.log(`groups: ${groups}`);
       //groups.forEach(x => console.log(`x: ${x}`));
@@ -143,7 +144,6 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-
     this.props.getAssignments();
     this.props.getUser();
   }

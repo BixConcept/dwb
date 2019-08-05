@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import "./Home.css";
 
 import Alert from "./Alert";
-import { timeout } from "q";
 
 /*
 LOL
@@ -76,17 +75,29 @@ export default class Home extends Component {
           <h2 className="section-header">team</h2>
           <div className="wrapper">
             <div className="wrapper-item">
-              <h3>🦆</h3>
+              <h3>
+                <span role="img" aria-label="raus geht kuss">
+                  🦆
+                </span>
+              </h3>
               <span>mag brotkrümel</span>
             </div>
             <div className="wrapper-item">
-              <h3>🥚⛰</h3>
-              <span>
+              <h3>
+                <span role="img" aria-label="slatt">
+                  🥚⛰
+                </span>
+              </h3>
+              <span role="img" aria-label=",">
                 <b>S</b>lime <b>L</b>ove <b>A</b>ll <b>T</b>he <b>T</b>ime
               </span>
             </div>
             <div className="wrapper-item">
-              <h3>☀️⛰</h3>
+              <h3>
+                <span role="img" aria-label="entfernen">
+                  ☀️⛰
+                </span>
+              </h3>
               <span>hat einen verbreiteten namen</span>
             </div>
           </div>

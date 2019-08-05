@@ -8,52 +8,57 @@ import axios from "axios";
 
 import store from "../store";
 
+import { API_HOST } from "../index";
+
 // GET_TEAM
 export const getTeam = () => dispatch => {
   axios
-    .get("https://api.3nt3.de/team/", {
+    .get(API_HOST + "/team/", {
       withCredentials: true
     })
     .then(res => {
       dispatch({
         type: GET_TEAM,
         payload: res.data
-      })
-    })
+      });
+    });
 };
 
-export const createTeam = (name) => dispatch => {
+export const createTeam = name => dispatch => {
   axios
-    .post("https://api.3nt3.de/team/", JSON.stringify({
-      name
-    }), {
-      withCredentials: true
-    })
+    .post(
+      API_HOST + "/team/",
+      JSON.stringify({
+        name
+      }),
+      {
+        withCredentials: true
+      }
+    )
     .then(res => {
-      console.log(res.data)
+      console.log(res.data);
 
       dispatch({
         type: CREATE_TEAM,
         payload: res.data
-      })
+      });
       store.dispatch({
         type: SET_IS_TEAM_MEMBER,
         payload: !false
-      })
-    })
-
-}
+      });
+    });
+};
 
 // ADD_USER_TO_TEAM
-export const addUserToTeam = (username) => dispatch => {
+export const addUserToTeam = username => dispatch => {
   axios
-    .post("https://api.3nt3.de/team/addMember/", JSON.stringify(username), {
+    .post(API_HOST + "/team/addMember/", JSON.stringify(username), {
       withCredentials: true
     })
     .then(res => {
       dispatch({
         type: ADD_USER_TO_TEAM,
         payload: res.data
-      })
-    })
-}
+      });
+    });
+};
