@@ -1,20 +1,23 @@
-import {
-    GET_ERRORS
-} from "../actions/types";
-
+import { GET_ERROR } from "../actions/types";
 
 const initialState = {
-    error: []
-}
+  login: "",
+  register: "",
 
-export default function (state = initialState, action) {
-    switch (action.type) {
-        case GET_ERRORS:
-            return {
-                errors: action.payload.error
-            };
- 
-        default:
-            return state
-    }
+  createAssignment: "",
+
+  createTeam: "",
+  addMember: ""
+};
+
+export default function(state = initialState, action) {
+  switch (action.type) {
+    case GET_ERROR:
+      return {
+        [action.payload.type]: action.payload.error
+      };
+
+    default:
+      return state;
+  }
 }
