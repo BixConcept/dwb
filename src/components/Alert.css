@@ -1,0 +1,13 @@
+.alert * {
+  margin: 0;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+}
+.alert {
+  padding: 3vh;
+  color: #fff;
+  background: #e74c3c;
+  width: 100vw;
+  height: 4vh;
+}

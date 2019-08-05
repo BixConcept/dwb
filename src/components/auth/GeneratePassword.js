@@ -3,7 +3,6 @@ import "./Login.css";
 import ReactDOM from "react-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
-let pw;
 export default class GeneratePassword extends Component {
   // generated a random password using cryptojs
 
