@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
-h1 {
+.dashboardHeadline {
   font-size: 40px;
   color: #3498db;
   margin-top: 1vh;
@@ -11,7 +11,7 @@ h1 {
 .greeting {
   margin: 0;
   margin-bottom: 1vh;
-  color: #fff
+  color: #fff;
 }
 
 .row {
@@ -43,8 +43,8 @@ h1 {
 
 .container {
   margin-top: 1vh;
-  margin-right: .5vh;
-  margin-left: .5vh;
+  margin-right: 0.5vh;
+  margin-left: 0.5vh;
   padding: 1vh;
   background-color: #fff;
   border-radius: 0.3em;
@@ -93,9 +93,6 @@ h1 {
   color: white;
 }
 .TeamText {
-  font-family: 'Montserrat';
-  font-size: 17px
-}
-input [type="submit"] {
-  
+  font-family: "Montserrat";
+  font-size: 17px;
 }

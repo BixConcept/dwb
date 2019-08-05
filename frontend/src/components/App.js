@@ -7,6 +7,8 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Dashboard from "./dashboard/Dashboard";
 
+import generatePassword from "./auth/GeneratePassword";
+
 // router
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -19,14 +21,14 @@ import { CookiesProvider, withCookies } from "react-cookie";
 
 class App extends Component {
   componentDidMount() {
-    this.props.setAuthenticated(this.props.cookies.get("session") !== undefined);
+    this.props.setAuthenticated(
+      this.props.cookies.get("session") !== undefined
+    );
   }
 
   componentWillReceiveProps(nextProps) {
     this.props.setAuthenticated(nextProps.cookies.get("session") !== undefined);
   }
-
-
 
   render() {
     return (
@@ -39,7 +41,7 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route path="/dashboard" component={Dashboard} />
-              <Route path="/getStarted" component={GetStarted} />
+              <Route path="/genPw" component={generatePassword} />
             </Switch>
           </Fragment>
         </Router>
