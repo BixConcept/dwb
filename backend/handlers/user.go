@@ -60,6 +60,7 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 	id, err := db.CreateUser(username, password, 0)
 	if err != nil {
 		fmt.Printf("[ - ] error creating user: %v\n", err)
+		w.WriteHeader(500)
 		return
 	}
 
@@ -82,7 +83,10 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 		Expires: time.Now().Add(time.Hour * 24 * 365),
 	}
 
-	http.SetCookie(w, sessionCookie)
+	// remove for test purposes
+	//http.SetCookie(w, sessionCookie)
+
+	w.Header().Set("set-cookie", sessionCookie.String())
 
 }
 
@@ -176,6 +180,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	// session stuff lol
 	if !authenticated {
+		w.WriteHeader(http.StatusUnauthorized)
 		return
 	}
 
