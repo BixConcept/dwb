@@ -1,4 +1,4 @@
-import { GET_TEAM } from "../actions/types";
+import { GET_TEAM, CREATE_TEAM } from "../actions/types";
 
 const initialState = {
   team: {}
@@ -7,6 +7,11 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_TEAM:
+      return {
+        ...state,
+        team: action.payload
+      };
+    case CREATE_TEAM:
       return {
         ...state,
         team: action.payload
