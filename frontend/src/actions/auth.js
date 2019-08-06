@@ -39,7 +39,17 @@ export const register = user => dispatch => {
       dispatch({
         type: REGISTER
       });
-    });
+    }).catch(err => {
+      let error = err.status === 500 ? "some error happened" : "username already exists"
+
+      dispatch({
+        type: GET_ERROR,
+        payload: {
+          type: "register",
+          error
+        }
+      })
+    })
 };
 
 export const getUser = () => dispatch => {
