@@ -26,39 +26,39 @@ export const getAssignments = () => dispatch => {
 
 // CREATE_ASSIGNMENTS
 export const createAssignment = assignment => dispatch => {
-    assignment.due_date = new Date(assignment.due_date);
-    axios
-      .post(API_HOST + "/assignment/", JSON.stringify(assignment), {
-        withCredentials: true
-      })
-      .then(res => {
+  assignment.due_date = new Date(assignment.due_date);
+  axios
+    .post(API_HOST + "/assignment/", JSON.stringify(assignment), {
+      withCredentials: true
+    })
+    .then(res => {
+      dispatch({
+        type: CREATE_ASSIGNMENT,
+        payload: assignment
+      });
+    })
+    .catch(err => {
+      dispatch(err => {
         dispatch({
-          type: CREATE_ASSIGNMENT,
-          payload: assignment
-        });
-      })
-      .catch(err => {
-          dispatch(err => {
-            dispatch({
-              type: "createAssignment",
-              error: "error creating assignment."
-            })
-          })
-        };
-      };
-
-    // delete ASSIGNMENT
-
-    export const deleteAssignment = assignment => dispatch => {
-      //console.log(assignment)
-      axios
-        .delete(`https://api.3nt3.de/assignment/${assignment.id}/`)
-        .then(res => {
-          console.log(assignment);
-          dispatch({
-            type: DELETE_ASSIGNMENT,
-            payload: assignment.id
-          });
+          type: "createAssignment",
+          error: "error creating assignment."
         })
-        .catch(err => console.log(err));
-    };
+      })
+    })
+};
+
+// delete ASSIGNMENT
+
+export const deleteAssignment = assignment => dispatch => {
+  //console.log(assignment)
+  axios
+    .delete(`https://api.3nt3.de/assignment/${assignment.id}/`)
+    .then(res => {
+      console.log(assignment);
+      dispatch({
+        type: DELETE_ASSIGNMENT,
+        payload: assignment.id
+      });
+    })
+    .catch(err => console.log(err));
+};
