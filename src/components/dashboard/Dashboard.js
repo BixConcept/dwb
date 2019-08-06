@@ -17,6 +17,26 @@ import Team from "./Team";
 
 import Chart from "./Chart";
 import AuthorChart from "./AuthorChart";
+import Alert from "../Alert";
+
+function Errors(props) {
+  let actualErrors = [];
+  for (let error of props.errors) {
+    if (error) actualErrors.push(error);
+  }
+
+  if (actualErrors.length > 0) {
+    return (
+      <div className="errors">
+        {actualErrors.map(error => {
+          return <Alert title="error" text={error} timeout="5" />;
+        })}
+      </div>
+    );
+  } else {
+    return null;
+  }
+}
 
 function AssignmentGroup(props) {
   if (props.assignments.length > 0) {
@@ -50,7 +70,8 @@ class Dashboard extends Component {
   state = {
     assignmentGroups: [],
     countColor: [],
-    outstandingAssiggnments: 0
+    outstandingAssiggnments: 0,
+    errors: []
   };
 
   dateIsEqual(date1, date2) {
@@ -69,7 +90,8 @@ class Dashboard extends Component {
   componentWillReceiveProps(newProps) {
     // this.state.outstandingAssiggnments = 0;
     this.setState({
-      outstandingAssiggnments: 0
+      outstandingAssiggnments: 0,
+      errors: newProps.errors
     });
     console.log(`props: ${newProps}`);
 
@@ -77,6 +99,8 @@ class Dashboard extends Component {
       this.props.history.push("/login/");
       return;
     }
+
+
 
     var groups = [];
 
@@ -153,6 +177,7 @@ class Dashboard extends Component {
       <div>
         <h1 className="dashboardHeadline">dashboard</h1>
         <div className="dashboard">
+          <Errors errors={Object.values(this.state.errors)} />
           <h2 className="greeting">
             hi, <u>{this.props.user.username}</u>!
           </h2>
@@ -195,7 +220,9 @@ class Dashboard extends Component {
 const mapStateToProps = state => ({
   assignments: state.assignments.assignments,
   isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user
+  user: state.auth.user,
+
+  errors: state.errors
 });
 
 export default connect(
