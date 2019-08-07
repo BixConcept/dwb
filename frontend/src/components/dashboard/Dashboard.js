@@ -205,10 +205,14 @@ class Dashboard extends Component {
               <Team />
             </div>
           </div>
-          {/*
-        <Chart assignments={this.props.assignments} />
-        <AuthorChart assignments={this.props.assignments} />
-        */}
+          <div class="row">
+            <div class="container">
+              <Chart assignments={this.props.assignments} />
+            </div>
+            <div class="container">
+              <AuthorChart assignments={this.props.assignments} />
+            </div>
+          </div>
         </div>
       </div>
     );

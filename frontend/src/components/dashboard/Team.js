@@ -50,12 +50,8 @@ export class Team extends Component {
     this.createTeamSubmit = this.createTeamSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps.team);
-  }
 
   componentDidMount() {
-    if (!this.props.isTeamMember) return
     this.props.getTeam();
   }
 
