@@ -100,8 +100,6 @@ class Dashboard extends Component {
       return;
     }
 
-
-
     var groups = [];
 
     //console.log(newProps.assignments);
@@ -222,7 +220,7 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
 
-  errors: state.errors
+  errors: state.errors.errors
 });
 
 export default connect(
