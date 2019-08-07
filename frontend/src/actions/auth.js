@@ -17,14 +17,11 @@ export const login = user => dispatch => {
     .catch(err => {
       console.log(err);
 
-      let error =
-        err.status === 500 ? "some error happened" : "invalid credentials";
-
       dispatch({
         type: GET_ERROR,
         payload: {
           type: "login",
-          error
+          status: err.response.status
         }
       });
     });
@@ -39,17 +36,18 @@ export const register = user => dispatch => {
       dispatch({
         type: REGISTER
       });
-    }).catch(err => {
-      let error = err.status === 500 ? "some error happened" : "username already exists"
-
+    })
+    .catch(err => {
+      console.log(err.response);
+      
       dispatch({
         type: GET_ERROR,
         payload: {
           type: "register",
-          error
+          status: err.response.status
         }
-      })
-    })
+      });
+    });
 };
 
 export const getUser = () => dispatch => {
