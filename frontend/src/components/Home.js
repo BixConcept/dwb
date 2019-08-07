@@ -102,7 +102,6 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
-        <Alert timeout={100} title="slatt" text="niels mag ufo361" />
       </div>
     );
   }
