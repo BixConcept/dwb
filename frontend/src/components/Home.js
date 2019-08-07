@@ -26,6 +26,7 @@ export default class Home extends Component {
         <div className={"title"}>
           <h1> dwb </h1>
           <h2> your collaborative assignment manager </h2>
+          <h3>beta v0.4</h3>
         </div>
         <div className={"features"}>
           <h2 className={"section-header"}>features</h2>
