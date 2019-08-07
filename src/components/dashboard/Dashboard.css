@@ -22,7 +22,7 @@
 .dashboard {
   margin: 5vw;
   margin-top: 1vh;
-  margin-bottom: 1vh;
+  margin-bottom: 3vh;
 
   background-color: #3498db;
   border-radius: 5px;
@@ -95,4 +95,8 @@
 .TeamText {
   font-family: "Montserrat";
   font-size: 17px;
+}
+html {
+  max-width: 100%;
+  overflow-x: hidden;
 }

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
 import { withCookies } from "react-cookie";
 
 // actions
@@ -160,11 +159,6 @@ class Dashboard extends Component {
       })
     });
   }
-
-  componentDidUpdate() {
-    //console.log(this.state);
-  }
-
   componentDidMount() {
     this.props.getAssignments();
     this.props.getUser();
@@ -205,11 +199,11 @@ class Dashboard extends Component {
               <Team />
             </div>
           </div>
-          <div class="row">
-            <div class="container">
+          <div className="row">
+            <div className="container">
               <Chart assignments={this.props.assignments} />
             </div>
-            <div class="container">
+            <div className="container">
               <AuthorChart assignments={this.props.assignments} />
             </div>
           </div>
