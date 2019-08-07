@@ -6,6 +6,7 @@ import { login } from "../../actions/auth";
 import PasswordShowAndHide from "./PasswordShowAndHide.js";
 
 import "./Login.css";
+import Alert from "../Alert";
 
 class Login extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class Login extends Component {
   render() {
     return (
       <div className="main">
+        {this.props.error ? <Alert title="error" text={this.props.error} timeout={5} /> : null}
         <div className="logo">
           <h3>dwb</h3>
         </div>
@@ -66,7 +68,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.errors.login
 });
 
 export default connect(

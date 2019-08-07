@@ -5,9 +5,13 @@ import {
 } from "./types";
 import axios from "axios";
 
+import {
+  API_HOST
+} from "../index";
+
 // GET_ASSIGNMENTS
 export const getAssignments = () => dispatch => {
-  fetch("https://api.3nt3.de/assignment/", {
+  fetch(API_HOST + "/assignment/", {
       credentials: "include"
     })
     .then(res => res.json())
@@ -24,7 +28,7 @@ export const getAssignments = () => dispatch => {
 export const createAssignment = assignment => dispatch => {
   assignment.due_date = new Date(assignment.due_date);
   axios
-    .post("https://api.3nt3.de/assignment/", JSON.stringify(assignment), {
+    .post(API_HOST + "/assignment/", JSON.stringify(assignment), {
       withCredentials: true
     })
     .then(res => {
@@ -33,7 +37,14 @@ export const createAssignment = assignment => dispatch => {
         payload: assignment
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch(err => {
+        dispatch({
+          type: "createAssignment",
+          error: "error creating assignment."
+        })
+      })
+    })
 };
 
 // delete ASSIGNMENT
