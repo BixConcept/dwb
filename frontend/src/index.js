@@ -5,7 +5,7 @@ import * as serviceWorker from "./serviceWorker";
 import store from "./store"
 import { Provider } from "react-redux";
 
-export const API_HOST = "https://api.3nt3.de"
+export const API_HOST = "http://localhost:8000"
 
 ReactDOM.render(
   <Provider store={store}>
