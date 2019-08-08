@@ -7,7 +7,6 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Dashboard from "./dashboard/Dashboard";
 
-
 // router
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -17,17 +16,12 @@ import { connect } from "react-redux";
 
 // keksen
 import { CookiesProvider, withCookies } from "react-cookie";
+
 import Footer from "./Footer";
 
 class App extends Component {
   componentDidMount() {
-    this.props.setAuthenticated(
-      this.props.cookies.get("session") !== undefined
-    );
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.props.setAuthenticated(nextProps.cookies.get("session") !== undefined);
+    console.log(this.props)
   }
 
   render() {
@@ -53,7 +47,9 @@ class App extends Component {
   }
 }
 
-export default connect(
-  null,
-  { setAuthenticated }
-)(withCookies(App));
+export default withCookies(
+  connect(
+    null,
+    { setAuthenticated }
+  )(App)
+);

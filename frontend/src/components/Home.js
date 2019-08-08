@@ -9,6 +9,7 @@ LOL
 SPD
 */
 
+/*
 // Anti-Jakob-Abwehrsystem
 const FBINotOpenUp = e => {
   console.log(e.key);
@@ -18,7 +19,7 @@ const FBINotOpenUp = e => {
 };
 
 document.onkeydown = FBINotOpenUp;
-
+*/
 export default class Home extends Component {
   render() {
     return (
