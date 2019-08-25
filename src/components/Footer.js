@@ -1,22 +1,23 @@
 import React, { Component } from "react";
 
-import "../styles/footer.module.css";
+import css from "../styles/footer.module.scss";
 import { Link } from "react-router-dom";
 
 export default class Footer extends Component {
   render() {
     return (
-      <div className="lol">
-        <footer>
+      <footer className={css.footer}>
+        <div className="container">
           <ul>
             <li>
-                <Link to="/contact">contact</Link>
-                </li>
-            <li>report bugs / some kinda issues</li> 
+              &copy; 2019 3nt3rt41nm3nt GbR
+            </li>
+            <li>
+              <Link to="/contact">contact</Link>
+            </li>
           </ul>
-        </footer>
-      </div>
+        </div>
+      </footer>
     );
   }
 }
-                                                                                                                                                          
