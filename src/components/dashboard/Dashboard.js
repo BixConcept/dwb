@@ -58,17 +58,22 @@ function AssignmentGroup(props) {
       </div>
     );
   } else {
-    return null;
+    return (
+      <div className={props.classIdentifier}>
+        <h3>{props.title}</h3>
+        <p>no assignments</p>
+      </div>
+    );
   }
 }
 
 function AssignmentGroups(props) {
-  console.log(props)
+  console.log(props);
   if (props.groups == 0) {
     return null;
   }
 
-  console.log(props)
+  console.log(props);
   return (
     <Fragment>
       <AssignmentGroup
@@ -130,16 +135,16 @@ class Dashboard extends Component {
     var groups = [{}, {}, {}];
 
     if (newProps.assignments == 0) return;
-    console.log(newProps.assignments.length)
-    console.log(newProps.assignments)
+    console.log(newProps.assignments.length);
+    console.log(newProps.assignments);
 
     for (let assignment of newProps.assignments) {
       //console.log(assignment);
       let date = Date.parse(new Date(assignment.due_date));
-      console.log(date)
+      console.log(date);
       let now = Date.now();
 
-      console.log(new Date(date))
+      console.log(new Date(date));
 
       // continue if date is in the past
       if (date < now - 1000 * 60 * 60 * 24) continue;
@@ -153,16 +158,16 @@ class Dashboard extends Component {
       });
 
       // i dont fucking know, what i did here lol
-      let groupid = Math.floor((date - now) / (1000 * 60 * 60 * 24))+1;
-      console.log(`groupid: ${groupid}`)
+      let groupid = Math.floor((date - now) / (1000 * 60 * 60 * 24)) + 1;
+      console.log(`groupid: ${groupid}`);
       if (groups[groupid].assignments == undefined) {
         groups[groupid] = { date, assignments: [assignment] };
       } else {
-        groups[groupid].assignments.push(assignment)
+        groups[groupid].assignments.push(assignment);
       }
     }
 
-    console.log(groups)
+    console.log(groups);
 
     this.setState({
       assignmentGroups: groups.sort((a, b) => {
@@ -220,7 +225,7 @@ class Dashboard extends Component {
           <section className={css.assignments}>
             <h1 className="s-heading">upcoming 3 days</h1>
             <div className={css.days}>
-              <AssignmentGroups groups={this.state.assignmentGroups}/>
+              <AssignmentGroups groups={this.state.assignmentGroups} />
             </div>
           </section>
         </div>
