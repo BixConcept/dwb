@@ -139,23 +139,25 @@ class Dashboard extends Component {
     console.log(newProps.assignments);
 
     for (let assignment of newProps.assignments) {
-      //console.log(assignment);
+      console.log(assignment);
       let date = Date.parse(new Date(assignment.due_date));
       console.log(date);
       let now = Date.now();
 
       console.log(new Date(date));
 
-      // continue if date is in the past
-      if (date < now - 1000 * 60 * 60 * 24) continue;
+      // continue if date is invalid
+      if (date === NaN) continue;
+      if (date < now - 1000 * 60 * 60 * 24) {
+        // continue if date is in the past
+        console.error("date is in the past");
+        continue;
+      }
 
       // continue if date is more than 3 days in the future
       if (date > now + 1000 * 60 * 60 * 24 * 3) continue;
 
-      // this.state.outstandingAssiggnments += 1;
-      this.setState({
-        outstandingAssignments: this.state.outstandingAssignments + 1
-      });
+      this.state.outstandingAssignments += 1;
 
       // i dont fucking know, what i did here lol
       let groupid = Math.floor((date - now) / (1000 * 60 * 60 * 24)) + 1;

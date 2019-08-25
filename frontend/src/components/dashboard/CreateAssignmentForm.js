@@ -58,7 +58,7 @@ export class CreateAssignmentForm extends Component {
 
     // this.state.due_date = Date.parse(this.state.due_date);
     this.setState({
-      due_date: Date.parse(this.state.due_date)
+      due_date: new Date()
     });
 
     this.props.createAssignment({...this.state, author_name: this.props.username});
