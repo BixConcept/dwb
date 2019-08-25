@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 
 import { getTeam, addUserToTeam, createTeam } from "../../actions/teams";
 
-import "./Team.css";
+import css from '../../styles/team.module.scss';
 
 const TeamMemberList = props => {
   if (props.members === undefined) {
     return null;
   }
   return (
-    <ul>
+    <ul className={css.teamMembers}>
       {props.members.map(member => {
         return <TeamMember name={member.username} />;
       })}
@@ -21,7 +21,8 @@ const TeamMemberList = props => {
 
 const TeamMember = props => {
   return (
-    <li>
+    <li className={css.teamMember}>
+      <div>{props.name[0]}</div>
       <p>{props.name}</p>
     </li>
   );
@@ -75,6 +76,7 @@ export class Team extends Component {
   createTeamSubmit(e) {
     e.preventDefault();
     this.props.createTeam(this.state.createTeamForm.name);
+    this.props.getTeam();
   }
 
   render() {
@@ -103,14 +105,9 @@ export class Team extends Component {
     if (this.props.team.team !== undefined) {
       return (
         <div>
-          <h3 className="container-headline">
-            team -
-            <span style={{ color: "black" }}>
-              {this.props.team.team.name} by user #{this.props.team.team.owner}
-            </span>
-          </h3>
-          <div className="team-members">
-            <TeamMemberList members={this.props.team.members} />
+          <div >
+            <h2 className="xs-heading">team members:</h2>
+            <TeamMemberList members={this.props.team.members}/>
           </div>
           <div className="add-user-form">
             <form onSubmit={this.handleSubmit}>

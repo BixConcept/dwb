@@ -215,6 +215,7 @@ class Dashboard extends Component {
           </section>
           <section className={css.team}>
             <h1 className="s-heading">team</h1>
+            <Team />
           </section>
           <section className={css.stats}>
             <h1 className="s-heading">stats</h1>

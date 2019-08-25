@@ -1,0 +1,40 @@
+@import "vars";
+
+.teamMembers {
+    margin: 1rem 0;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    list-style: none;
+}
+
+.teamMember {
+    $size: 90px;
+
+    > * {
+        flex: 1;
+    }
+
+    > div {
+        margin: 0 auto;
+
+        border-radius: 50%;
+        background-color: $primaryColor;
+
+
+        line-height: $size;
+        width: $size;
+        height: $size;
+
+        text-align: center;
+
+        color: #fff;
+        font-size: calc(#{$size} / 2);
+    }
+
+    p {
+        margin-top: .5rem;
+        text-align: center;
+    }
+}
