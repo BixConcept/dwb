@@ -176,13 +176,19 @@ class Dashboard extends Component {
           </h1>
           <ul>
             <li>
-              <Link className={css.link} to="/dashboard">dashboard</Link>
+              <Link className={css.link} to="/dashboard">
+                dashboard
+              </Link>
             </li>
             <li>
-              <Link className={css.link} to="/dashboard/team">team</Link>
+              <Link className={css.link} to="/dashboard/team">
+                team
+              </Link>
             </li>
             <li>
-              <Link className={css.link} to="/dashboard/team">assignments</Link>
+              <Link className={css.link} to="/dashboard/team">
+                assignments
+              </Link>
             </li>
           </ul>
         </aside>
@@ -195,6 +201,11 @@ class Dashboard extends Component {
           </section>
           <section className={css.stats}>
             <h1 className="s-heading">stats</h1>
+
+            <div>
+              <h2 className={css.bigNumber}>2</h2>
+              <h3>assignments due</h3>
+            </div>
           </section>
           <section className={css.assignments}>
             <h1 className="s-heading">upcoming 3 days</h1>{" "}
