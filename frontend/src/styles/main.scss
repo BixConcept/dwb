@@ -9,6 +9,21 @@
     font-family: Roboto;
 }
 
+a {
+    text-decoration: none;
+    transition-duration: 200ms;
+}
+
+.content {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+}
+
 /* utility */
 .container {
     margin: 0 auto;

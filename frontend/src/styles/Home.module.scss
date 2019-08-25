@@ -64,6 +64,10 @@
     display: flex;
     min-height: 300px;
 
+    ul {
+        list-style: none;
+    }
+
     div {
         width: 50vw;
     }
@@ -83,6 +87,7 @@
 
 }
 
+// generic mobile device
 @media (max-width: 800px) {
     .featuresList {
         display: grid;
@@ -96,6 +101,17 @@
             border-color: darken($lightColor, 20%);
 
             padding-bottom: 1rem;
+        }
+    }
+
+    .teamContainer {
+        div {
+            width: 100%;
+            text-align: center;
+        }
+
+        div.img {
+            display: none;
         }
     }
 }
