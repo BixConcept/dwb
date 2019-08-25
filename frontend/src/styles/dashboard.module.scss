@@ -108,9 +108,17 @@ aside {
 .days {
     display: grid;
 
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 10px;
     color: #fff;
+
+    > div {
+        padding: 1rem;
+    }
+
+    ul {
+        list-style: none;
+    }
 }
 
 .today {
