@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { withCookies } from "react-cookie";
 
 // css
-import css from "../styles/Navbar.module.scss";
+import css from "../styles/navbar.module.scss";
 
 class Navbar extends Component {
   state = {
