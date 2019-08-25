@@ -1,0 +1,42 @@
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+aside {
+    background: #f4f4f4;
+    height: 100vh;
+}
+
+.wrapper {  
+    display: grid; 
+    grid-template-areas: 
+        "create team team"
+        "create assignments assignments"
+        "stats assignments assignments";
+
+    grid-gap: 40px;
+
+    padding: 40px;
+
+    section {
+        background: #f4f4f4;
+        padding: 1rem;
+    }
+
+    .create {
+        grid-area: create;
+    }
+
+    .team {
+        grid-area: team;
+    }
+
+    .stats {
+        grid-area: stats;
+    }
+
+    .assignments {
+        grid-area: assignments;
+    }
+}

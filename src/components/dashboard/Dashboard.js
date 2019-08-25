@@ -8,6 +8,7 @@ import { getAssignments, deleteAssignment } from "../../actions/assignments";
 import { getUser } from "../../actions/auth";
 
 // css
+import css from "../../styles/dashboard.module.scss";
 
 // components
 import CreateAssignmentForm from "./CreateAssignmentForm";
@@ -165,47 +166,23 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div>
-        <h1 className="dashboardHeadline">dashboard</h1>
-        <div className="dashboard">
-          <Errors errors={Object.values(this.state.errors)} />
-          <h2 className="greeting">
-            hi, <u>{this.props.user.username}</u>!
-          </h2>
-          <div className="container">
-            <h3 className="container-headline">
-              assignments due: &nbsp;
-              <span>{this.state.outstandingAssiggnments}</span>
-            </h3>
-            <div className="wrapper">
-              {Object.values(this.state.assignmentGroups).map(group => {
-                return (
-                  <AssignmentGroup
-                    key={group.date}
-                    assignments={group.assignments}
-                    title={group.title}
-                    classIdentifier={group.classIdentifier}
-                  />
-                );
-              })}
-            </div>
-          </div>
-          <div className="row">
-            <div className="container assignment-form">
-              <CreateAssignmentForm />
-            </div>
-            <div className="container team">
-              <Team />
-            </div>
-          </div>
-          <div className="row">
-            <div className="container">
-              <Chart assignments={this.props.assignments} />
-            </div>
-            <div className="container">
-              <AuthorChart assignments={this.props.assignments} />
-            </div>
-          </div>
+      <div className={css.dashboard}>
+        <aside>
+          
+        </aside>
+        <div className={css.wrapper}>
+          <section className={css.create}>
+            <h1 className="s-heading">create assignment</h1>
+          </section>
+          <section className={css.team}>
+            <h1 className="s-heading">team</h1>
+          </section>
+          <section className={css.stats}>
+            <h1 className="s-heading">stats</h1>
+          </section>
+          <section className={css.assignments}>
+            <h1 className="s-heading">upcoming 3 days</h1>{" "}
+          </section>
         </div>
       </div>
     );
