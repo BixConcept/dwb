@@ -13,6 +13,15 @@ const FBINotOpenUp = e => {
 document.onkeydown = FBINotOpenUp;
 */
 export default class Home extends Component {
+  constructor() {
+    super();
+    this.featuresRef = React.createRef();
+  }
+
+  scroll(ref) {
+    ref.current.scrollIntoView({ behavior: "smooth" });
+  }
+
   render() {
     return (
       <Fragment>
@@ -21,12 +30,20 @@ export default class Home extends Component {
             <div className="text-center p-2">
               <h1 className="l-heading">digital white board</h1>
               <p>your collaborative assignment management tool</p>
-              <button></button>
+              <button
+                onClick={() => {
+                  this.scroll(this.featuresRef);
+                }}
+              ></button>
             </div>
           </div>
         </header>
 
-        <section id="features" className="p-2 text-center bg-light">
+        <section
+          id="features"
+          ref={this.featuresRef}
+          className="p-2 text-center bg-light"
+        >
           <div className="container">
             <h1 className="m-heading">
               <span className="text-primary">features</span> we offer

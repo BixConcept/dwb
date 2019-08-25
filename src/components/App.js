@@ -21,17 +21,17 @@ import Footer from "./Footer";
 
 class App extends Component {
   componentDidMount() {
-    this.setAuthenticated(this.props)
+    this.setAuthenticated(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setAuthenticated(nextProps)
+    this.setAuthenticated(nextProps);
   }
 
   setAuthenticated(props) {
-    let session = props.cookies.get("session")
-    console.log(`authenticated: ${session !== undefined}`)
-    if (session !== undefined) this.props.setAuthenticated(true)
+    let session = props.cookies.get("session");
+    console.log(`authenticated: ${session !== undefined}`);
+    if (session !== undefined) this.props.setAuthenticated(true);
   }
 
   render() {
