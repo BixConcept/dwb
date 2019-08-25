@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withCookies } from "react-cookie";
@@ -40,7 +40,8 @@ function Errors(props) {
 }
 
 function AssignmentGroup(props) {
-  if (props.assignments.length > 0) {
+  //console.log(props)
+  if (props.assignments !== undefined) {
     return (
       <div className={props.classIdentifier}>
         <h3>{props.title}</h3>
@@ -61,6 +62,34 @@ function AssignmentGroup(props) {
   }
 }
 
+function AssignmentGroups(props) {
+  console.log(props)
+  if (props.groups == 0) {
+    return null;
+  }
+
+  console.log(props)
+  return (
+    <Fragment>
+      <AssignmentGroup
+        title="today"
+        classIdentifier={css.today}
+        assignments={props.groups[0].assignments}
+      />
+      <AssignmentGroup
+        title="tomorrow"
+        classIdentifier={css.tomorrow}
+        assignments={props.groups[1].assignments}
+      />
+      <AssignmentGroup
+        title="the day after tomorrow"
+        classIdentifier={css.future}
+        assignments={props.groups[2].assignments}
+      />
+    </Fragment>
+  );
+}
+
 class Dashboard extends Component {
   static propTypes = {
     assignments: PropTypes.array.isRequired,
@@ -69,7 +98,7 @@ class Dashboard extends Component {
   };
 
   state = {
-    assignmentGroups: [],
+    assignmentGroups: [{}, {}, {}],
     countColor: [],
     outstandingAssiggnments: 0,
     errors: []
@@ -89,71 +118,51 @@ class Dashboard extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    // this.state.outstandingAssiggnments = 0;
     this.setState({
-      outstandingAssiggnments: 0,
+      outstandingAssignments: 0,
       errors: newProps.errors
     });
-    console.log(`props: ${newProps}`);
-
     if (newProps.isAuthenticated === false) {
       this.props.history.push("/login/");
       return;
     }
 
-    var groups = [];
+    var groups = [{}, {}, {}];
 
-    //console.log(newProps.assignments);
+    if (newProps.assignments == 0) return;
+    console.log(newProps.assignments.length)
+    console.log(newProps.assignments)
 
     for (let assignment of newProps.assignments) {
       //console.log(assignment);
       let date = Date.parse(new Date(assignment.due_date));
+      console.log(date)
       let now = Date.now();
 
-      //console.log(date, now);
+      console.log(new Date(date))
 
+      // continue if date is in the past
       if (date < now - 1000 * 60 * 60 * 24) continue;
+
+      // continue if date is more than 3 days in the future
+      if (date > now + 1000 * 60 * 60 * 24 * 3) continue;
 
       // this.state.outstandingAssiggnments += 1;
       this.setState({
-        outstandingAssiggnments: this.state.outstandingAssiggnments + 1
+        outstandingAssignments: this.state.outstandingAssignments + 1
       });
 
-      //console.log(`groups: ${groups}`);
-      //groups.forEach(x => console.log(`x: ${x}`));
-
-      let groupid = groups.findIndex(x => x.date === date);
-      //console.log(`group id: ${groupid}`);
-      if (groupid === -1) {
-        groups.push({ date, assignments: [assignment] });
-      } else groups[groupid].assignments.push(assignment);
+      // i dont fucking know, what i did here lol
+      let groupid = Math.floor((date - now) / (1000 * 60 * 60 * 24))+1;
+      console.log(`groupid: ${groupid}`)
+      if (groups[groupid].assignments == undefined) {
+        groups[groupid] = { date, assignments: [assignment] };
+      } else {
+        groups[groupid].assignments.push(assignment)
+      }
     }
 
-    //console.log(groups);
-
-    let i = 0;
-    for (let group of groups) {
-      // if date is today title = "today"
-      if (this.dateIsEqual(group.date, Date.now())) {
-        groups[i].title = "today";
-        groups[i].classIdentifier = "wrapper-today";
-      }
-      // if date is tomorrow title = "tomorrow"
-      else if (this.dateIsEqual(group.date, Date.now() + 1000 * 60 * 60 * 24)) {
-        groups[i].title = "tomorrow";
-        groups[i].classIdentifier = "wrapper-tomorrow";
-      }
-      // if date is something else
-      else {
-        //console.log(group);
-        let date = new Date(parseInt(group.date));
-        //console.log(date);
-        groups[i].title = `${date.getDate()}.${date.getMonth() +
-          1}.${date.getFullYear()}`;
-        groups[i].classIdentifier = "wrapper-future";
-      }
-      i++;
-    }
+    console.log(groups)
 
     this.setState({
       assignmentGroups: groups.sort((a, b) => {
@@ -209,7 +218,10 @@ class Dashboard extends Component {
             </div>
           </section>
           <section className={css.assignments}>
-            <h1 className="s-heading">upcoming 3 days</h1>{" "}
+            <h1 className="s-heading">upcoming 3 days</h1>
+            <div className={css.days}>
+              <AssignmentGroups groups={this.state.assignmentGroups}/>
+            </div>
           </section>
         </div>
       </div>

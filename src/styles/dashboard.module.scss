@@ -52,6 +52,7 @@ aside {
     section {
         background: #f4f4f4;
         padding: 1rem;
+
     }
 
     .create {
@@ -70,6 +71,8 @@ aside {
         grid-area: assignments;
     }
 }
+
+// stats
 
 .stats {
     div {
@@ -98,4 +101,26 @@ aside {
     text-align: center;
 
     font-size: 2rem;
+}
+
+// assignments
+
+.days {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    color: #fff;
+}
+
+.today {
+    background-color: $redColor;
+}
+
+.tomorrow {
+    background-color: $yellowColor;
+}
+
+.future {
+    background-color: $greenColor;
 }
