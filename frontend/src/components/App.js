@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import "./App.css";
+import "../styles/main.scss";
 
 import Navbar from "./Navbar";
 import Home from "./Home";
