@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import { withCookies } from "react-cookie";
 
 // css
-import "./Navbar.css";
+import css from "../styles/Navbar.module.scss";
+
 class Navbar extends Component {
   state = {
     items: []
@@ -51,21 +52,21 @@ class Navbar extends Component {
   render() {
     return (
       <header>
-        <nav className={"nav"}>
-          <span>
-            <h1 id="logo">dwb</h1>
-          </span>
-          <ul>
-            <li>
-              <Link to="#features">features</Link>
-            </li>
-            <li>
-              <Link to="#soos">soos</Link>
-            </li>
-            <li>
-              <Link to="#soos">soos</Link>
-            </li>
-            {/*
+        <nav className={css.navbar}>
+            <span>
+              <h1 id="logo">dwb</h1>
+            </span>
+            <ul>
+              <li>
+                <Link to="#features">features</Link>
+              </li>
+              <li>
+                <Link to="#soos">soos</Link>
+              </li>
+              <li>
+                <Link to="#soos">soos</Link>
+              </li>
+              {/*
             {this.state.items.map(element => {
               if (element.type === "logout") {
                 return (
@@ -85,7 +86,7 @@ class Navbar extends Component {
               );
             })}
           */}
-          </ul>
+            </ul>
         </nav>
       </header>
     );

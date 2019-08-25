@@ -59,6 +59,30 @@
     padding: 1rem;
 }
 
+
+.teamContainer {
+    display: flex;
+    min-height: 300px;
+
+    div {
+        width: 50vw;
+    }
+
+    div.img {
+        background: url("../assets/img/team.jpg") no-repeat center center/cover;
+    }
+
+    li {
+        border-bottom: 2px dashed;
+        border-color: lighten($darkColor, 20%);
+
+        padding: 1rem;
+
+    }
+
+
+}
+
 @media (max-width: 800px) {
     .featuresList {
         display: grid;
@@ -69,7 +93,7 @@
         .feature {
             border-bottom: solid;
             border-width: 2px;
-            border-color: lighten($darkColor, 20%);
+            border-color: darken($lightColor, 20%);
 
             padding-bottom: 1rem;
         }
