@@ -18,6 +18,8 @@ import Chart from "./Chart";
 import AuthorChart from "./AuthorChart";
 import Alert from "../Alert";
 
+import { Link } from "react-router-dom";
+
 function Errors(props) {
   let actualErrors = [];
   for (let error of props.errors) {
@@ -168,7 +170,21 @@ class Dashboard extends Component {
     return (
       <div className={css.dashboard}>
         <aside>
-          
+          <h1>
+            Hello,{" "}
+            <span className="text-primary">{this.props.user.username}</span>!
+          </h1>
+          <ul>
+            <li>
+              <Link className={css.link} to="/dashboard">dashboard</Link>
+            </li>
+            <li>
+              <Link className={css.link} to="/dashboard/team">team</Link>
+            </li>
+            <li>
+              <Link className={css.link} to="/dashboard/team">assignments</Link>
+            </li>
+          </ul>
         </aside>
         <div className={css.wrapper}>
           <section className={css.create}>

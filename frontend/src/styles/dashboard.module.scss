@@ -1,3 +1,5 @@
+@import "_vars.scss";
+
 .dashboard {
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -6,11 +8,36 @@
 aside {
     background: #f4f4f4;
     height: 100vh;
+
+    h1 {
+        padding: 1rem;
+    }
+
+    ul {
+        list-style: none;
+        text-decoration: none;
+        margin-top: 1rem;
+    }
+
+    li {
+        padding: 0.6rem 1rem;
+        transition: 200ms;
+
+        &:hover {
+            background: darken($lightColor, 10%);
+        }
+    }
+
+
+    .link {
+        color: $darkColor;
+
+    }
 }
 
-.wrapper {  
-    display: grid; 
-    grid-template-areas: 
+.wrapper {
+    display: grid;
+    grid-template-areas:
         "create team team"
         "create assignments assignments"
         "stats assignments assignments";
