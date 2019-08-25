@@ -38,15 +38,15 @@ export const register = user => dispatch => {
       });
     })
     .catch(err => {
-      console.log(err.response);
-      
+      console.log(err);
+
       dispatch({
         type: GET_ERROR,
         payload: {
           type: "register",
           status: err.response.status
         }
-      });
+      })
     });
 };
 

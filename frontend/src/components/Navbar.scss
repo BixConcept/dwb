@@ -1,0 +1,44 @@
+
+/* vars */
+$primaryColor: #3498db;
+$bgDarkColor: #333;
+$bgLightColor: #f4f4f4;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 1rem 3rem;
+
+    background: $bgDarkColor;
+    color: #fff;
+
+    z-index: 1;
+
+    ul li a {
+        color: #fff;
+        text-decoration: none;
+        transition-duration: 200ms;
+    }
+
+    ul li a:hover {
+        color: $primaryColor;
+    }
+
+    ul li {
+        padding: 0 1rem;
+    }
+
+    ul {
+        align-items: center;
+        display: flex;
+        list-style: none;
+    }
+}
