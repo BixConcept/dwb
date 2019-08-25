@@ -195,6 +195,7 @@ class Dashboard extends Component {
         <div className={css.wrapper}>
           <section className={css.create}>
             <h1 className="s-heading">create assignment</h1>
+            <CreateAssignmentForm />
           </section>
           <section className={css.team}>
             <h1 className="s-heading">team</h1>
