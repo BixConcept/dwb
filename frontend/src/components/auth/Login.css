@@ -129,9 +129,6 @@
   opacity: 0;
 }
 
-.main :required {
-  font-family: "Montserrat";
-}
 
 .pwDiv {
   width: 390px;
