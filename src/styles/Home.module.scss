@@ -1,0 +1,93 @@
+@import '_vars.scss';
+
+.showcase {
+    background: url("../assets/img/bg.jpg") no-repeat center center/cover;
+    height: calc(100vh - 60px);
+}
+
+.showcaseContent {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 59px);
+    width: 100%;
+    /*Overlay*/
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+
+    p {
+        font-size: 2rem;
+    }
+
+    button {
+        &::before {
+            content: "find out more"
+        }
+
+        background-color: $primaryColor;
+        color: #fff;
+        border: none;
+        font-size: 20px;
+        padding: 10px 20px;
+        border-radius: 0.4rem;
+        outline: none;
+        cursor: pointer;
+        margin: 1.6rem 0;
+
+        transition-duration: 0.2s;
+
+        &:hover {
+            background-color: darken($color: $primaryColor, $amount: 0); // test
+        }
+    }
+}
+
+.featuresList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+
+    .feature p {
+        text-align-last: center;
+        text-align: justify;
+    }
+
+    padding: 1rem;
+}
+
+@media (max-width: 800px) {
+    .featuresList {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 1rem;
+        padding: 1rem;
+
+        .feature {
+            border-bottom: solid;
+            border-width: 2px;
+            border-color: lighten($darkColor, 20%);
+
+            padding-bottom: 1rem;
+        }
+    }
+}
+
+// tablet
+@media(max-width: 800px) and (min-width: 600px) {
+    .showcaseContent p {
+        font-size: 1.5rem
+    }
+
+
+}
+
+// phone
+@media (max-width: 600px) {
+    .showcaseContent p {
+        font-size: 1rem;
+    }
+}

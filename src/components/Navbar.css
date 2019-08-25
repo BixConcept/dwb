@@ -44,4 +44,9 @@ nav ul {
   display: flex;
   list-style: none;
 }
+
+nav h1 {
+  color: #3498db;
+  font-weight: bolder;
+}
 /*# sourceMappingURL=Navbar.css.map */

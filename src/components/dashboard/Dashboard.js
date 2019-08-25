@@ -8,7 +8,6 @@ import { getAssignments, deleteAssignment } from "../../actions/assignments";
 import { getUser } from "../../actions/auth";
 
 // css
-import "./Dashboard.css";
 
 // components
 import CreateAssignmentForm from "./CreateAssignmentForm";
