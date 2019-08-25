@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { createAssignment } from "../../actions/assignments";
 import PropTypes from "prop-types";
 
-import "./CreateAssignment.css";
+import css from "../../styles/createAssignmentForm.module.scss";
 
 const subjects = [
   // normal
@@ -66,15 +66,14 @@ export class CreateAssignmentForm extends Component {
 
   render() {
     return (
-      <div className="assignmentForm">
-        <h3 className="container-headline"> create assignment </h3>
-
+      <div className={css.assignmentForm}>
         <form onSubmit={this.handleSubmit}>
           <select
             onChange={this.handleChange}
             id="subject"
             required
             defaultValue={""}
+            className={css.input}
           >
             <option value="" disabled>
               select your subject
@@ -88,6 +87,7 @@ export class CreateAssignmentForm extends Component {
             id="text"
             onChange={this.handleChange}
             autoComplete="off"
+            className={css.input}
             required
           />
           <input
