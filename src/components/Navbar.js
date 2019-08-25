@@ -52,12 +52,20 @@ class Navbar extends Component {
     return (
       <header>
         <nav className={"nav"}>
+          <span>
+            <h1 id="logo">dwb</h1>
+          </span>
           <ul>
             <li>
-              <Link className="nav-brand" to="/">
-                digital white board
-              </Link>
+              <Link to="#features">features</Link>
             </li>
+            <li>
+              <Link to="#soos">soos</Link>
+            </li>
+            <li>
+              <Link to="#soos">soos</Link>
+            </li>
+            {/*
             {this.state.items.map(element => {
               if (element.type === "logout") {
                 return (
@@ -76,6 +84,7 @@ class Navbar extends Component {
                 </li>
               );
             })}
+          */}
           </ul>
         </nav>
       </header>
