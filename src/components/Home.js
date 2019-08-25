@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import css from "../styles/Home.module.scss";
+import css from "../styles/home.module.scss";
 
 /*
 // Anti-Jakob-Abwehrsystem
