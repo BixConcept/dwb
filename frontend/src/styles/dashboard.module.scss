@@ -7,7 +7,7 @@
 
 aside {
     background: #f4f4f4;
-    height: 100vh;
+    height: calc(100vh - 60px);
 
     h1 {
         padding: 1rem;
@@ -37,6 +37,8 @@ aside {
 
 .wrapper {
     display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;    
     grid-template-areas:
         "create team team"
         "create assignments assignments"
@@ -66,4 +68,33 @@ aside {
     .assignments {
         grid-area: assignments;
     }
+}
+
+.stats {
+    div {
+        display: flex;
+        padding: 1rem 0;
+
+        line-height: calc(80px - 2rem);
+
+        h3 {
+            padding: 1rem;
+        }
+    }
+}
+
+.bigNumber {
+    border-radius: 50%;
+    background: $primaryColor;
+
+    $size: 80px;
+    width: $size;
+    height: $size;
+
+    color: $lightColor;
+
+    line-height: $size;
+    text-align: center;
+
+    font-size: 2rem;
 }
