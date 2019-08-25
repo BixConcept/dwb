@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logout } from "../actions/auth";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { withCookies } from "react-cookie";
 
@@ -16,10 +16,9 @@ class Navbar extends Component {
 
   constructor(props) {
     super(props);
-
+    this.featuresRef = React.createRef();
     this.handleLogout = this.handleLogout.bind(this);
   }
-
   handleLogout(e) {
     e.preventDefault();
     //this.props.cookies.remove("session");
@@ -49,29 +48,27 @@ class Navbar extends Component {
     this.updateLinks(this.props.isAuthenticated);
   }
 
+  scroll(ref) {
+    ref.current.scrollIntoView({ behavior: "smooth" });
+  }
+
   render() {
     return (
       <header>
         <nav className={css.navbar}>
-            <span>
-              <h1 id="logo">dwb</h1>
-            </span>
-            <ul>
-              <li>
-                <Link to="#features">features</Link>
-              </li>
-              <li>
-                <Link to="#soos">soos</Link>
-              </li>
-              <li>
-                <Link to="#soos">soos</Link>
-              </li>
-              {/*
+          <NavLink to="/">
+            <h1 id="logo">dwb</h1>
+          </NavLink>
+          <ul>
             {this.state.items.map(element => {
               if (element.type === "logout") {
                 return (
                   <li key="logout">
-                    <a href="/" onClick={this.handleLogout}>
+                    <a
+                      href="/"
+                      onClick={this.handleLogout}
+                      className={css.link}
+                    >
                       logout
                     </a>
                   </li>
@@ -79,14 +76,17 @@ class Navbar extends Component {
               }
               return (
                 <li key={element.link}>
-                  <Link to={element.link} onClick={element.onClick}>
+                  <NavLink
+                    to={element.link}
+                    onClick={element.onClick}
+                    className={css.link}
+                  >
                     {element.text}
-                  </Link>
+                  </NavLink>
                 </li>
               );
             })}
-          */}
-            </ul>
+          </ul>
         </nav>
       </header>
     );
