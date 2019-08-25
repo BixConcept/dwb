@@ -1,0 +1,36 @@
+@import '_vars.scss';
+
+.navbar {
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background: $darkColor;
+    color: #fff;
+
+    .link {
+        color: #fff;
+        text-decoration: none;
+        transition-duration: 200ms;
+    }
+
+    .link:hover {
+        color: $primaryColor;
+    }
+
+    ul li {
+        padding: 0 1rem;
+    }
+
+    ul {
+        align-items: center;
+        display: flex;
+        list-style: none;
+    }
+
+    h1 {
+        color: $primaryColor;
+        font-weight: bolder;
+    }
+}

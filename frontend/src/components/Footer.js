@@ -13,7 +13,7 @@ export default class Footer extends Component {
               &copy; 2019 3nt3rt41nm3nt GbR
             </li>
             <li>
-              <Link to="/contact">contact</Link>
+              <a href="mailto:info@3nt3.de">contact</a>
             </li>
           </ul>
         </div>
