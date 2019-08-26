@@ -42,8 +42,8 @@ aside {
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas:
         "create team team"
-        "create assignments assignments"
-        "stats assignments assignments";
+        "assignments assignments assignments" // create a a
+        "assignments assignments assignments"; // stats a a
 
     grid-gap: 40px;
 
@@ -63,9 +63,9 @@ aside {
         grid-area: team;
     }
 
-    .stats {
+    /* .stats {
         grid-area: stats;
-    }
+    } */
 
     .assignments {
         grid-area: assignments;
