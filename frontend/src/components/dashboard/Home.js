@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import css from '../../styles/home.module.scss'
+import css from '../../styles/dashboard/home/home.module.scss'
 
 
 import CreateAssignmentForm from "./CreateAssignmentForm";
@@ -8,6 +8,8 @@ import TeamWidget from "./TeamWidget"
 import AssignmentsWidget from "./AssignmentsWidget"
 
 class Home extends Component {
+  static
+
   render() {
     return (
       <div className={css.wrapper}>
@@ -23,7 +25,7 @@ class Home extends Component {
           <h1 className="s-heading">stats</h1>
 
           <div>
-            <h2 className={css.bigNumber}>2</h2>
+            <h2 className={css.bigNumber}>{this.state.assignmentsDue}</h2>
             <h3>assignments due</h3>
           </div>
         </section>

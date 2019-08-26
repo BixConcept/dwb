@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { getTeam, addUserToTeam, createTeam } from "../../actions/teams";
 
-import css from "../../styles/team.module.scss";
+import css from "../../styles/dashboard/home/team.module.scss";
 
 const TeamMemberList = props => {
   if (props.members === undefined) {

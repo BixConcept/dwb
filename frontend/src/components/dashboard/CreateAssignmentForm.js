@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { createAssignment } from "../../actions/assignments";
 import PropTypes from "prop-types";
 
-import css from "../../styles/createAssignmentForm.module.scss";
+import css from "../../styles/dashboard/home/createAssignmentForm.module.scss";
 
 const subjects = [
   // normal

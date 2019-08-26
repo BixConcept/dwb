@@ -8,7 +8,7 @@ import {getAssignments, deleteAssignment} from "../../actions/assignments";
 import {getUser} from "../../actions/auth";
 
 // css
-import css from "../../styles/dashboard.module.scss";
+import css from "../../styles/dashboard/dashboard.module.scss";
 
 
 import {Route, Switch, Link} from "react-router-dom";
@@ -52,7 +52,6 @@ class Dashboard extends Component {
 
   render() {
     return (
-
       <div className={css.dashboard}>
         <aside>
           <h1>
