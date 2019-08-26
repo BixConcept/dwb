@@ -10,13 +10,13 @@
 }
 
 .teamMember {
-    $size: 90px;
+    $size: 60px; // ???
 
-    > * {
+    >* {
         flex: 1;
     }
 
-    > div {
+    >div {
         margin: 0 auto;
 
         border-radius: 50%;
@@ -36,5 +36,39 @@
     p {
         margin-top: .5rem;
         text-align: center;
+    }
+}
+
+.addUserForm {
+
+    input,
+    select {
+        width: 100%;
+        padding: 1rem;
+
+        margin: 5px 0;
+
+        font-size: 1rem;
+        font-weight: bold;
+
+        color: $darkColor;
+
+        border: 1px solid $primaryColor;
+
+        &::placeholder {
+            color: $darkColor;
+        }
+    }
+
+    input[type=submit] {
+        text-align: center;
+        background: #fff;
+
+        transition-duration: 200ms;
+
+        &:hover {
+            color: #fff;
+            background: $primaryColor;
+        }
     }
 }

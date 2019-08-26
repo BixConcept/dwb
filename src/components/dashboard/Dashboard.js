@@ -45,12 +45,14 @@ function AssignmentGroup(props) {
     return (
       <div className={props.classIdentifier}>
         <h3>{props.title}</h3>
+        <div className={css.line}></div>
         <ul>
           {props.assignments.map(item => (
             <li key={item.text}>
               <div className="white">
-                <b>{item.subject}</b>
-                <p>{item.text}</p>
+                <p>
+                  {item.subject}: {item.text}
+                </p>
               </div>
             </li>
           ))}
@@ -184,58 +186,56 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <Router>
 
-        <div className={css.dashboard}>
-          <aside>
-            <h1>
-              Hello,{" "}
-              <span className="text-primary">{this.props.user.username}</span>!
-            </h1>
-            <ul>
-              <li>
-                <Link className={css.link} to="/dashboard">
-                  dashboard
-                </Link>
-              </li>
-              <li>
-                <Link className={css.link} to="/dashboard/team">
-                  team
-                </Link>
-              </li>
-              <li>
-                <Link className={css.link} to="/dashboard/assignments">
-                  assignments
-                </Link>
-              </li>
-            </ul>
-          </aside>
-          <div className={css.wrapper}>
-            <section className={css.create}>
-              <h1 className="s-heading">create assignment</h1>
-              <CreateAssignmentForm/>
-            </section>
-            <section className={css.team}>
-              <h1 className="s-heading">team</h1>
-              <TeamWidget/>
-            </section>
-            <section className={css.stats}>
-              <h1 className="s-heading">stats</h1>
+      <div className={css.dashboard}>
+        <aside>
+          <h1>
+            Hello,{" "}
+            <span className="text-primary">{this.props.user.username}</span>!
+          </h1>
+          <ul>
+            <li>
+              <Link className={css.link} to="/dashboard">
+                dashboard
+              </Link>
+            </li>
+            <li>
+              <Link className={css.link} to="/dashboard/team">
+                team
+              </Link>
+            </li>
+            <li>
+              <Link className={css.link} to="/dashboard/assignments">
+                assignments
+              </Link>
+            </li>
+          </ul>
+        </aside>
+        <div className={css.wrapper}>
+          <section className={css.create}>
+            <h1 className="s-heading">create assignment</h1>
+            <CreateAssignmentForm/>
+          </section>
+          <section className={css.team}>
+            <h1 className="s-heading">team</h1>
+            <TeamWidget/>
+          </section>
+          <section className={css.stats}>
+            <h1 className="s-heading">stats</h1>
 
-              <div>
-                <h2 className={css.bigNumber}>2</h2>
-                <h3>assignments due</h3>
-              </div>
-            </section>
-            <section className={css.assignments}>
-              <h1 className="s-heading">upcoming 3 days</h1>
-              <div className={css.days}>
-                <AssignmentGroups groups={this.state.assignmentGroups}/>
-              </div>
-            </section>
-          </div>
+            <div>
+              <h2 className={css.bigNumber}>2</h2>
+              <h3>assignments due</h3>
+            </div>
+          </section>
+          <section className={css.assignments}>
+            <h1 className="s-heading">upcoming 3 days</h1>
+            <div className={css.days}>
+              <AssignmentGroups groups={this.state.assignmentGroups}/>
+            </div>
+          </section>
         </div>
-      </Router>
+      </div>
     );
   }
 }

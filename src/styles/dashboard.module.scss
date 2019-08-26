@@ -7,7 +7,7 @@
 
 aside {
     background: #f4f4f4;
-    height: calc(100vh - 60px);
+    height: 100%;
 
     h1 {
         padding: 1rem;
@@ -42,8 +42,8 @@ aside {
     grid-template-rows: 2fr 1fr 2fr;
     grid-template-areas:
         "create team team"
-        "create assignments assignments"
-        "stats assignments assignments";
+        "assignments assignments assignments" // create a a
+        "assignments assignments assignments"; // stats a a
 
     grid-gap: 40px;
 
@@ -63,9 +63,9 @@ aside {
         grid-area: team;
     }
 
-    .stats {
+    /* .stats {
         grid-area: stats;
-    }
+    } */
 
     .assignments {
         grid-area: assignments;
@@ -112,12 +112,19 @@ aside {
     grid-gap: 10px;
     color: #fff;
 
-    > div {
+    margin: 1rem 0;
+
+    >div {
         padding: 1rem;
     }
 
     ul {
         list-style: none;
+    }
+
+    .line {
+        border-bottom: 2px solid $lightColor;
+        margin: 0.5rem 0;
     }
 }
 
