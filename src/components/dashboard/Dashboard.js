@@ -50,8 +50,9 @@ function AssignmentGroup(props) {
           {props.assignments.map(item => (
             <li key={item.text}>
               <div className="white">
-                <b>{item.subject}</b>
-                <p>{item.text}</p>
+                <p>
+                  {item.subject}: {item.text}
+                </p>
               </div>
             </li>
           ))}
