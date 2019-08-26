@@ -6,8 +6,6 @@ import Home from "./Home";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Dashboard from "./dashboard/Dashboard";
-import AssignmentsView from "./dashboard/AssignmentsView"
-import TeamView from "./dashboard/TeamView"
 
 // router
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
@@ -48,9 +46,7 @@ class App extends Component {
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
 
-                <Route path="/dashboard" component={Dashboard} exact/>
-                <Route path="/dashboard/assignments" component={AssignmentsView} />
-                <Route path="/dashboard/team" component={TeamView} />
+                <Route path="/dashboard" component={Dashboard} />
 
 
                 <Route path="/contact" component={Component} />
