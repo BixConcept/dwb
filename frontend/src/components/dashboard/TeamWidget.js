@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { getTeam, addUserToTeam, createTeam } from "../../actions/teams";
 
-import css from '../../styles/team.module.scss';
+import css from "../../styles/team.module.scss";
 
 const TeamMemberList = props => {
   if (props.members === undefined) {
@@ -50,7 +50,6 @@ export class TeamWidget extends Component {
     this.createTeamChange = this.createTeamChange.bind(this);
     this.createTeamSubmit = this.createTeamSubmit.bind(this);
   }
-
 
   componentDidMount() {
     this.props.getTeam();
@@ -105,14 +104,19 @@ export class TeamWidget extends Component {
     if (this.props.team.team !== undefined) {
       return (
         <div>
-          <div >
+          <div>
             <h2 className="xs-heading">team members:</h2>
-            <TeamMemberList members={this.props.team.members.slice(0, 4)}/>
+            <TeamMemberList members={this.props.team.members} />
           </div>
-          <div className="add-user-form">
+          <div className={css.addUserForm}>
             <form onSubmit={this.handleSubmit}>
-              <input type="text" id="username" onChange={this.handleChange} />
-              <input type="submit" />
+              <input
+                type="text"
+                id="username"
+                placeholder="add a member"
+                onChange={this.handleChange}
+              />
+              <input type="submit" value="send" />
             </form>
           </div>
         </div>
