@@ -4,7 +4,7 @@ import {TeamWidget} from "./TeamWidget";
 
 import {getAssignments} from "../../actions/assignments";
 
-import css from '../../styles/assignmentsWidget.module.scss';
+import css from '../../styles/dashboard/home/assignmentsWidget.module.scss';
 
 function AssignmentGroup(props) {
   ////console.log(props)
