@@ -1,6 +1,7 @@
 @import "../../vars";
 
 .days {
+    width: 100%;
     display: grid;
 
     grid-template-columns: 1fr 1fr 1fr;
@@ -11,6 +12,7 @@
 
     >div {
         padding: 1rem;
+        width: calc(100% - 0);
     }
 
     ul {
