@@ -217,6 +217,7 @@ class Dashboard extends Component {
             <h1 className="s-heading">team</h1>
             <Team />
           </section>
+          {/*
           <section className={css.stats}>
             <h1 className="s-heading">stats</h1>
 
@@ -224,7 +225,8 @@ class Dashboard extends Component {
               <h2 className={css.bigNumber}>2</h2>
               <h3>assignments due</h3>
             </div>
-          </section>
+          </section> */}
+
           <section className={css.assignments}>
             <h1 className="s-heading">upcoming 3 days</h1>
             <div className={css.days}>
