@@ -112,12 +112,19 @@ aside {
     grid-gap: 10px;
     color: #fff;
 
+    margin: 1rem 0;
+
     >div {
         padding: 1rem;
     }
 
     ul {
         list-style: none;
+    }
+
+    .line {
+        border-bottom: 2px solid $lightColor;
+        margin: 0.5rem 0;
     }
 }
 

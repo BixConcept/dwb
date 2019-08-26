@@ -45,6 +45,7 @@ function AssignmentGroup(props) {
     return (
       <div className={props.classIdentifier}>
         <h3>{props.title}</h3>
+        <div className={css.line}></div>
         <ul>
           {props.assignments.map(item => (
             <li key={item.text}>
