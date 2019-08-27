@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import LangChanger from "./LangChanger";
 
 import { withCookies } from "react-cookie";
+import { withTranslation } from "react-i18next";
 
 // css
 import css from "../styles/navbar.module.scss";
@@ -27,15 +28,19 @@ class Navbar extends Component {
   }
 
   updateLinks(authenticated) {
+  const { t } = this.props;
     if (authenticated) {
       this.setState({
-        items: [{ link: "/dashboard", text: "dashboard" }, { type: "logout" }]
+        items: [
+          { link: "/dashboard", text: t("nav.dashboard") },
+          { type: "logout" }
+        ]
       });
     } else {
       this.setState({
         items: [
-          { link: "/login", text: "log in" },
-          { link: "/register", text: "register" }
+          { link: "/login", text: t("nav.login") },
+          { link: "/register", text: t("nav.register") }
         ]
       });
     }
@@ -54,6 +59,7 @@ class Navbar extends Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <header>
         <nav className={css.navbar}>
@@ -62,7 +68,7 @@ class Navbar extends Component {
           </NavLink>
           <ul>
             <li>
-              <LangChanger/>  
+              <LangChanger />
             </li>
             {this.state.items.map(element => {
               if (element.type === "logout") {
@@ -73,7 +79,7 @@ class Navbar extends Component {
                       onClick={this.handleLogout}
                       className={css.link}
                     >
-                      logout
+                      {t("nav.logout")}
                     </a>
                   </li>
                 );
@@ -101,7 +107,9 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-  mapStateToProps,
-  { logout }
-)(withCookies(Navbar));
+export default withTranslation()(
+  connect(
+    mapStateToProps,
+    { logout }
+  )(withCookies(Navbar))
+);

@@ -15,5 +15,10 @@
   "home.team.text": "wir sind ein aus menschen bestehendes team, dass dieses tool als informatikprojekt entwickelt.",
   "home.team.members.0": "3nt3 - duck",
   "home.team.members.1": "goat - määh",
-  "home.team.members.2": "goat* - määääh"
+  "home.team.members.2": "goat* - määääh",
+
+  "nav.login": "anmelden",
+  "nav.register": "registrieren",
+  "nav.dashboard": "dashboard",
+  "nav.logout": "abmelden"
 }

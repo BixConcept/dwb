@@ -15,5 +15,10 @@
   "home.team.text": "we are a small team of german students creating this tool as a cs project in 9th grade.",
   "home.team.members.0": "3nt3 - duck",
   "home.team.members.1": "goat - määh",
-  "home.team.members.2": "goat* - määääh"
+  "home.team.members.2": "goat* - määääh",
+
+  "nav.login": "login",
+  "nav.register": "register",
+  "nav.dashboard": "dashboard",
+  "nav.logout": "logout"
 }
