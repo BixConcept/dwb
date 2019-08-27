@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 
 import css from "../styles/langChanger.module.scss";
+import Flag from "react-flags";
 
 class LangChanger extends Component {
   constructor(props) {
@@ -10,16 +11,32 @@ class LangChanger extends Component {
   }
 
   handleChange(e) {
-    this.props.i18n.changeLanguage(e.target.id);
+    let selectedIndex = e.target.options.selectedIndex
+    console.log(selectedIndex)
+
+    let language = ""
+    console.log(this.props.i18n)
+    switch (selectedIndex) {
+      case 0:
+        language = "de"
+        break;
+      case 1:
+        language = "en"
+        break;
+    }
+    this.props.i18n.changeLanguage(language)
   }
 
   render() {
     return (
-      <div>
+      <div class="dropdown">
         <form onChange={this.handleChange}>
-          <input type="radio" name="lang" id="de" />
-          <input type="radio" name="lang" id="en" />
-          <input type="radio" name="lang" id="tr" />
+          <select>
+            <option id="de">
+              deutsch
+            </option>
+            <option id="en">english</option>
+          </select>
         </form>
       </div>
     );
