@@ -1,0 +1,19 @@
+{
+  "home.showcase.title": "digitales weißes brett",
+  "home.showcase.subtitle": "das kollaborative hausaufgabenhäft",
+  "home.showcase.btn": "mehr anzeigen",
+
+  "home.features.title": "<0>funktionen</0>",
+  "home.features.0.title": "zeit sparen",
+  "home.features.0.text": "da aufgaben innerhalb des teams geteilt werder muss nur eine person den \"aufwand\" betreiben, eine aufgabe hinzuzufügen. jede andere person profitiert durch zeit für wichtigere dinge ;)",
+  "home.features.1.title": "geld sparen",
+  "home.features.1.text": "im gegensatz zu anderen anbietern verzichten wir komplett auf profit.",
+  "home.features.2.title": "daten visualisieren",
+  "home.features.2.text": "der einzige wirkliche grund, aus dem wir dieses tool entwickelten ist, aufgaben in form von diagrammen zu visualisieren.",
+
+  "home.team.title": "<0>über</0> uns",
+  "home.team.text": "wir sind ein aus menschen bestehendes team, dass dieses tool als informatikprojekt entwickelt.",
+  "home.team.members.0": "3nt3 - duck",
+  "home.team.members.1": "goat - määh",
+  "home.team.members.2": "goat* - määääh"
+}
