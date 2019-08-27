@@ -69,6 +69,7 @@ export class CreateAssignmentForm extends Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <div className={css.assignmentForm}>
         <form onSubmit={this.handleSubmit}>
@@ -80,7 +81,7 @@ export class CreateAssignmentForm extends Component {
             className={css.input}
           >
             <option value="" disabled>
-              select your subject
+              {t("dashboard.home.createAssignment.form.subject")}
             </option>
             {subjects.map(subject => (
               <option key={subject}>{subject}</option>
