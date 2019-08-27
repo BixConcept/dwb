@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import css from "../styles/home.module.scss";
 
+import { withTranslation } from 'react-i18next';
+
 /*
 // Anti-Jakob-Abwehrsystem
 const FBINotOpenUp = e => {
@@ -12,7 +14,7 @@ const FBINotOpenUp = e => {
 
 document.onkeydown = FBINotOpenUp;
 */
-export default class Home extends Component {
+ class Home extends Component {
   constructor() {
     super();
     this.featuresRef = React.createRef();
@@ -23,12 +25,14 @@ export default class Home extends Component {
   }
 
   render() {
+    const { t } = this.props;
+
     return (
       <Fragment>
         <header className={css.showcase}>
           <div className={css.showcaseContent}>
             <div className="text-center p-2">
-              <h1 className="l-heading">digital white board</h1>
+              <h1 className="l-heading">{t('digital white board')}</h1>
               <p>your collaborative assignment management tool</p>
               <button
                 onClick={() => {
@@ -99,3 +103,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default withTranslation()(Home);
