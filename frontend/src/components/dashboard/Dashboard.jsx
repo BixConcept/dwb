@@ -10,8 +10,8 @@ import {getUser} from "../../actions/auth";
 // css
 import css from "../../styles/dashboard/dashboard.module.scss";
 
-
 import {Route, Switch, Link} from "react-router-dom";
+import { Trans, withTranslation } from "react-i18next";
 
 // Views
 import Home from "./Home.jsx";
@@ -51,27 +51,29 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <div className={css.dashboard}>
         <aside>
           <h1>
-            Hello,{" "}
-            <span className="text-primary">{this.props.user.username}</span>!
+            <Trans i18nKey="dashboard.nav.greeting"> 
+              <span className="text-primary">{{name: this.props.user.username}}</span>!
+            </Trans>
           </h1>
           <ul>
             <li>
               <Link className={css.link} to="/dashboard">
-                dashboard
+                {t("dashboard.nav.dashboard")}
               </Link>
             </li>
             <li>
               <Link className={css.link} to="/dashboard/team">
-                team
+                {t("dashboard.nav.team")}
               </Link>
             </li>
             <li>
               <Link className={css.link} to="/dashboard/assignments">
-                assignments
+                {t("dashboard.nav.assignments")}
               </Link>
             </li>
           </ul>
@@ -96,11 +98,11 @@ const mapStateToProps = state => ({
   errors: state.errors.errors
 });
 
-export default connect(
+export default withTranslation()(connect(
   mapStateToProps,
   {
     getAssignments,
     deleteAssignment,
     getUser
   }
-)(withCookies(Dashboard));
+)(withCookies(Dashboard)));
