@@ -5,38 +5,35 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import css from "../../styles/dashboard/home/createAssignmentForm.module.scss";
 
-const subjects = [
-  // normal
-  "deutsch 🇩🇪",
-  "erdkunde 🗺",
-  "geschichte 🏛️",
-  "politik 🌍",
-  "mathematik ➗",
-  "biologie 🧬",
-  "physik ⚛️",
-  "chemie 🧪",
-  "englisch 🇺🇸",
-  "kunst 🎨󠁧󠁢󠁥",
-  "musik 🎹",
-  "katholische religion ✝️",
-  "evangelische religion ✝️",
-  "philosophie 🗿",
-  "sport 🏃‍",
-
-  // diff
-  "informatik 👾",
-  "culture studies 🇬🇧",
-  "spanisch 🇪🇸",
-  "ökologie 🌳",
-
-  "sonstiges 🍌"
-].sort();
-
 export class CreateAssignmentForm extends Component {
+  subjects = [];
   constructor(props) {
     super(props);
     this.state = {};
 
+    const { t } = this.props;
+    this.subjects = [
+      t("subjects.german"),
+      t("subjects.geography"),
+      t("subjects.history"),
+      t("subjects.math"),
+      t("subjects.politics"),
+      t("subjects.biology"),
+      t("subjects.physics"),
+      t("subjects.chemistry"),
+      t("subjects.english"),
+      t("subjects.art"),
+      t("subjects.music"),
+      t("subjects.catholic"),
+      t("subjects.protestant"),
+      t("subjects.philosophy"),
+      t("subjects.sports"),
+      t("subjects.computerScience"),
+      t("subjects.cs"),
+      t("subjects.spanish"),
+      t("subjects.ecology"),
+      t("subjects.other")
+    ].sort();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -83,7 +80,7 @@ export class CreateAssignmentForm extends Component {
             <option value="" disabled>
               {t("dashboard.home.createAssignment.form.subject")}
             </option>
-            {subjects.map(subject => (
+            {this.subjects.map(subject => (
               <option key={subject}>{subject}</option>
             ))}
           </select>
