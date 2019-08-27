@@ -14,6 +14,7 @@
     "react-cookie": "^4.0.1",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.6",
+    "react-flags": "^0.1.18",
     "react-i18next": "^10.12.2",
     "react-scripts": "3.0.1"
   },
