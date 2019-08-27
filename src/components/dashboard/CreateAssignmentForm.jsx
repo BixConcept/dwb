@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createAssignment } from "../../actions/assignments";
 import PropTypes from "prop-types";
-
+import { withTranslation } from "react-i18next";
 import css from "../../styles/dashboard/home/createAssignmentForm.module.scss";
 
 const subjects = [
@@ -55,12 +55,17 @@ export class CreateAssignmentForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state)
+    console.log(this.state);
     this.state.due_date = Date.parse(this.state.due_date);
 
-    console.log(document.getElementsByClassName(css.assignmentForm)[0].children[0].reset())
+    console.log(
+      document.getElementsByClassName(css.assignmentForm)[0].children[0].reset()
+    );
 
-    this.props.createAssignment({...this.state, author_name: this.props.username});
+    this.props.createAssignment({
+      ...this.state,
+      author_name: this.props.username
+    });
   }
 
   render() {
@@ -82,7 +87,7 @@ export class CreateAssignmentForm extends Component {
             ))}
           </select>
           <input
-            placeholder="&nbsp;text"
+            placeholder="text"
             id="text"
             onChange={this.handleChange}
             autoComplete="off"
@@ -105,9 +110,11 @@ export class CreateAssignmentForm extends Component {
 
 const mapStateToProps = state => ({
   username: state.auth.user.username
-})
+});
 
-export default connect(
-  mapStateToProps,
-  { createAssignment }
-)(CreateAssignmentForm);
+export default withTranslation()(
+  connect(
+    mapStateToProps,
+    { createAssignment }
+  )(CreateAssignmentForm)
+);

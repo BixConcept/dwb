@@ -6,24 +6,26 @@ import CreateAssignmentForm from "./CreateAssignmentForm";
 import TeamWidget from "./TeamWidget";
 import AssignmentsWidget from "./AssignmentsWidget";
 
+import { withTranslation } from "react-i18next";
+
 class Home extends Component {
   render() {
+    const { t } = this.props;
     return (
       <div className={css.wrapper}>
         <section className={css.create}>
-          <h1 className="s-heading">create assignment</h1>
+          <h1 className="s-heading">{t("dashboard.home.createAssignment.title")}</h1>
           <CreateAssignmentForm />
         </section>
         <section className={css.team}>
-          <h1 className="s-heading">team</h1>
+          <h1 className="s-heading">{t("dashboard.home.team.title")}</h1>
           <TeamWidget />
         </section>
         <section className={css.stats}>
-          <h1 className="s-heading">stats</h1>
-
+          <h1 className="s-heading">{t("dashboard.home.stats.title")}</h1>
           <div>
             <h2 className={css.bigNumber}>2</h2>
-            <h3>assignments due</h3>
+            <h3>{t("dashboard.home.stats.assignmentsDue")}</h3>
           </div>
         </section>
         <AssignmentsWidget />
@@ -32,4 +34,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withTranslation()(Home);

@@ -20,5 +20,28 @@
   "nav.login": "login",
   "nav.register": "register",
   "nav.dashboard": "dashboard",
-  "nav.logout": "logout"
+  "nav.logout": "logout",
+
+  "dashboard.nav.greeting": "Moin, <0>{{name}}</0>",
+  "dashboard.nav.dashboard": "dashboard",
+  "dashboard.nav.team": "gruppe",
+  "dashboard.nav.assignments": "aufgaben",
+  "dashboard.home.createAssignment.title": "aufgabe hinzufügen",
+  "dashboard.home.createAssignment.form.1": "fach auswählen",
+  "dashboard.home.createAssignment.form.2": "text",
+  "dashboard.home.createAssignment.form.submit": "hinzufügen",
+  "dashboard.home.team.title": "gruppe",
+  "dashboard.home.team.members.title": "gruppenmitglieder:",
+  "dashboard.home.team.members.form.input": "benutzernamen eingeben",
+  "dashboard.home.team.members.form.submit": "gruppenmitglied hinzufügen",
+  "dashboard.home.stats.title": "statistiken",
+  "dashboard.home.stats.assignmentsDue": "fällige aufgaben",
+  "dashboard.home.assignments.title": "3-tagesausblick",
+  "dashboard.home.assignments.noAssignments": "keine aufgaben :)",
+
+  "today": "heute",
+  "tomorrow": "morgen",
+  "the day after tomorrow": "übermorgen",
+  "future": "zukunft",
+  "past": "vergangenheit"
 }
