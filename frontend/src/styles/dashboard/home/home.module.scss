@@ -2,72 +2,73 @@
 
 
 .wrapper {
-    display: grid;
+  display: grid;
 
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 2fr 1fr 2fr;
-    grid-template-areas:
-        "create team team"
-        "assignments assignments assignments" // create a a
-        "assignments assignments assignments"; // stats a a
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "create team team" "assignments assignments assignments" // create a a
+  "assignments assignments assignments"; // stats a a
 
-    grid-gap: 40px;
+  grid-gap: 40px;
 
-    padding: 40px;
+  padding: 40px;
 
-    section {
-        background: #f4f4f4;
-        padding: 1rem;
+  section {
+    background: #f4f4f4;
+    padding: 1rem;
 
-    }
+  }
 
-    .create {
-        grid-area: create;
-    }
+  .create {
+    grid-area: create;
+  }
 
-    .team {
-        grid-area: team;
-    }
+  .team {
+    grid-area: team;
+  }
 
-    /* .stats {
-        grid-area: stats;
-    } */
+  /* .stats {
+      grid-area: stats;
+  } */
 
-    .assignments {
-        grid-area: assignments;
-    }
+  .assignments {
+    grid-area: assignments;
+  }
 }
 
 // stats
 
 .stats {
-    div {
-        display: flex;
-        padding: 1rem 0;
+  div {
+    display: flex;
+    padding: 1rem 0;
 
-        line-height: calc(80px - 2rem);
+    line-height: calc(80px - 2rem);
 
-        h3 {
-            padding: 1rem;
-        }
+    h3 {
+      padding: 1rem;
     }
+  }
 }
 
 .bigNumber {
-    border-radius: 50%;
-    background: $primaryColor;
+  border-radius: 50%;
+  background: $primaryColor;
 
-    $size: 80px;
-    width: $size;
-    height: $size;
+  $size: 80px;
+  width: $size;
+  height: $size;
 
-    color: $lightColor;
+  color: $lightColor;
 
-    line-height: $size;
-    text-align: center;
+  line-height: $size;
+  text-align: center;
 
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
-// assignments
-
+@media screen and (max-width: 800px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+      grid-template-areas: "assignments" "create" "team" "stats";
+  }
+}

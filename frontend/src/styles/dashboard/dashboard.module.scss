@@ -34,3 +34,9 @@ aside {
 
     }
 }
+
+@media screen and (max-width: 800px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
