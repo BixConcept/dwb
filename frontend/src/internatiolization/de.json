@@ -22,7 +22,7 @@
   "nav.dashboard": "dashboard",
   "nav.logout": "abmelden",
 
-  "dashboard.nav.greeting": "Moin, <0>{{name}}</0>",
+  "dashboard.nav.greeting": "Moin, <0>{{name}}</0>.",
   "dashboard.nav.dashboard": "dashboard",
   "dashboard.nav.team": "gruppe",
   "dashboard.nav.assignments": "aufgaben",
@@ -64,5 +64,7 @@
   "subjects.cs": "culture studies 🇬🇧",
   "subjects.spanish": "spanisch 🇪🇸",
   "subjects.ecology": "ökologie 🌳",
-  "subjects.other": "sonstiges 🍌"
+  "subjects.other": "sonstiges 🍌",
+
+  "footer.contact": "kontakt"
 }
