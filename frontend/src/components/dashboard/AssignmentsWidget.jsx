@@ -30,6 +30,7 @@ function AssignmentGroup(props) {
     return (
       <div className={props.classIdentifier}>
         <h3>{props.title}</h3>
+        <div className={css.line}></div>
         <p>{t("dashboard.home.assignments.noAssignments")}</p>
       </div>
     );

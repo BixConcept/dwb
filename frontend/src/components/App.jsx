@@ -6,7 +6,7 @@ import Home from "./Home.jsx";
 import Login from "./auth/Login.jsx";
 import Register from "./auth/Register.jsx";
 import Dashboard from "./dashboard/Dashboard.jsx";
-import Contact from "../foo/Contact.jsx";
+import Contact from "./Contact.jsx";
 // router
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
