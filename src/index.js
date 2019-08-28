@@ -1,15 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App";
+import App from "./components/App.jsx";
 import * as serviceWorker from "./serviceWorker";
 import store from "./store";
 import { Provider } from "react-redux";
+
+import { I18nextProvider } from "react-i18next";
+import i18n from "./internationalization";
 
 export const API_HOST = "https://api.3nt3.de";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <I18nextProvider i18n={i18n} >
+      <App />
+    </I18nextProvider>
   </Provider>,
   document.getElementById("app")
 );
