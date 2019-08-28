@@ -1,13 +1,13 @@
-import React from "react"
-import {connect} from "react-redux"
-import {TeamWidget} from "./TeamWidget";
+import React from "react";
+import { connect } from "react-redux";
+import { useTranslation, withTranslation } from "react-i18next";
+import { getAssignments } from "../../actions/assignments";
 
-import {getAssignments} from "../../actions/assignments";
-
-import css from '../../styles/dashboard/home/assignmentsWidget.module.scss';
+import css from "../../styles/dashboard/home/assignmentsWidget.module.scss";
 
 function AssignmentGroup(props) {
   ////console.log(props)
+  const { t } = useTranslation();
   if (props.assignments !== undefined) {
     return (
       <div className={props.classIdentifier}>
@@ -30,7 +30,7 @@ function AssignmentGroup(props) {
     return (
       <div className={props.classIdentifier}>
         <h3>{props.title}</h3>
-        <p>no assignments</p>
+        <p>{t("dashboard.home.assignments.noAssignments")}</p>
       </div>
     );
   }
@@ -40,26 +40,26 @@ function AssignmentGroup(props) {
  * @return {null}
  */
 function AssignmentGroups(props) {
-  //console.log(props);
+  const { t } = useTranslation();
+
   if (props.groups === undefined) {
     return null;
   }
 
-  //console.log(props);
   return (
     <React.Fragment>
       <AssignmentGroup
-        title="today"
+        title={t("today")}
         classIdentifier={css.today}
         assignments={props.groups[0].assignments}
       />
       <AssignmentGroup
-        title="tomorrow"
+        title={t("tomorrow")}
         classIdentifier={css.tomorrow}
         assignments={props.groups[1].assignments}
       />
       <AssignmentGroup
-        title="the day after tomorrow"
+        title={t("the day after tomorrow")}
         classIdentifier={css.future}
         assignments={props.groups[2].assignments}
       />
@@ -68,10 +68,9 @@ function AssignmentGroups(props) {
 }
 
 class AssignmentsWidget extends React.Component {
-
   constructor(props) {
-    super(props)
-    this.state = {}
+    super(props);
+    this.state = {};
   }
 
   dateIsEqual(date1, date2) {
@@ -88,7 +87,6 @@ class AssignmentsWidget extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-
     var groups = [{}, {}, {}];
 
     if (newProps.assignments == 0) return;
@@ -100,7 +98,6 @@ class AssignmentsWidget extends React.Component {
 
       this.state.outstandingAssignments += 1;
 
-
       // ugliest code i ever wrote incoming...
       const day = 1000 * 60 * 60 * 24;
       let groupid = 0;
@@ -111,7 +108,7 @@ class AssignmentsWidget extends React.Component {
       else continue;
 
       if (groups[groupid].assignments === undefined) {
-        groups[groupid] = {date, assignments: [assignment]};
+        groups[groupid] = { date, assignments: [assignment] };
       } else {
         groups[groupid].assignments.push(assignment);
       }
@@ -125,22 +122,19 @@ class AssignmentsWidget extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAssignments()
+    this.props.getAssignments();
   }
 
-
   render() {
+    const { t } = this.props;
     return (
       <div>
-        <h1 className="s-heading">upcoming 3 days</h1>
-        < div
-          className={css.days}>
-          < AssignmentGroups
-            groups={this.state.assignmentGroups}
-          />
+        <h1 className="s-heading">{t("dashboard.home.assignments.title")}</h1>
+        <div className={css.days}>
+          <AssignmentGroups groups={this.state.assignmentGroups} />
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -148,4 +142,9 @@ const mapStateToProps = state => ({
   assignments: state.assignments.assignments
 });
 
-export default connect(mapStateToProps, {getAssignments})(AssignmentsWidget)
+export default withTranslation()(
+  connect(
+    mapStateToProps,
+    { getAssignments }
+  )(AssignmentsWidget)
+);
