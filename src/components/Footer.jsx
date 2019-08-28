@@ -1,19 +1,19 @@
 import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
 
 import css from "../styles/footer.module.scss";
 import { Link } from "react-router-dom";
 
-export default class Footer extends Component {
+class Footer extends Component {
   render() {
+    const { t } = this.props;
     return (
       <footer className={css.footer}>
         <div className="container">
           <ul>
+            <li>&copy; 2019 3nt3rt41nm3nt GbR</li>
             <li>
-              &copy; 2019 3nt3rt41nm3nt GbR
-            </li>
-            <li>
-              <a href="mailto:info@3nt3.de">contact</a>
+              <Link to="/contact">{t("footer.contact")}</Link>
             </li>
           </ul>
         </div>
@@ -21,3 +21,5 @@ export default class Footer extends Component {
     );
   }
 }
+
+export default withTranslation()(Footer);

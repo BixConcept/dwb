@@ -6,7 +6,7 @@ import Home from "./Home.jsx";
 import Login from "./auth/Login.jsx";
 import Register from "./auth/Register.jsx";
 import Dashboard from "./dashboard/Dashboard.jsx";
-
+import Contact from "../foo/Contact.jsx";
 // router
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -48,8 +48,7 @@ class App extends Component {
 
                 <Route path="/dashboard" component={Dashboard} />
 
-
-                <Route path="/contact" component={Component} />
+                <Route path="/contact" component={Contact} />
               </Switch>
             </div>
             <Footer />
