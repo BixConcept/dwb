@@ -5,6 +5,7 @@
     left: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1rem 3rem;
     background: $darkColor;
     color: #fff;
@@ -32,5 +33,33 @@
     h1 {
         color: $primaryColor;
         font-weight: bolder;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h1 {
+            padding: 1rem 0;
+        }
+    }
+
+    .navbar ul {
+        flex-direction: column-reverse;
+
+        li {
+            text-align: center;
+            padding: 1rem 0;
+            width: 100vw;
+
+            &:hover {
+                background: darken($darkColor, 50%);
+            }
+
+            transition-duration: 200ms;
+        }
     }
 }

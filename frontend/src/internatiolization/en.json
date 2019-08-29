@@ -31,7 +31,10 @@
   "dashboard.home.createAssignment.form.text": "text",
   "dashboard.home.createAssignment.form.submit": "add",
   "dashboard.home.team.title": "team",
-  "dashboard.home.team.members.title": "team member:",
+  "dashboard.home.team.text": "loneliness is unhealthy. join a team or create one yourself.",
+  "dashboard.home.team.create.input": "enter a name for your team",
+  "dashboard.home.team.create.submit": "create",
+  "dashboard.home.team.subtitle": "team members:",
   "dashboard.home.team.members.form.input": "add an user",
   "dashboard.home.team.members.form.submit": "send",
   "dashboard.home.stats.title": "stats",
@@ -66,5 +69,7 @@
   "subjects.ecology": "ecology 🌳",
   "subjects.other": "other 🍌",
 
-  "footer.contact": "contact"
+  "footer.contact": "contact",
+
+  "selectLanguage.language": "language"
 }

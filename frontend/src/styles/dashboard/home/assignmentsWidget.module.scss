@@ -36,3 +36,10 @@
 .future {
     background-color: $greenColor;
 }
+
+@media screen and (max-width: 1200px) {
+    .days {
+        grid-template-columns: 1fr;
+        
+    }
+}
