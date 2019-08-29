@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import { withTranslation } from "react-i18next";
+
 import { getTeam, addUserToTeam, createTeam } from "../../actions/teams";
 
 import css from "../../styles/dashboard/home/team.module.scss";
@@ -79,23 +81,23 @@ export class TeamWidget extends Component {
   }
 
   render() {
+    const { t } = this.props;
     if (!this.props.isTeamMember) {
       return (
-        <div className="TeamText">
-          <h3 className="container-headline">you are not part of a team.</h3>
-          <br />
-          <p>
-            loneliness is unhealthy. join a team or create one yourself. <br />
-            (つ ͡° ͜ʖ ͡°)つ
-          </p>
-          <div className="teamForm">
+        <div className={css.TeamText}>
+          <h3></h3>
+          <p>{t("dashboard.home.team.create.text")}</p>
+          <div className={css.teamForm}>
             <form onSubmit={this.createTeamSubmit}>
               <input
-                placeholder="&nbsp;enter a name for your team"
+                placeholder={t("dashboard.home.team.create.input")}
                 id="name"
                 onChange={this.createTeamChange}
               />
-              <input type="submit" value="submit" />
+              <input
+                type="submit"
+                value={t("dashboard.home.team.create.submit")}
+              />
             </form>
           </div>
         </div>
@@ -105,7 +107,7 @@ export class TeamWidget extends Component {
       return (
         <div>
           <div>
-            <h2 className="xs-heading">team members:</h2>
+            <h2 className="xs-heading">{t("dashboard.home.team.subtitle")}</h2>
             <TeamMemberList members={this.props.team.members} />
           </div>
           <div className={css.addUserForm}>
@@ -113,10 +115,13 @@ export class TeamWidget extends Component {
               <input
                 type="text"
                 id="username"
-                placeholder="add a member"
+                placeholder={t("dashboard.home.team.members.form.input")}
                 onChange={this.handleChange}
               />
-              <input type="submit" value="send" />
+              <input
+                type="submit"
+                value={t("dashboard.home.team.members.form.submit")}
+              />
             </form>
           </div>
         </div>
@@ -142,7 +147,9 @@ const mapDispatchToProps = {
   createTeam
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TeamWidget);
+export default withTranslation()(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(TeamWidget)
+);

@@ -31,7 +31,10 @@
   "dashboard.home.createAssignment.form.text": "text",
   "dashboard.home.createAssignment.form.submit": "hinzufügen",
   "dashboard.home.team.title": "gruppe",
-  "dashboard.home.team.members.title": "gruppenmitglieder:",
+  "dashboard.home.team.create.text": "einsamkeit ist ungesund. erstelle ein team und füge mitglieder hinzu!",
+  "dashboard.home.team.create.input": "name deines teams",
+  "dashboard.home.team.create.submit": "erstellen",
+  "dashboard.home.team.subtitle": "gruppenmitglieder:",
   "dashboard.home.team.members.form.input": "benutzernamen eingeben",
   "dashboard.home.team.members.form.submit": "gruppenmitglied hinzufügen",
   "dashboard.home.stats.title": "statistiken",
@@ -66,5 +69,7 @@
   "subjects.ecology": "ökologie 🌳",
   "subjects.other": "sonstiges 🍌",
 
-  "footer.contact": "kontakt"
+  "footer.contact": "kontakt",
+
+  "selectLanguage.language": "sprache"
 }

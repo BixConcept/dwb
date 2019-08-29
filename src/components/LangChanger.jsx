@@ -14,9 +14,8 @@ class LangChanger extends Component {
 
   changeLng(lng) {
     console.log("moin");
-    this.setState({ language: lng });
-    console.log("successfully setted");
-    this.props.i18n.changeLanguage(this.state.language);
+    console.log("successfully set");
+    this.props.i18n.changeLanguage(lng);
   }
 
   render() {
@@ -32,7 +31,7 @@ class LangChanger extends Component {
             }}
             className={css.dropdownBtn}
           >
-            {t("language")}
+            {t("selectLanguage.language")}
           </button>
           <div ref={"dropdwnContent"} className={css.dropdownContent}>
             <p
@@ -41,7 +40,7 @@ class LangChanger extends Component {
                 this.changeLng("en");
               }}
             >
-              englisch
+              english
             </p>
             <p
               onClick={() => {
