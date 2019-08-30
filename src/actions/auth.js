@@ -16,6 +16,7 @@ export const login = user => dispatch => {
     })
     .catch(err => {
       console.log(err);
+
       if (err.response === undefined) return;
       dispatch({
         type: GET_ERROR,
@@ -39,6 +40,7 @@ export const register = user => dispatch => {
     })
     .catch(err => {
       console.log(err);
+
       if (err.response === undefined) return;
       dispatch({
         type: GET_ERROR,
