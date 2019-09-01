@@ -31,7 +31,7 @@ class AssignmentsView extends Component {
     return (
       <Fragment>
         <h1 className="m-heading">assignments view</h1>
-        <table>
+        <table className={css.table}>
           <thead>
             <tr>
               <th>{t("dashboard.assignments.table.subject")}</th>
