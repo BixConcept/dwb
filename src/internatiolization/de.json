@@ -1,4 +1,6 @@
 {
+  "date": "{{date, DD.MM.YYYY}}",
+
   "home.showcase.title": "digitales weißes brett",
   "home.showcase.subtitle": "das kollaborative hausaufgabenhäft",
   "home.showcase.btn": "mehr anzeigen",
@@ -71,5 +73,10 @@
 
   "footer.contact": "kontakt",
 
-  "selectLanguage.language": "sprache"
+  "selectLanguage.language": "sprache",
+
+  "dashboard.assignments.table.subject": "fach",
+  "dashboard.assignments.table.text": "aufgabe",
+  "dashboard.assignments.table.dueDate": "fällig am",
+  "dashboard.assignments.table.author": "autor"
 }
