@@ -4,6 +4,8 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import de from "./de.json";
 import en from "./en.json";
 
+var moment = require("moment");
+
 i18n.use(LanguageDetector).init({
   resources: {
     en: {
@@ -23,7 +25,13 @@ i18n.use(LanguageDetector).init({
   keySeparator: true,
 
   interpolation: {
-    formatSeparator: ","
+    formatSeparator: ",",
+    format: (val, format, lng) => {
+      if (val instanceof Date) {
+        return moment(val).format(format);
+      }
+      return val;
+    }
   },
 
   react: {

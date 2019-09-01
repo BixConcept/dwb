@@ -10,9 +10,7 @@
     "stats assignments assignments";
 
   grid-gap: 40px;
-
-  padding: 40px;
-
+  
   section {
     background: #f4f4f4;
     padding: 1rem;
@@ -71,7 +69,5 @@
   .wrapper {
     grid-template-columns: 1fr;
     grid-template-areas: "assignments""create""team""stats";
-
-
   }
 }

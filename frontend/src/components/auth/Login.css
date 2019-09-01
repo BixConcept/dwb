@@ -85,14 +85,6 @@
   -webkit-box-shadow: 0 0 10px #3498db;
   box-shadow: 0 0 10px #3498db;
   background: #3498db;
-  background: -webkit-linear-gradient(to right, #3498db, #3498db);
-  background: linear-gradient(to right, #3498db, #3498db);
-}
-
-.main input[type="submit"]:hover {
-  width: 9.6875em;
-  height: 3.25em;
-  box-shadow: 0 0 0.5em #3498db;
 }
 
 .fa-user {

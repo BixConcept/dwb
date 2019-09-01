@@ -3,12 +3,14 @@
 .dashboard {
     display: grid;
     grid-template-columns: 1fr 4fr;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
 }
 
 aside {
     background: #f4f4f4;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
 
     h1 {
         padding: 1rem;
@@ -37,7 +39,14 @@ aside {
     }
 }
 
+main {
+    padding: 40px;
+}
+
 @media screen and (max-width: 800px) {
+    aside {
+        min-height: 0;
+    }
     .dashboard {
         grid-template-columns: 1fr;
     }
