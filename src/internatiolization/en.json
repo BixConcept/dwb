@@ -32,6 +32,8 @@
   "dashboard.home.createAssignment.form.subject": "choose subject",
   "dashboard.home.createAssignment.form.text": "text",
   "dashboard.home.createAssignment.form.submit": "add",
+  "dashboard.home.graph1": "subjects",
+  "dashboard.home.graph2": "authors",
   "dashboard.home.team.title": "team",
   "dashboard.home.team.text": "loneliness is unhealthy. join a team or create one yourself.",
   "dashboard.home.team.create.input": "enter a name for your team",

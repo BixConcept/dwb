@@ -2,6 +2,9 @@ import React, { Component } from "react";
 
 import css from "../../styles/dashboard/home/home.module.scss";
 
+import Chart from "./Chart";
+import AuthorChart from "./AuthorChart";
+
 import CreateAssignmentForm from "./CreateAssignmentForm";
 import TeamWidget from "./TeamWidget";
 import AssignmentsWidget from "./AssignmentsWidget";
@@ -14,6 +17,14 @@ class Home extends Component {
     const { t } = this.props;
     return (
       <div className={css.wrapper}>
+        <section className={css.graph1}>
+          <h1 className="s-heading">{t("dashboard.home.graph1")}</h1>
+          <Chart />
+        </section>
+        <section className={css.graph2}>
+          <h1 className="s-heading">{t("dashboard.home.graph2")}</h1>
+          <AuthorChart />
+        </section>
         <section className={css.create}>
           <h1 className="s-heading">
             {t("dashboard.home.createAssignment.title")}
