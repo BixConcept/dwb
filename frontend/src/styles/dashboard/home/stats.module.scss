@@ -1,0 +1,27 @@
+@import '../../vars';
+
+.stats {
+    display: flex;
+    padding: 1rem 0;
+
+    align-items: center;
+
+    h3 {
+        padding: 1rem;
+    }
+}
+
+.bigNumber {
+    background: $primaryColor;
+
+    $size: 4rem;
+    width: $size;
+    height: $size;
+
+    color: $lightColor;
+
+    line-height: $size;
+    text-align: center;
+
+    font-size: 2rem;
+}

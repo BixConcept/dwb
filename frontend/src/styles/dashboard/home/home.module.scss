@@ -4,17 +4,26 @@
 .wrapper {
   display: grid;
 
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "create team team"
-    "create assignments assignments"
-    "stats assignments assignments";
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "create create assignments assignments assignments assignments"
+    "create create assignments assignments assignments assignments"
+    "stats stats team team team team""graph1 graph1 graph1 graph2 graph2 graph2";
 
   grid-gap: 40px;
-  
+
   section {
     background: #f4f4f4;
     padding: 1rem;
 
+  }
+
+  .graph1 {
+    grid-area: graph1;
+  }
+
+  .graph2 {
+    grid-area: graph2;
   }
 
   .create {
@@ -37,9 +46,24 @@
 // stats
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1100px) and (min-width: 401px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas: "assignments""create""team""stats""graph1""graph2";
+  }
+
+}
+
+@media screen and (max-width: 400px) {
   .wrapper {
     grid-template-columns: 1fr;
     grid-template-areas: "assignments""create""team""stats";
   }
+
+
+  .graph1,
+  .graph2 {
+    display: none;
+  }
+
 }

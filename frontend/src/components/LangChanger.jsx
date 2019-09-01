@@ -13,8 +13,6 @@ class LangChanger extends Component {
   }
 
   changeLng(lng) {
-    console.log("moin");
-    console.log("successfully set");
     this.props.i18n.changeLanguage(lng);
   }
 
@@ -28,6 +26,11 @@ class LangChanger extends Component {
             onClick={() => {
               let d = ReactDOM.findDOMNode(this.refs.dropdwnContent);
               d.classList.toggle(css.show);
+            }}
+            onBlur={() => {
+              ReactDOM.findDOMNode(this.refs.dropdwnContent).classList.remove(
+                css.show
+              );
             }}
             className={css.dropdownBtn}
           >
