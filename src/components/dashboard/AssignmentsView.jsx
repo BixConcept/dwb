@@ -30,7 +30,7 @@ class AssignmentsView extends Component {
     const { t } = this.props;
     return (
       <Fragment>
-        <h1 className="m-heading">assignments view</h1>
+        <h1 className="m-heading">{t("dashboard.assignments.title")}</h1>
         <table className={css.table}>
           <thead>
             <tr>

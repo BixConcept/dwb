@@ -75,6 +75,7 @@
 
   "selectLanguage.language": "language",
 
+  "dashboard.assignments.title": "assignments",
   "dashboard.assignments.table.subject": "subject",
   "dashboard.assignments.table.text": "assignment",
   "dashboard.assignments.table.dueDate": "due date",
