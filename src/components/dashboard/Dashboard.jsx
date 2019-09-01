@@ -67,11 +67,6 @@ class Dashboard extends Component {
               </Link>
             </li>
             <li>
-              <Link className={css.link} to="/dashboard/team">
-                {t("dashboard.nav.team")}
-              </Link>
-            </li>
-            <li>
               <Link className={css.link} to="/dashboard/assignments">
                 {t("dashboard.nav.assignments")}
               </Link>
