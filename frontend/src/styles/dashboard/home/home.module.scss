@@ -36,34 +36,6 @@
 
 // stats
 
-.stats {
-  div {
-    display: flex;
-    padding: 1rem 0;
-
-    line-height: calc(80px - 2rem);
-
-    h3 {
-      padding: 1rem;
-    }
-  }
-}
-
-.bigNumber {
-  border-radius: 50%;
-  background: $primaryColor;
-
-  $size: 80px;
-  width: $size;
-  height: $size;
-
-  color: $lightColor;
-
-  line-height: $size;
-  text-align: center;
-
-  font-size: 2rem;
-}
 
 @media screen and (max-width: 800px) {
   .wrapper {

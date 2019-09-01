@@ -5,6 +5,7 @@ import css from "../../styles/dashboard/home/home.module.scss";
 import CreateAssignmentForm from "./CreateAssignmentForm";
 import TeamWidget from "./TeamWidget";
 import AssignmentsWidget from "./AssignmentsWidget";
+import StatsWidget from "./StatsWidget";
 
 import { withTranslation } from "react-i18next";
 
@@ -25,10 +26,7 @@ class Home extends Component {
         </section>
         <section className={css.stats}>
           <h1 className="s-heading">{t("dashboard.home.stats.title")}</h1>
-          <div>
-            <h2 className={css.bigNumber}>{}</h2>
-            <h3>{t("dashboard.home.stats.assignmentsDue")}</h3>
-          </div>
+          <StatsWidget />
         </section>
         <section className={css.assignments}>
           <AssignmentsWidget />
