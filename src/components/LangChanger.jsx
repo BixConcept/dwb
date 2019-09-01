@@ -27,11 +27,6 @@ class LangChanger extends Component {
               let d = ReactDOM.findDOMNode(this.refs.dropdwnContent);
               d.classList.toggle(css.show);
             }}
-            onBlur={() => {
-              ReactDOM.findDOMNode(this.refs.dropdwnContent).classList.remove(
-                css.show
-              );
-            }}
             className={css.dropdownBtn}
           >
             {t("selectLanguage.language")}
