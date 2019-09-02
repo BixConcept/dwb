@@ -7,7 +7,6 @@ import (
 	"github.com/gorilla/mux"
 	"net/http"
 	"strconv"
-	"time"
 )
 
 func User(w http.ResponseWriter, r *http.Request) {
@@ -76,10 +75,10 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("[ * ] session: %+v\n", session)
 
 	sessionCookie := &http.Cookie{
-		Path:    "/",
-		Name:    "session",
-		Value:   session.UUID,
-		Expires: time.Now().Add(time.Hour * 24 * 365),
+		Path:   "/",
+		Name:   "session",
+		Value:  session.UUID,
+		MaxAge: 60 * 60 * 24 * 30 * 12,
 	}
 
 	// remove for test purposes
@@ -194,10 +193,9 @@ func login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	cookie := http.Cookie{
-		Path:    "/",
-		Name:    "session",
-		Value:   session.UUID,
-		Expires: time.Now().Add(time.Hour * 24 * 365),
+		Path:  "/",
+		Name:  "session",
+		Value: session.UUID,
 	}
 
 	http.SetCookie(w, &cookie)

@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"git.3nt3.de/3nt3/dwb/db"
 	"git.3nt3.de/3nt3/dwb/structs"
+	"github.com/gorilla/mux"
 	"net/http"
+	"strconv"
 )
 
 func Assignment(w http.ResponseWriter, r *http.Request) {
@@ -19,8 +21,12 @@ func Assignment(w http.ResponseWriter, r *http.Request) {
 		getAssignments(w, r)
 	case "POST":
 		createAssignments(w, r)
+	case "DELETE":
+		deleteAssignment(w, r)
 	default:
-		w.WriteHeader(http.StatusMethodNotAllowed)
+		if _, ok := mux.Vars(r)["id"]; ok {
+			deleteAssignment(w, r)
+		}
 	}
 
 }
@@ -121,4 +127,67 @@ func createAssignments(w http.ResponseWriter, r *http.Request) {
 	}
 
 	_ = json.NewEncoder(w).Encode(assignment)
+}
+
+func deleteAssignment(w http.ResponseWriter, r *http.Request) {
+	sessionCookie, err := r.Cookie("session")
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving session from req: %v\n", err)
+		w.WriteHeader(401)
+		return
+	}
+
+	session, err := db.GetSession(sessionCookie.Value)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving session from db: %v\n", err)
+		w.WriteHeader(401)
+		return
+	}
+
+	fmt.Printf("[ * ] session: %+v\n", session)
+
+	user, err := db.GetUserByID(session.UserID)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving user from db: %v\n", err)
+		w.WriteHeader(501)
+		return
+	}
+	fmt.Printf("[ * ] user: %+v\n", user)
+
+	authenticated := false
+	if !user.IsTeamMember {
+		authenticated = true
+	} else if user.Permission > 0 {
+		authenticated = true
+	}
+
+	fmt.Printf("[ * ] authenticated: %t\n")
+
+	if !authenticated {
+		w.WriteHeader(401)
+		return
+	}
+
+	assignmentIdRaw, ok := mux.Vars(r)["id"]
+	if !ok {
+		fmt.Printf("[ - ] error retrieving assignment id from request\n")
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	assignmentId, err := strconv.Atoi(assignmentIdRaw)
+	if err != nil {
+		fmt.Printf("[ - ] error converting assignmentId to int: %v\n", err)
+		w.WriteHeader(400)
+		return
+	}
+
+	err = db.DeleteAssignment(assignmentId)
+	if err != nil {
+		fmt.Printf("[ - ] error deleting assignment: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
+
+	fmt.Printf("[ + ] succesfully deleted assignment #%4d from db!!\n")
 }

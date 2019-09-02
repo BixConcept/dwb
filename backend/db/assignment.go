@@ -69,3 +69,9 @@ func CreateAssignment(assignment structs.Assignment) error {
 	_, err := Database.Exec(query, assignment.DueDate, assignment.Text, assignment.Subject, assignment.Description, assignment.Author, assignment.AuthorName)
 	return err
 }
+
+func DeleteAssignment(id int) error {
+	query := "delete from assignment where id = $1;"
+	_, err := Database.Exec(query, id)
+	return err
+}
