@@ -7,7 +7,6 @@ import (
 	"git.3nt3.de/3nt3/dwb/structs"
 	"github.com/gorilla/mux"
 	"net/http"
-	"strconv"
 )
 
 func Assignment(w http.ResponseWriter, r *http.Request) {
@@ -157,25 +156,18 @@ func deleteAssignment(w http.ResponseWriter, r *http.Request) {
 	authenticated := false
 	if !user.IsTeamMember {
 		authenticated = true
-	} else if user.Permission > 0 {
+	} else if user.Permission > db.STANDARD_PERMISSION {
 		authenticated = true
 	}
 
-	fmt.Printf("[ * ] authenticated: %t\n")
+	fmt.Printf("[ * ] authenticated: %t\n", authenticated)
 
 	if !authenticated {
 		w.WriteHeader(401)
 		return
 	}
 
-	assignmentIdRaw, ok := mux.Vars(r)["id"]
-	if !ok {
-		fmt.Printf("[ - ] error retrieving assignment id from request\n")
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
-
-	assignmentId, err := strconv.Atoi(assignmentIdRaw)
+	assignmentId, err := getIntFromMuxVars(r, "id")
 	if err != nil {
 		fmt.Printf("[ - ] error converting assignmentId to int: %v\n", err)
 		w.WriteHeader(400)
@@ -189,5 +181,5 @@ func deleteAssignment(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Printf("[ + ] succesfully deleted assignment #%4d from db!!\n")
+	fmt.Printf("[ + ] succesfully deleted assignment #%4d from db!!\n", assignmentId)
 }

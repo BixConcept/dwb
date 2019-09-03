@@ -56,3 +56,9 @@ func AddTeamMember(teamID int, userID int) error {
 	_, err := Database.Exec(query, teamID, userID)
 	return err
 }
+
+func RemoveTeamMember(userID int) error {
+	query := "UPDATE users SET TEAM = 0, is_team_member = false WHERE id = $1"
+	_, err := Database.Exec(query, userID)
+	return err
+}

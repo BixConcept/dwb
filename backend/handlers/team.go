@@ -18,6 +18,8 @@ func Team(w http.ResponseWriter, r *http.Request) {
 	case "POST":
 		if r.URL.Path == "/team/addMember/" {
 			addMember(w, r)
+		} else if r.URL.Path == "/team/removeMember" {
+
 		} else {
 			createTeam(w, r)
 		}
@@ -30,22 +32,12 @@ func Team(w http.ResponseWriter, r *http.Request) {
 func getTeam(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("-*- getTeam -*-\n")
 
-	sessionCookie, err := r.Cookie("session")
+	session, err := extractSession(w, r)
 	if err != nil {
-		fmt.Printf("[ - ] error extracting session cookie: %v\n", err)
-		w.WriteHeader(http.StatusUnauthorized)
+		fmt.Printf("[ - ] error extracting session: %v\n", err)
+		w.WriteHeader(401)
 		return
 	}
-
-	fmt.Printf("[ * ] session cookie: %+v\n", sessionCookie)
-
-	session, err := db.GetSession(sessionCookie.Value)
-	if err != nil {
-		fmt.Printf("[ * ] error retrieving session from database: %v\n", err)
-		w.WriteHeader(http.StatusUnauthorized)
-		return
-	}
-	fmt.Printf("[ * ] session: %+v\n", session)
 
 	user, err := db.GetUserByID(session.UserID)
 	if err != nil {
@@ -83,23 +75,12 @@ func getTeam(w http.ResponseWriter, r *http.Request) {
 
 func createTeam(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("-*- createTeam -*-\n")
-
-	sessionCookie, err := r.Cookie("session")
+	session, err := extractSession(w, r)
 	if err != nil {
-		fmt.Printf("[ - ] error extracting session cookie: %v\n", err)
-		w.WriteHeader(http.StatusUnauthorized)
+		fmt.Printf("[ - ] error extracting session: %v\n", err)
+		w.WriteHeader(401)
 		return
 	}
-
-	fmt.Printf("[ * ] session cookie: %+v\n", sessionCookie)
-
-	session, err := db.GetSession(sessionCookie.Value)
-	if err != nil {
-		fmt.Printf("[ * ] error retrieving session from database: %v\n", err)
-		w.WriteHeader(http.StatusUnauthorized)
-		return
-	}
-	fmt.Printf("[ * ] session: %+v\n", session)
 
 	user, err := db.GetUserByID(session.UserID)
 	if err != nil {
@@ -141,22 +122,12 @@ func createTeam(w http.ResponseWriter, r *http.Request) {
 func addMember(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("-*- addMember -*-\n")
 
-	sessionCookie, err := r.Cookie("session")
+	session, err := extractSession(w, r)
 	if err != nil {
-		fmt.Printf("[ - ] error extracting session cookie: %v\n", err)
-		w.WriteHeader(http.StatusUnauthorized)
+		fmt.Printf("[ - ] error extracting session: %v\n", err)
+		w.WriteHeader(401)
 		return
 	}
-
-	fmt.Printf("[ * ] session cookie: %+v\n", sessionCookie)
-
-	session, err := db.GetSession(sessionCookie.Value)
-	if err != nil {
-		fmt.Printf("[ * ] error retrieving session from database: %v\n", err)
-		w.WriteHeader(http.StatusUnauthorized)
-		return
-	}
-	fmt.Printf("[ * ] session: %+v\n", session)
 
 	user, err := db.GetUserByID(session.UserID)
 	if err != nil {
@@ -166,14 +137,12 @@ func addMember(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Printf("[ * ] user: %+v\n", user)
 
-
 	team, err := db.GetTeamByID(user.Team)
 	if err != nil {
 		fmt.Printf("[ - ] error retrieving team from db: %v\n", err)
 	}
 
-
-	if team.Owner != user.ID {
+	if user.Permission < db.TEAM_MODERATOR_PERMISSION {
 		fmt.Printf("[ - ] this guy is not allowed to do this kind of action. call the police!!\n")
 		w.WriteHeader(401)
 		return
@@ -189,7 +158,7 @@ func addMember(w http.ResponseWriter, r *http.Request) {
 
 	teamUser, err := db.GetUserByName(teamUsername)
 	if err != nil {
-		fmt.Printf("[ - ] error retrieving team user from db: %v\n")
+		fmt.Printf("[ - ] error retrieving team user from db: %v\n", err)
 		w.WriteHeader(404)
 		return
 	}
@@ -200,5 +169,60 @@ func addMember(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(500)
 		return
 	}
+}
 
+func removeMember(w http.ResponseWriter, r *http.Request) {
+	session, err := extractSession(w, r)
+	if err != nil {
+		fmt.Printf("[ - ] error extracting session: %v\n", err)
+		w.WriteHeader(401)
+		return
+	}
+
+	user, err := db.GetUserByID(session.UserID)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving user from db: %v\n", err)
+		w.WriteHeader(401)
+		return
+	}
+
+	if !user.IsTeamMember {
+		fmt.Print("[ - ] %s is not a team member!\n")
+		w.WriteHeader(400)
+		return
+	}
+
+	if user.Permission <= 0 {
+		fmt.Printf("[ - ] permission denied. required permission: %v; actual permission: %d\n", db.TEAM_MODERATOR_PERMISSION, user.Permission)
+		w.WriteHeader(401)
+		return
+	}
+
+	memberID, err := getIntFromMuxVars(r, "memberID")
+	if err != nil {
+		fmt.Printf("[ - ] error extracting memberID from req: %v\n", err)
+		w.WriteHeader(400)
+		return
+	}
+
+	member, err := db.GetUserByID(memberID)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving member from db: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
+	fmt.Printf("[ * ] member to remove: %+v\n", member)
+
+	if !member.IsTeamMember || member.Team != user.Team || member.Permission == db.TEAM_OWNER_PERMISSION {
+		fmt.Printf("[ - ] permission denied.\n")
+		w.WriteHeader(http.StatusForbidden)
+		return
+	}
+
+	err = db.RemoveTeamMember(member.ID)
+	if err != nil {
+		fmt.Printf("[ - ] error removing team member: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
 }
