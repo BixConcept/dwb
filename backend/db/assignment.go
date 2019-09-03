@@ -75,3 +75,23 @@ func DeleteAssignment(id int) error {
 	_, err := Database.Exec(query, id)
 	return err
 }
+
+func GetAllAssignments() ([]structs.Assignment, error) {
+	query := "SELECT * FROM assignments;"
+	rows, err := Database.Query(query)
+	if err != nil {
+		return nil, err
+	}
+
+	assignments := []structs.Assignment{}
+	for rows.Next() {
+		a := structs.Assignment{}
+		err := rows.Scan(&a.ID, &a.CreatedAt, &a.DueDate, &a.Text, &a.Subject, &a.Description, &a.Author, &a.AuthorName)
+		if err != nil {
+			return nil, err
+		}
+		assignments = append(assignments, a)
+	}
+
+	return assignments, err
+}
