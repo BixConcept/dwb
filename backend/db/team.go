@@ -62,3 +62,22 @@ func RemoveTeamMember(userID int) error {
 	_, err := Database.Exec(query, userID)
 	return err
 }
+
+func GetAllTeams() ([]structs.Team, error) {
+	query := "SELECT * FROM teams;"
+	rows, err := Database.Query(query)
+	if err != nil {
+		return nil, err
+	}
+
+	teams := []structs.Team{}
+	for rows.Next() {
+		team := structs.Team{}
+		err := rows.Scan(&team.ID, &team.Name, &team.Owner)
+		if err != nil {
+			return nil, err
+		}
+		teams = append(teams, team)
+	}
+	return teams, nil
+}

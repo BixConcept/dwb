@@ -25,7 +25,11 @@ func Team(w http.ResponseWriter, r *http.Request) {
 		}
 
 	case "GET":
-		getTeam(w, r)
+		if r.URL.Path == "/team/all" {
+			getAllTeams(w, r)
+		} else {
+			getTeam(w, r)
+		}
 	}
 }
 
@@ -225,4 +229,37 @@ func removeMember(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(500)
 		return
 	}
+}
+
+func getAllTeams(w http.ResponseWriter, r *http.Request) {
+
+	session, err := extractSession(w, r)
+	if err != nil {
+		fmt.Printf("[ - ] error extractin session: %v\n", err)
+		w.WriteHeader(403)
+		return
+	}
+
+	user, err := db.GetUserByID(session.UserID)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving user from db: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
+
+	if user.Permission < db.ADMIN_PERMISSION {
+		fmt.Printf("[ - ] permission denied.\n")
+		w.WriteHeader(403)
+		return
+	}
+
+	teams, err := db.GetAllTeams()
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving all teams from db: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
+
+	_ = json.NewEncoder(w).Encode(teams)
+	fmt.Printf("[ + ] successfully retrieved all teams.\n")
 }
