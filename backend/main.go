@@ -29,6 +29,7 @@ func main() {
 
 	r.HandleFunc("/team/", handlers.Team)
 	r.HandleFunc("/team/addMember/", handlers.Team)
+	r.HandleFunc("/team/removeMember/", handlers.Team)
 
 	// start server
 	fmt.Printf("[ ~ ] starting server on port %d\n", port)

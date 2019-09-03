@@ -15,7 +15,7 @@ func connectToDB(host string, port int, username string, password string) (*sql.
 func Init() {
 
 	fmt.Printf("[ ~ ] connecting to database...\n")
-	foo, err := connectToDB("localhost", 5432, "dwb", "")
+	foo, err := connectToDB("localhost", 5432, "dwb", "dwb")
 	Database = foo
 
 	if err != nil {
