@@ -22,6 +22,7 @@ func main() {
 	// define routes
 	r.HandleFunc("/assignment/", handlers.Assignment)
 	r.HandleFunc("/assignment/{id}", handlers.Assignment)
+	r.HandleFunc("/assignment/all", handlers.Assignment)
 
 	r.HandleFunc("/user/", handlers.User)
 	r.HandleFunc("/user/{id}", handlers.User)
