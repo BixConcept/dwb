@@ -1,8 +1,8 @@
 package db
 
 import (
-	"git.3nt3.de/3nt3/dwb/structs"
 	uuid "github.com/satori/go.uuid"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
 )
 
 func CreateSession(userID int) (structs.Session, error) {

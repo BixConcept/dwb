@@ -3,10 +3,11 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
-	"git.3nt3.de/3nt3/dwb/db"
-	"git.3nt3.de/3nt3/dwb/structs"
-	"github.com/gorilla/mux"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
 )
 
 func Assignment(w http.ResponseWriter, r *http.Request) {
@@ -18,7 +19,7 @@ func Assignment(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
 		if r.URL.Path == "/assignment/all" {
-			getAllAssignments(w,r)
+			getAllAssignments(w, r)
 		} else {
 			getAssignments(w, r)
 		}
@@ -189,7 +190,7 @@ func deleteAssignment(w http.ResponseWriter, r *http.Request) {
 }
 
 func getAllAssignments(w http.ResponseWriter, r *http.Request) {
-	session, err := extractSession(w,r)
+	session, err := extractSession(w, r)
 	if err != nil {
 		fmt.Printf("[ - ] error extractin session: %v\n", err)
 		w.WriteHeader(403)

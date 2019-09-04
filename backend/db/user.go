@@ -2,7 +2,8 @@ package db
 
 import (
 	"errors"
-	"git.3nt3.de/3nt3/dwb/structs"
+
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
 	"golang.org/x/crypto/bcrypt"
 )
 
