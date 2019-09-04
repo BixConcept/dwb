@@ -3,9 +3,10 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
-	"git.3nt3.de/3nt3/dwb/db"
-	"git.3nt3.de/3nt3/dwb/structs"
 	"net/http"
+
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
 )
 
 func Team(w http.ResponseWriter, r *http.Request) {

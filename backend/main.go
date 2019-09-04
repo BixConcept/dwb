@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"git.3nt3.de/3nt3/dwb/db"
-	"git.3nt3.de/3nt3/dwb/handlers"
 	"github.com/gorilla/mux"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/handlers"
 )
 
 const port int = 8000

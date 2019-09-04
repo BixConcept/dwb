@@ -3,10 +3,11 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
-	"git.3nt3.de/3nt3/dwb/db"
-	"github.com/gorilla/mux"
 	"net/http"
 	"strconv"
+
+	"github.com/gorilla/mux"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
 )
 
 func User(w http.ResponseWriter, r *http.Request) {
