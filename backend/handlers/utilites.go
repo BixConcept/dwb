@@ -39,3 +39,4 @@ func getIntFromMuxVars(r *http.Request, key string) (int, error) {
 
 	return strconv.Atoi(raw)
 }
+

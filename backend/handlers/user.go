@@ -24,7 +24,9 @@ func User(w http.ResponseWriter, r *http.Request) {
 	case "POST":
 		createUser(w, r)
 	case "GET":
-		if len(mux.Vars(r)) != 0 {
+		if r.URL.Path == "/user/all" {
+			getAllUsers(w, r)
+		} else if len(mux.Vars(r)) != 0 {
 			getUserByID(w, r)
 		} else {
 			getUserBySession(w, r)
@@ -199,4 +201,36 @@ func login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.SetCookie(w, &cookie)
+}
+
+func getAllUsers(w http.ResponseWriter, r *http.Request) {
+	session, err := extractSession(w, r)
+	if err != nil {
+		fmt.Printf("[ - ] error extracting session: %v\n", err)
+		w.WriteHeader(401)
+		return
+	}
+
+	user, err := db.GetUserByID(session.UserID)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving user from db: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
+	fmt.Printf("[ * ] user: %+v\n", user)
+
+	if !user.IsSuperUser() {
+		fmt.Printf("[ - ] permission denied\n")
+		w.WriteHeader(403)
+		return
+	}
+
+	users, err := db.GetUsers()
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving users from db: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
+
+	_ = json.NewEncoder(w).Encode(users)
 }

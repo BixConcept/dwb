@@ -2,6 +2,8 @@ package structs
 
 import (
 	"time"
+
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/permissions"
 )
 
 type Assignment struct {
@@ -22,6 +24,10 @@ type User struct {
 	Permission   int  `json:"permission"`
 	Team         int  `json:"team"`
 	IsTeamMember bool `json:"team_member"`
+}
+
+func (u *User) IsSuperUser() {
+	return u.Permission < permissions.ADMIN_PERMISSION
 }
 
 type Session struct {
