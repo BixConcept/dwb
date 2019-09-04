@@ -1,3 +1,6 @@
+package permissions
+
+
 
 // permission constants
 const ADMIN_PERMISSION = 3
