@@ -22,7 +22,7 @@ import AdminView from "./AdminView";
 const AdminLinks = props => {
   const { t } = useTranslation();
 
-  if (props.permission != 0) {
+  if (props.permission != 3) {
     return null;
   }
 
