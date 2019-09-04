@@ -11,13 +11,26 @@ import {getUser} from "../../actions/auth";
 import css from "../../styles/dashboard/dashboard.module.scss";
 
 import {Route, Switch, Link} from "react-router-dom";
-import { Trans, withTranslation } from "react-i18next";
+import { Trans, withTranslation, useTranslation } from "react-i18next";
 
 // Views
 import Home from "./Home.jsx";
 import AssignmentsView from "./AssignmentsView.jsx";
 import TeamView from "./TeamView.jsx";
 
+const AdminLinks = (props) => {
+  if (props.user.permission < 3) {
+    return null;
+  }
+
+  const {t} = useTranslation()
+
+  return (
+    <li>
+      <Link to="/dashboard/admin">{t("dashboard.nav.admin")}</Link>
+    </li>
+  )
+}
 
 class Dashboard extends Component {
   static propTypes = {
