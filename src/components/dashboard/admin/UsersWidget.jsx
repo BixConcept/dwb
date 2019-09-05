@@ -18,11 +18,18 @@ class UsersWidget extends Component {
     return (
       <Fragment>
         <h1>Users</h1>
-        {this.props.users === undefined
-          ? null
-          : this.props.users.map(user => {
-              return <p>{user.username}</p>;
-            })}
+        <p>
+          currently there are{" "}
+          {this.props.users === undefined ? null : this.props.users.length}{" "}
+          users
+        </p>
+        <ul>
+          {this.props.users === undefined
+            ? null
+            : this.props.users.map(user => {
+                return <li>{user.username}</li>;
+              })}
+        </ul>
       </Fragment>
     );
   }
