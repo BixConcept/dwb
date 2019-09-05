@@ -27,7 +27,7 @@ type User struct {
 }
 
 func (u *User) IsSuperUser() bool {
-	return u.Permission < permissions.ADMIN_PERMISSION
+	return u.Permission >= permissions.ADMIN_PERMISSION
 }
 
 type Session struct {
