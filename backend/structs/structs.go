@@ -26,7 +26,7 @@ type User struct {
 	IsTeamMember bool `json:"team_member"`
 }
 
-func (u *User) IsSuperUser() {
+func (u *User) IsSuperUser() bool {
 	return u.Permission < permissions.ADMIN_PERMISSION
 }
 

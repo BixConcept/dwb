@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/mux"
 	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
 	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/permissions"
 )
 
 func Assignment(w http.ResponseWriter, r *http.Request) {
@@ -161,7 +162,7 @@ func deleteAssignment(w http.ResponseWriter, r *http.Request) {
 	authenticated := false
 	if !user.IsTeamMember {
 		authenticated = true
-	} else if user.Permission > db.STANDARD_PERMISSION {
+	} else if user.Permission > permissions.STANDARD_PERMISSION {
 		authenticated = true
 	}
 
@@ -204,7 +205,7 @@ func getAllAssignments(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if user.Permission < db.ADMIN_PERMISSION {
+	if user.Permission < permissions.ADMIN_PERMISSION {
 		fmt.Printf("[ - ] permission denied.\n")
 		w.WriteHeader(403)
 		return

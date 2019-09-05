@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/permissions"
 	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
 )
 
@@ -147,7 +148,7 @@ func addMember(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("[ - ] error retrieving team from db: %v\n", err)
 	}
 
-	if user.Permission < db.TEAM_MODERATOR_PERMISSION {
+	if user.Permission < permissions.TEAM_MODERATOR_PERMISSION {
 		fmt.Printf("[ - ] this guy is not allowed to do this kind of action. call the police!!\n")
 		w.WriteHeader(401)
 		return
@@ -198,7 +199,7 @@ func removeMember(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if user.Permission <= 0 {
-		fmt.Printf("[ - ] permission denied. required permission: %v; actual permission: %d\n", db.TEAM_MODERATOR_PERMISSION, user.Permission)
+		fmt.Printf("[ - ] permission denied. required permission: %v; actual permission: %d\n", permissions.TEAM_MODERATOR_PERMISSION, user.Permission)
 		w.WriteHeader(401)
 		return
 	}
@@ -218,7 +219,7 @@ func removeMember(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Printf("[ * ] member to remove: %+v\n", member)
 
-	if !member.IsTeamMember || member.Team != user.Team || member.Permission == db.TEAM_OWNER_PERMISSION {
+	if !member.IsTeamMember || member.Team != user.Team || member.Permission == permissions.TEAM_OWNER_PERMISSION {
 		fmt.Printf("[ - ] permission denied.\n")
 		w.WriteHeader(http.StatusForbidden)
 		return
@@ -248,7 +249,7 @@ func getAllTeams(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if user.Permission < db.ADMIN_PERMISSION {
+	if user.Permission < permissions.ADMIN_PERMISSION {
 		fmt.Printf("[ - ] permission denied.\n")
 		w.WriteHeader(403)
 		return
