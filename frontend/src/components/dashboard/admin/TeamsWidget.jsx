@@ -3,6 +3,19 @@ import { connect } from "react-redux";
 
 import { getAllTeams } from "../../../actions/teams";
 
+const TeamsList = props => {
+  if (props.teams === undefined) return null;
+  return (
+    <ul>
+      {props.teams.map(team => (
+        <li key={team.id}>
+          {team.name} by {team.owner}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
 class TeamsWidget extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +39,7 @@ class TeamsWidget extends Component {
       <div>
         <h1>teams</h1>
         <p>currently there are {this.state.teamsAmount} teams</p>
+        <TeamsList teams={this.props.teams} />
       </div>
     );
   }
