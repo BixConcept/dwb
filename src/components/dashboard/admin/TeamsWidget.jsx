@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getTeams } from "../../../actions/teams";
+import { getAllTeams } from "../../../actions/teams";
 
 class TeamsWidget extends Component {
   constructor(props) {
+    super(props);
     this.state = {
       teamsAmount: 0
     };
@@ -17,7 +18,7 @@ class TeamsWidget extends Component {
   }
 
   componentDidMount() {
-    this.props.getTeams();
+    this.props.getAllTeams();
   }
 
   render() {
@@ -36,5 +37,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getTeams }
+  { getAllTeams }
 )(TeamsWidget);
