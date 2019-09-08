@@ -81,5 +81,5 @@
   "dashboard.assignments.table.subject": "subject",
   "dashboard.assignments.table.text": "assignment",
   "dashboard.assignments.table.dueDate": "due date",
-  "dashboard.assignments.table.author": "author"
+  "dashboard.assignments.table.delete": "delete"
 }
