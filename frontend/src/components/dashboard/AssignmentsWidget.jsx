@@ -142,8 +142,10 @@ class AssignmentsWidget extends React.Component {
       <div>
         <h1 className="s-heading">{t("dashboard.home.assignments.title")}</h1>
         <div className={css.days}>
-          <AssignmentGroups groups={this.state.assignmentGroups} />
-          markFinished={this.props.markFinished}
+          <AssignmentGroups
+            groups={this.state.assignmentGroups}
+            markFinished={this.props.markFinished}
+          />
         </div>
       </div>
     );
