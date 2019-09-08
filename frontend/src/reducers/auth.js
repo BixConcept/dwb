@@ -3,8 +3,7 @@ import {
   REGISTER,
   GET_USER,
   SET_AUTHENTICATED,
-  SET_IS_TEAM_MEMBER,
-  GET_ALL_USERS
+  SET_IS_TEAM_MEMBER
 } from "../actions/types";
 
 const initialState = {
@@ -38,11 +37,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         user: { team_member: action.payload }
-      };
-    case GET_ALL_USERS:
-      return {
-        ...state,
-        users: action.payload
       };
     default:
       return state;
