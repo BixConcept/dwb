@@ -1,23 +1,39 @@
-import React, {Component, Fragment} from "react";
-import {connect} from "react-redux";
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {withCookies} from "react-cookie";
+import { withCookies } from "react-cookie";
 
 // actions
-import {getAssignments, deleteAssignment} from "../../actions/assignments";
-import {getUser} from "../../actions/auth";
+import { getAssignments, deleteAssignment } from "../../actions/assignments";
+import { getUser } from "../../actions/auth";
 
 // css
 import css from "../../styles/dashboard/dashboard.module.scss";
 
-import {Route, Switch, Link} from "react-router-dom";
-import { Trans, withTranslation } from "react-i18next";
+import { Route, Switch, Link } from "react-router-dom";
+import { Trans, withTranslation, useTranslation } from "react-i18next";
 
 // Views
 import Home from "./Home.jsx";
 import AssignmentsView from "./AssignmentsView.jsx";
 import TeamView from "./TeamView.jsx";
+import AdminView from "./AdminView";
 
+const AdminLinks = props => {
+  const { t } = useTranslation();
+
+  if (props.permission != 3) {
+    return null;
+  }
+
+  return (
+    <li>
+      <Link to="/dashboard/admin" className={css.link}>
+        {t("dashboard.nav.admin")}
+      </Link>
+    </li>
+  );
+};
 
 class Dashboard extends Component {
   static propTypes = {
@@ -32,7 +48,6 @@ class Dashboard extends Component {
     outstandingAssiggnments: 0,
     errors: []
   };
-
 
   componentWillReceiveProps(newProps) {
     this.setState({
@@ -56,8 +71,11 @@ class Dashboard extends Component {
       <div className={css.dashboard}>
         <aside>
           <h1>
-            <Trans i18nKey="dashboard.nav.greeting"> 
-              <span className="text-primary">{{name: this.props.user.username}}</span>!
+            <Trans i18nKey="dashboard.nav.greeting">
+              <span className="text-primary">
+                {{ name: this.props.user.username }}
+              </span>
+              !
             </Trans>
           </h1>
           <ul>
@@ -71,14 +89,19 @@ class Dashboard extends Component {
                 {t("dashboard.nav.assignments")}
               </Link>
             </li>
+            <AdminLinks permission={this.props.user.permission} />
           </ul>
         </aside>
         <main>
-            <Switch>
-              <Route path={`/dashboard/assignments`} component={AssignmentsView}/>
-              <Route path={`/dashboard/team`} component={TeamView}/>
-              <Route component={Home}/>
-            </Switch>
+          <Switch>
+            <Route
+              path={`/dashboard/assignments`}
+              component={AssignmentsView}
+            />
+            <Route path={`/dashboard/team`} component={TeamView} />
+            <Route path={`/dashboard/admin`} component={AdminView} />
+            <Route component={Home} />
+          </Switch>
         </main>
       </div>
     );
@@ -93,11 +116,13 @@ const mapStateToProps = state => ({
   errors: state.errors.errors
 });
 
-export default withTranslation()(connect(
-  mapStateToProps,
-  {
-    getAssignments,
-    deleteAssignment,
-    getUser
-  }
-)(withCookies(Dashboard)));
+export default withTranslation()(
+  connect(
+    mapStateToProps,
+    {
+      getAssignments,
+      deleteAssignment,
+      getUser
+    }
+  )(withCookies(Dashboard))
+);
