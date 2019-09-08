@@ -7,10 +7,22 @@
 
     text-align: left;
 
-    td { i { cursor: pointer;}}
+    overflow-y: auto;
+
     td,
     th {
         padding: 1rem;
+    }
+
+    tbody {
+        height: 100px;
+
+        overflow-y: auto;
+    }
+
+    td:nth-of-type(4),
+    th:nth-of-type(4) {
+        display: none;
     }
 
     tbody tr:nth-child(odd) {

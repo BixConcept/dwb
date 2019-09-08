@@ -32,9 +32,7 @@ export class CreateAssignmentForm extends Component {
       t("subjects.cs"),
       t("subjects.spanish"),
       t("subjects.ecology"),
-      t("subjects.other"),
-      t("subjects.latin"),
-      t("subjects.french")
+      t("subjects.other")
     ].sort();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
