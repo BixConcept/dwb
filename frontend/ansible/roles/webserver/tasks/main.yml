@@ -1,0 +1,16 @@
+- name: clone git repo
+  become: yes
+  become_user: gustav
+  git: 
+    repo: "git@gitlab.com:3nt3rt41nm3nt-gbr/dwb-front.git"
+    dest: ~/dwb/dwb-front
+    key_file: ~/.ssh/id_rsa
+    accept_hostkey: yes
+    version: master
+
+- name: copy files
+  become: yes
+  copy:
+    src: /home/gustav/dwb/dwb-front/build/
+    dest: /tmp/dwb/
+    remote_src: yes 
