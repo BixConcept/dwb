@@ -83,5 +83,5 @@
   "dashboard.assignments.table.subject": "fach",
   "dashboard.assignments.table.text": "aufgabe",
   "dashboard.assignments.table.dueDate": "fällig am",
-  "dashboard.assignments.table.author": "autor"
+  "dashboard.assignments.table.delete": "löschen"
 }
