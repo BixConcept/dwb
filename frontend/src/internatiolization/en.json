@@ -71,8 +71,6 @@
   "subjects.cs": "culture studies 🇬🇧",
   "subjects.spanish": "spanish 🇪🇸",
   "subjects.ecology": "ecology 🌳",
-  "subjects.latin": "latin",
-  "subjects.french": "french 🇫🇷",
   "subjects.other": "other 🍌",
 
   "footer.contact": "contact",
@@ -83,5 +81,5 @@
   "dashboard.assignments.table.subject": "subject",
   "dashboard.assignments.table.text": "assignment",
   "dashboard.assignments.table.dueDate": "due date",
-  "dashboard.assignments.table.delete": "delete"
+  "dashboard.assignments.table.author": "author"
 }
