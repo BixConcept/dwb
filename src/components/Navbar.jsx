@@ -23,7 +23,7 @@ class Navbar extends Component {
   }
   handleLogout(e) {
     e.preventDefault();
-    //this.props.cookies.remove("session");
+    this.props.cookies.remove("session");
     this.props.logout();
   }
 

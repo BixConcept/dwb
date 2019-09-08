@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 
 import { connect } from "react-redux";
-import { getAssignments } from "../../actions/assignments";
+import { getAssignments, deleteAssignment } from "../../actions/assignments";
 
 import { withTranslation, useTranslation } from "react-i18next";
 
@@ -16,7 +16,14 @@ function Assignment(props) {
       <td>{props.item.subject}</td>
       <td>{props.item.text}</td>
       <td>{t("date", { date: new Date(props.item.due_date) })}</td>
-      <td>{props.item.author_name}</td>
+      <td>
+        <i
+          class="far fa-trash-alt"
+          onClick={() => {
+            props.deleteAssignment(props.item.id);
+          }}
+        ></i>
+      </td>
     </tr>
   );
 }
@@ -37,7 +44,7 @@ class AssignmentsView extends Component {
               <th>{t("dashboard.assignments.table.subject")}</th>
               <th>{t("dashboard.assignments.table.text")}</th>
               <th>{t("dashboard.assignments.table.dueDate")}</th>
-              <th>{t("dashboard.assignments.table.author")}</th>
+              <th>{t("dashboard.assignments.table.delete")}</th>
             </tr>
           </thead>
           <tbody>
@@ -55,7 +62,12 @@ class AssignmentsView extends Component {
                 return 0;
               })
               .map(x => {
-                return <Assignment item={x} />;
+                return (
+                  <Assignment
+                    item={x}
+                    deleteAssignment={this.props.deleteAssignment}
+                  />
+                );
               })}
           </tbody>
         </table>
@@ -71,6 +83,6 @@ const mapStateToProps = state => ({
 export default withTranslation()(
   connect(
     mapStateToProps,
-    { getAssignments }
+    { getAssignments, deleteAssignment }
   )(AssignmentsView)
 );

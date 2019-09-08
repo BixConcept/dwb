@@ -63,7 +63,7 @@
   "subjects.english": "englisch 🇺🇸",
   "subjects.art": "kunst 🎨󠁧󠁢󠁥",
   "subjects.music": "musik 🎹",
-  "subjects.catholic ": "katholische religion ✝️",
+  "subjects.catholic": "katholische religion ✝️",
   "subjects.protestant": "evangelische religion ✝️",
   "subjects.philosophy": "philosophie 🗿",
   "subjects.sports": "sport 🏃‍",
@@ -71,6 +71,8 @@
   "subjects.cs": "culture studies 🇬🇧",
   "subjects.spanish": "spanisch 🇪🇸",
   "subjects.ecology": "ökologie 🌳",
+  "subjects.latin": "latein",
+  "subjects.french": "französisch 🇫🇷",
   "subjects.other": "sonstiges 🍌",
 
   "footer.contact": "kontakt",
@@ -81,5 +83,5 @@
   "dashboard.assignments.table.subject": "fach",
   "dashboard.assignments.table.text": "aufgabe",
   "dashboard.assignments.table.dueDate": "fällig am",
-  "dashboard.assignments.table.author": "autor"
+  "dashboard.assignments.table.delete": "löschen"
 }
