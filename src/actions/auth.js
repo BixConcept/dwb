@@ -1,11 +1,5 @@
 import axios from "axios";
-import {
-  LOGIN,
-  REGISTER,
-  GET_USER,
-  SET_AUTHENTICATED,
-  GET_ALL_USERS
-} from "./types";
+import { LOGIN, REGISTER, GET_USER, SET_AUTHENTICATED } from "./types";
 import { GET_ERROR } from "./types";
 
 import { API_HOST } from "../index";
@@ -54,7 +48,7 @@ export const register = user => dispatch => {
           type: "register",
           status: err.response.status
         }
-      });
+      })
     });
 };
 
@@ -83,17 +77,4 @@ export const setAuthenticated = authenticated => dispatch => {
     type: SET_AUTHENTICATED,
     payload: authenticated
   });
-};
-
-export const getAllUsers = () => dispatch => {
-  axios
-    .get(API_HOST + "/user/all", {
-      withCredentials: true
-    })
-    .then(res => {
-      dispatch({
-        type: GET_ALL_USERS,
-        payload: res.data
-      });
-    });
 };
