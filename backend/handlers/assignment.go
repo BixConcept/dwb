@@ -28,6 +28,8 @@ func Assignment(w http.ResponseWriter, r *http.Request) {
 		createAssignments(w, r)
 	case "DELETE":
 		deleteAssignment(w, r)
+	case "OPTIONS":
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE")
 	default:
 		if _, ok := mux.Vars(r)["id"]; ok {
 			deleteAssignment(w, r)
