@@ -80,8 +80,5 @@
   "selectLanguage.language": "language",
 
   "dashboard.assignments.title": "assignments",
-  "dashboard.assignments.table.subject": "subject",
-  "dashboard.assignments.table.text": "assignment",
-  "dashboard.assignments.table.dueDate": "due date",
-  "dashboard.assignments.table.delete": "delete"
+  "dashboard.assignments.authorText": "{{author}} on {{date}}"
 }
