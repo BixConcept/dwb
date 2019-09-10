@@ -12,11 +12,11 @@ function Assignment(props) {
   if (props.item === undefined) return null;
 
   return (
-    <div className="assignment">
-      <div className="assignmentHeader">
+    <div className={css.assignmentContainer}>
+      <div className={css.assignmentHeader}>
         <h1>{props.item.subject}</h1>
       </div>
-      <div className="assignmentContent">
+      <div className={css.assignmentContent}>
         <p>{t("date", { date: new Date(props.item.due_date) })}</p>
         <p>{props.item.text}</p>
         <p>
@@ -41,7 +41,7 @@ class AssignmentsView extends Component {
     return (
       <Fragment>
         <h1 className="m-heading">{t("dashboard.assignments.title")}</h1>
-        <div className="assignments-container">
+        <div className={css.assignmentsContainer}>
           {this.props.assignments &&
             this.props.assignments.map(item => (
               <Assignment
