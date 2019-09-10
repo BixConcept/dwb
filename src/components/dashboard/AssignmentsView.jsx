@@ -12,19 +12,22 @@ function Assignment(props) {
   if (props.item === undefined) return null;
 
   return (
-    <tr key={props.item.id}>
-      <td>{props.item.subject}</td>
-      <td>{props.item.text}</td>
-      <td>{t("date", { date: new Date(props.item.due_date) })}</td>
-      <td>
-        <i
-          class="far fa-trash-alt"
-          onClick={() => {
-            props.deleteAssignment(props.item.id);
-          }}
-        ></i>
-      </td>
-    </tr>
+    <div className="assignment">
+      <div className="assignmentHeader">
+        <h1>{props.item.subject}</h1>
+      </div>
+      <div className="assignmentContent">
+        <p>{t("date", { date: new Date(props.item.due_date) })}</p>
+        <p>{props.item.text}</p>
+        <p>
+          {t("dashboard.assignments.authorText", {
+            date: t("date", { date: props.item.due_date }),
+            author: props.item.author_name
+          })}
+        </p>
+        <p>{props.item.text}</p>
+      </div>
+    </div>
   );
 }
 
@@ -38,39 +41,15 @@ class AssignmentsView extends Component {
     return (
       <Fragment>
         <h1 className="m-heading">{t("dashboard.assignments.title")}</h1>
-        <table className={css.table}>
-          <thead>
-            <tr>
-              <th>{t("dashboard.assignments.table.subject")}</th>
-              <th>{t("dashboard.assignments.table.text")}</th>
-              <th>{t("dashboard.assignments.table.dueDate")}</th>
-              <th>{t("dashboard.assignments.table.delete")}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.assignments
-              .sort((a, b) => {
-                const ad = Date.parse(a.due_date);
-                const bd = Date.parse(b.due_date);
-
-                if (ad < bd) {
-                  return 1;
-                } else if (ad > bd) {
-                  return -1;
-                }
-
-                return 0;
-              })
-              .map(x => {
-                return (
-                  <Assignment
-                    item={x}
-                    deleteAssignment={this.props.deleteAssignment}
-                  />
-                );
-              })}
-          </tbody>
-        </table>
+        <div className="assignments-container">
+          {this.props.assignments &&
+            this.props.assignments.map(item => (
+              <Assignment
+                item={item}
+                deleteAssignment={this.props.deleteAssignment}
+              />
+            ))}
+        </div>
       </Fragment>
     );
   }
