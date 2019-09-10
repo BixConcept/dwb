@@ -90,11 +90,13 @@ export class TeamWidget extends Component {
           <div className={css.teamForm}>
             <form onSubmit={this.createTeamSubmit}>
               <input
+                style={{ WebkitAppearance: "none" }}
                 placeholder={t("dashboard.home.team.create.input")}
                 id="name"
                 onChange={this.createTeamChange}
               />
               <input
+                style={{ WebkitAppearance: "none" }}
                 type="submit"
                 value={t("dashboard.home.team.create.submit")}
               />
@@ -113,12 +115,14 @@ export class TeamWidget extends Component {
           <div className={css.addUserForm}>
             <form onSubmit={this.handleSubmit}>
               <input
+                style={{ WebkitAppearance: "none" }}
                 type="text"
                 id="username"
                 placeholder={t("dashboard.home.team.members.form.input")}
                 onChange={this.handleChange}
               />
               <input
+                style={{ WebkitAppearance: "none" }}
                 type="submit"
                 value={t("dashboard.home.team.members.form.submit")}
               />
