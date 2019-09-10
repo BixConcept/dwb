@@ -35,6 +35,7 @@ class Home extends Component {
               <h1 className="l-heading">{t("home.showcase.title")}</h1>
               <p>{t("home.showcase.subtitle")}</p>
               <button
+                style={{ WebkitAppearance: "none" }}
                 onClick={() => {
                   this.scroll(this.featuresRef);
                 }}
@@ -59,21 +60,15 @@ class Home extends Component {
             <div className={css.featuresList}>
               <div className={css.feature}>
                 <h1 className="s-heading">{t("home.features.0.title")}</h1>
-                <p>
-                  {t("home.features.0.text")}
-                </p>
+                <p>{t("home.features.0.text")}</p>
               </div>
               <div className={css.feature}>
                 <h1 className="s-heading">{t("home.features.1.title")}</h1>
-                <p>
-                  {t("home.features.1.text")}
-                </p>
+                <p>{t("home.features.1.text")}</p>
               </div>
               <div className={css.feature}>
                 <h1 className="s-heading">{t("home.features.2.title")}</h1>
-                <p>
-                  {t("home.features.2.text")}
-                </p>
+                <p>{t("home.features.2.text")}</p>
               </div>
             </div>
           </div>
@@ -89,9 +84,7 @@ class Home extends Component {
                     <span className="text-primary">our</span> team
                   </Trans>
                 </h1>
-                <p>
-                  {t("home.team.text")}
-                </p>
+                <p>{t("home.team.text")}</p>
                 <ul className={css.teamMembers}>
                   <li>{t("home.team.members.0")}</li>
                   <li>{t("home.team.members.1")}</li>

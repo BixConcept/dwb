@@ -73,13 +73,14 @@ export class CreateAssignmentForm extends Component {
       <div className={css.assignmentForm}>
         <form onSubmit={this.handleSubmit}>
           <select
+            style={{ WebkitAppearance: "none" }}
             onChange={this.handleChange}
             id="subject"
             required
             defaultValue={""}
             className={css.input}
           >
-            <option value="" disabled>
+            <option value="" style={{ WebkitAppearance: "none" }} disabled>
               {t("dashboard.home.createAssignment.form.subject")}
             </option>
             {this.subjects.map(subject => (
@@ -87,6 +88,7 @@ export class CreateAssignmentForm extends Component {
             ))}
           </select>
           <input
+            style={{ WebkitAppearance: "none" }}
             placeholder="text"
             id="text"
             onChange={this.handleChange}
@@ -96,12 +98,17 @@ export class CreateAssignmentForm extends Component {
           />
           <input
             type="date"
+            style={{ WebkitAppearance: "none" }}
             placeholder="due date"
             id="due_date"
             onChange={this.handleChange}
             autoComplete="off"
           />
-          <input type="submit" value="send" />
+          <input
+            style={{ WebkitAppearance: "none" }}
+            type="submit"
+            value="send"
+          />
         </form>
       </div>
     );

@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import GeneratePassword from "./GeneratePassword";
 
 import Alert from "../Alert.jsx";
+import { noop } from "@babel/types";
 
 function Error(props) {
   if (!props.error) return null;
@@ -62,7 +63,11 @@ class Register extends Component {
             <i className="fa fa-user" />
             <i className="fa fa-lock" />
             <PasswordShowAndHide onChange={this.handleChange} />
-            <input type="submit" value="Sign up" />
+            <input
+              type="submit"
+              value="Sign up"
+              style={{ WebkitAppearance: "none" }}
+            />
           </form>
         </div>
         <GeneratePassword />
