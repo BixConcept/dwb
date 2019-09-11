@@ -18,14 +18,14 @@ function Assignment(props) {
       </div>
       <div className={css.assignmentContent}>
         <p>{t("date", { date: new Date(props.item.due_date) })}</p>
-        <p>{props.item.text}</p>
-        <p>
+        <p className={css.text}>{props.item.text}</p>
+        <p className={css.author}>
+          {"- "}
           {t("dashboard.assignments.authorText", {
-            date: t("date", { date: props.item.due_date }),
+            date: t("date", { date: new Date(props.item.created_at) }),
             author: props.item.author_name
           })}
         </p>
-        <p>{props.item.text}</p>
       </div>
     </div>
   );
