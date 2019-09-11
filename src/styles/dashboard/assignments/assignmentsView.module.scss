@@ -27,8 +27,20 @@
     .assignmentContent {
       background: $lightColor;
       padding: 0.5rem;
+
+      border-radius: 0 0 5px 5px;
     }
   }
+}
+
+.text {
+  font-weight: bold;
+  font-size: 1.54rem;
+}
+
+.author {
+  color: #bdc3c7;
+  text-align: right;
 }
 
 @media screen and (max-width: 600px) {
