@@ -7,24 +7,63 @@ import { withTranslation, useTranslation } from "react-i18next";
 
 import css from "../../styles/dashboard/assignments/assignmentsView.module.scss";
 
+// red, yellow, green, grey, blue
+const colors = ["#e74c3c", "#f1c40f", "#2ecc71", "#95a5a6", "#3498db"];
+
+function dateIsEqual(a, b) {
+  a = new Date(a);
+  b = new Date(b);
+
+  return (
+    a.getYear() === b.getYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  );
+}
+
+function getDate(a) {
+  return new Date(a.getFullYear(), a.getMonth(), a.getDate());
+}
+
+function getColor(a) {
+  const day = 1000 * 60 * 60 * 24;
+  const now = getDate(new Date());
+
+  a = Date.parse(getDate(new Date(a)));
+
+  if (dateIsEqual(a, Date.parse(now))) return colors[0];
+  if (dateIsEqual(a, Date.parse(now + day))) return colors[1];
+  if (dateIsEqual(a, Date.parse(now + day + day))) return colors[2];
+  if (Date.parse(now) > a) return colors[3];
+  if (Date.parse(now) < a) return colors[4];
+}
+
 function Assignment(props) {
   const { t } = useTranslation();
   if (props.item === undefined) return null;
 
   return (
-    <tr key={props.item.id}>
-      <td>{props.item.subject}</td>
-      <td>{props.item.text}</td>
-      <td>{t("date", { date: new Date(props.item.due_date) })}</td>
-      <td>
-        <i
-          class="far fa-trash-alt"
-          onClick={() => {
-            props.deleteAssignment(props.item.id);
-          }}
-        ></i>
-      </td>
-    </tr>
+    <div className={css.assignmentContainer}>
+      <div
+        className={css.assignmentHeader}
+        style={{
+          backgroundColor: getColor(props.item.due_date)
+        }}
+      >
+        <h1>{props.item.subject}</h1>
+      </div>
+      <div className={css.assignmentContent}>
+        <p>{t("date", { date: new Date(props.item.due_date) })}</p>
+        <p className={css.text}>{props.item.text}</p>
+        <p className={css.author}>
+          {"- "}
+          {t("dashboard.assignments.authorText", {
+            date: t("date", { date: new Date(props.item.created_at) }),
+            author: props.item.author_name
+          })}
+        </p>
+      </div>
+    </div>
   );
 }
 
@@ -38,39 +77,19 @@ class AssignmentsView extends Component {
     return (
       <Fragment>
         <h1 className="m-heading">{t("dashboard.assignments.title")}</h1>
-        <table className={css.table}>
-          <thead>
-            <tr>
-              <th>{t("dashboard.assignments.table.subject")}</th>
-              <th>{t("dashboard.assignments.table.text")}</th>
-              <th>{t("dashboard.assignments.table.dueDate")}</th>
-              <th>{t("dashboard.assignments.table.delete")}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.assignments
+        <div className={css.assignmentsContainer}>
+          {this.props.assignments &&
+            this.props.assignments
               .sort((a, b) => {
-                const ad = Date.parse(a.due_date);
-                const bd = Date.parse(b.due_date);
-
-                if (ad < bd) {
-                  return 1;
-                } else if (ad > bd) {
-                  return -1;
-                }
-
-                return 0;
+                return Date.parse(b.due_date) - Date.parse(a.due_date);
               })
-              .map(x => {
-                return (
-                  <Assignment
-                    item={x}
-                    deleteAssignment={this.props.deleteAssignment}
-                  />
-                );
-              })}
-          </tbody>
-        </table>
+              .map(item => (
+                <Assignment
+                  item={item}
+                  deleteAssignment={this.props.deleteAssignment}
+                />
+              ))}
+        </div>
       </Fragment>
     );
   }
