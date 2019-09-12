@@ -7,13 +7,49 @@ import { withTranslation, useTranslation } from "react-i18next";
 
 import css from "../../styles/dashboard/assignments/assignmentsView.module.scss";
 
+// red, yellow, green, grey, blue
+const colors = ["#e74c3c", "#f1c40f", "#2ecc71", "#95a5a6", "#3498db"];
+
+function dateIsEqual(a, b) {
+  a = new Date(a);
+  b = new Date(b);
+
+  return (
+    a.getYear() === b.getYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  );
+}
+
+function getDate(a) {
+  return new Date(a.getFullYear(), a.getMonth(), a.getDate());
+}
+
+function getColor(a) {
+  const day = 1000 * 60 * 60 * 24;
+  const now = getDate(new Date());
+
+  a = Date.parse(getDate(new Date(a)));
+
+  if (dateIsEqual(a, Date.parse(now))) return colors[0];
+  if (dateIsEqual(a, Date.parse(now + day))) return colors[1];
+  if (dateIsEqual(a, Date.parse(now + day + day))) return colors[2];
+  if (Date.parse(now) > a) return colors[3];
+  if (Date.parse(now) < a) return colors[4];
+}
+
 function Assignment(props) {
   const { t } = useTranslation();
   if (props.item === undefined) return null;
 
   return (
     <div className={css.assignmentContainer}>
-      <div className={css.assignmentHeader}>
+      <div
+        className={css.assignmentHeader}
+        style={{
+          backgroundColor: getColor(props.item.due_date)
+        }}
+      >
         <h1>{props.item.subject}</h1>
       </div>
       <div className={css.assignmentContent}>
@@ -43,12 +79,16 @@ class AssignmentsView extends Component {
         <h1 className="m-heading">{t("dashboard.assignments.title")}</h1>
         <div className={css.assignmentsContainer}>
           {this.props.assignments &&
-            this.props.assignments.map(item => (
-              <Assignment
-                item={item}
-                deleteAssignment={this.props.deleteAssignment}
-              />
-            ))}
+            this.props.assignments
+              .sort((a, b) => {
+                return Date.parse(b.due_date) - Date.parse(a.due_date);
+              })
+              .map(item => (
+                <Assignment
+                  item={item}
+                  deleteAssignment={this.props.deleteAssignment}
+                />
+              ))}
         </div>
       </Fragment>
     );
