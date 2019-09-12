@@ -2,8 +2,10 @@
 
 .assignmentsContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1rem;
+  grid-template-columns: repeat(3, calc(100% / 3));
+  grid-auto-rows: 1fr;
+
+  grid-gap: 0.5rem;
 
   .assignmentContainer {
     .assignmentHeader {
@@ -27,6 +29,12 @@
     .assignmentContent {
       background: $lightColor;
       padding: 0.5rem;
+
+      height: auto;
+
+      hyphens: auto;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
 
       border-radius: 0 0 5px 5px;
     }
