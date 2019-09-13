@@ -90,14 +90,14 @@ class AssignmentsWidget extends React.Component {
   componentWillReceiveProps(newProps) {
     var groups = [{}, {}, {}];
 
-    if (newProps.assignments == 0) return;
+    if (newProps.assignments === 0) return;
 
     for (let assignment of newProps.assignments) {
       let date = Date.parse(new Date(assignment.due_date));
 
       let now = Date.now();
 
-      this.state.outstandingAssignments += 1;
+      this.setState.outstandingAssignments += 1;
 
       // ugliest code i ever wrote incoming...
       const day = 1000 * 60 * 60 * 24;

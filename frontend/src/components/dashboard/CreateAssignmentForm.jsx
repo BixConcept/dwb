@@ -55,7 +55,7 @@ export class CreateAssignmentForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log(this.state);
-    this.state.due_date = Date.parse(this.state.due_date);
+    this.setState.due_date = Date.parse(this.state.due_date);
 
     console.log(
       document.getElementsByClassName(css.assignmentForm)[0].children[0].reset()
