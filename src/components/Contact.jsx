@@ -20,11 +20,9 @@ class Contact extends Component {
             <div className={css.telegram}>
               <h2>telegram</h2>
               <hr />
-              <i
-                className="fab fa-telegram fa-4x"
-                aria-hidden="true"
-                href="https://t.me/joinchat/IpXLZBXHvzbtl0njbcHviQ"
-              ></i>
+              <a href="https://t.me/joinchat/IpXLZBXHvzbtl0njbcHviQ">
+                <i className="fab fa-telegram fa-4x" aria-hidden="true"></i>
+              </a>
             </div>
 
             <div className={css.mail}>
@@ -38,11 +36,9 @@ class Contact extends Component {
             <div className={css.discord}>
               <h2>discord</h2>
               <hr />
-              <i
-                className="fab fa-discord fa-4x"
-                aria-hidden="true"
-                href="https://discord.gg/Ek42SpT"
-              ></i>
+              <a href="https://discord.gg/Ek42SpT">
+                <i className="fab fa-discord fa-4x" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
         </div>
