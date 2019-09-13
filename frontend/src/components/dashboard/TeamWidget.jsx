@@ -85,7 +85,6 @@ export class TeamWidget extends Component {
     if (!this.props.isTeamMember) {
       return (
         <div className={css.TeamText}>
-          <h3></h3>
           <p>{t("dashboard.home.team.create.text")}</p>
           <div className={css.teamForm}>
             <form onSubmit={this.createTeamSubmit}>
