@@ -1,6 +1,6 @@
 # dwb frontend
 
-This **open-source project** was developed by the 3nt3rt41ment GbR [niels, ayberk & sanberk] in 2019 as part of a computer science project. It is the frontend counterpart for the [dwb api](https://git.3nt3.de/3nt3/dwb).
+This **open-source project** was developed by the 3nt3rt41ment GbR [niels, ayberk & sanberk] in 2019 as part of a computer science project. It is the frontend counterpart for the [dwb api](https://gitlab.com/3nt3rt41nm3nt-gbr/dwb).
 Installation of the api is **required**.
 
 ## installation
@@ -10,7 +10,7 @@ Installation of the api is **required**.
 ### step 2: clone the repo
 
 ```bash
-git clone git.3nt3.de/3nt3/dwb-fronted && cd dwb-frontend #you also have to install git if you haven't install it yet 
+git clone https://gitlab.com/3nt3rt41nm3nt-gbr.git && cd dwb-frontend #you also have to install git if you haven't install it yet 
 ```
 
 ### step 3: run / deploy
