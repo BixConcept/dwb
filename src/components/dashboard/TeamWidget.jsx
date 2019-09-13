@@ -24,7 +24,7 @@ const TeamMemberList = props => {
 const TeamMember = props => {
   return (
     <li className={css.teamMember}>
-      <div>{props.name[0]}</div>
+      <div>{props.name[0].toUpperCase()}</div>
       <p>{props.name}</p>
     </li>
   );
@@ -85,7 +85,6 @@ export class TeamWidget extends Component {
     if (!this.props.isTeamMember) {
       return (
         <div className={css.TeamText}>
-          <h3></h3>
           <p>{t("dashboard.home.team.create.text")}</p>
           <div className={css.teamForm}>
             <form onSubmit={this.createTeamSubmit}>
