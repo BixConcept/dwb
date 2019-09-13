@@ -24,7 +24,7 @@ const TeamMemberList = props => {
 const TeamMember = props => {
   return (
     <li className={css.teamMember}>
-      <div>{props.name[0]}</div>
+      <div>{props.name[0].toUpperCase()}</div>
       <p>{props.name}</p>
     </li>
   );
