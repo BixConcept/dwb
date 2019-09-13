@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import GeneratePassword from "./GeneratePassword";
 
 import Alert from "../Alert.jsx";
-import { noop } from "@babel/types";
 
 function Error(props) {
   if (!props.error) return null;
