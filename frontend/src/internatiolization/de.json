@@ -80,5 +80,9 @@
   "selectLanguage.language": "sprache",
 
   "dashboard.assignments.title": "aufgaben",
-  "dashboard.assignments.authorText": "{{author}} am {{date}}"
+  "dashboard.assignments.authorText": "{{author}} am {{date}}",
+
+  "contact.heading": "kontakt",
+  "contact.writeMail": "schreib uns ne mail",
+  "contact.text": "wir würden uns sehr freuen, falls du uns eine konstruktive kritik hinterlässt oder einen fehler meldest ;) \n du kannst uns per mail so wie auch über telegram und discord erreichen"
 }
