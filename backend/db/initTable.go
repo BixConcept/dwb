@@ -7,7 +7,7 @@ func initAssignmentsTable() error {
 }
 
 func initUsersTable() error {
-	query := "CREATE TABLE IF NOT EXISTS users (id serial, username text unique, password_hash text, team int, is_team_member BOOLEAN, permission int);"
+	query := "CREATE TABLE IF NOT EXISTS users (id serial, username text unique, password_hash text, team int, is_team_member BOOLEAN, permission int, email text);"
 	_, err := Database.Exec(query)
 	return err
 }
