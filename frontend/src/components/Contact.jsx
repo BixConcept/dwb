@@ -7,8 +7,8 @@ class Contact extends Component {
   render() {
     const { t } = this.props;
     return (
-      <div className={css.contact}>
-        <div className={css.contactShowcase}>
+      <div>
+        <div className={css.contactHeader}>
           <h1>contact us</h1>
         </div>
         <div className={css.contactForm}>
@@ -38,8 +38,8 @@ class Contact extends Component {
               placeholder="message"
               required
             />
-          </div>
           <input style={{ WebkitAppearance: "none" }} type="submit" />
+          </div>
         </div>
       </div>
     );
