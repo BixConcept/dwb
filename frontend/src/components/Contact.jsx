@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 
 import css from "../styles/contact.module.scss";
 import { withTranslation } from "react-i18next";
@@ -7,42 +7,41 @@ class Contact extends Component {
   render() {
     const { t } = this.props;
     return (
-      <Fragment>
-        <div className={css.contact}>
-          <h1 className={css.heading}>{t("contact.heading")}</h1>
-          <hr />
-
-          <div className={css.content}>
-            <h3>{t("contact.text")}</h3>
-          </div>
-
-          <div className={css.grid}>
-            <div className={css.telegram}>
-              <h2>telegram</h2>
-              <hr />
-              <a href="https://t.me/joinchat/IpXLZBXHvzbtl0njbcHviQ">
-                <i className="fab fa-telegram fa-4x" aria-hidden="true"></i>
-              </a>
-            </div>
-
-            <div className={css.mail}>
-              <h2>e-mail</h2>
-              <hr />
-              <div>
-                <a href="mailto:spam@3nt3.de">{t("contact.writeMail")}</a>
-              </div>
-            </div>
-
-            <div className={css.discord}>
-              <h2>discord</h2>
-              <hr />
-              <a href="https://discord.gg/Ek42SpT">
-                <i className="fab fa-discord fa-4x" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
+      <div className={css.contact}>
+        <div className={css.contactShowcase}>
+          <h1>contact us</h1>
         </div>
-      </Fragment>
+        <div className={css.contactForm}>
+          <div className={css.contactField}>
+            <input
+              className={css.name}
+              style={{ WebkitAppearance: "none" }}
+              type="text"
+              placeholder="name"
+              required
+            />
+            <input
+              className={css.mail}
+              style={{ WebkitAppearance: "none" }}
+              type="text"
+              placeholder="email"
+              required
+            />
+            <textarea
+              autoFocus
+              maxLength="1000"
+              cols="40"
+              rows="5"
+              className={css.text}
+              style={{ WebkitAppearance: "none" }}
+              type="text"
+              placeholder="message"
+              required
+            />
+          </div>
+          <input style={{ WebkitAppearance: "none" }} type="submit" />
+        </div>
+      </div>
     );
   }
 }
