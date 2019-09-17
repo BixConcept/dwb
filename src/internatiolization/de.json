@@ -80,5 +80,10 @@
   "selectLanguage.language": "sprache",
 
   "dashboard.assignments.title": "aufgaben",
-  "dashboard.assignments.authorText": "{{author}} am {{date}}"
+  "dashboard.assignments.authorText": "{{author}} am {{date}}",
+
+  "contact.title": "kontakt",
+  "contact.placeholders.name": "name",
+  "contact.placeholders.email": "email",
+  "contact.placeholders.message": "nachricht"
 }
