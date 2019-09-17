@@ -82,7 +82,8 @@
   "dashboard.assignments.title": "assignments",
   "dashboard.assignments.authorText": "{{author}} on {{date}}",
 
-  "contact.heading": "contact us",
-  "contact.writeMail": "e-mail us",
-  "contact.text": "we'd be pleased to receive constructive criticism or if you report an issue ;) \n you can contact us via telegram, discord or mail"
+  "contact.title": "contact us",
+  "contact.placeholders.name": "name",
+  "contact.placeholders.email": "email",
+  "contact.placeholders.message": "message"
 }

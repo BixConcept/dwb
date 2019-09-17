@@ -9,7 +9,7 @@ class Contact extends Component {
     return (
       <div>
         <div className={css.contactHeader}>
-          <h1>contact us</h1>
+          <h1>{t("contact.title")}</h1>
         </div>
         <div className={css.contactForm}>
           <div className={css.contactField}>
@@ -17,14 +17,14 @@ class Contact extends Component {
               className={css.name}
               style={{ WebkitAppearance: "none" }}
               type="text"
-              placeholder="name"
+              placeholder={t("contact.placeholders.name")}
               required
             />
             <input
               className={css.mail}
               style={{ WebkitAppearance: "none" }}
               type="text"
-              placeholder="email"
+              placeholder={t("contact.placeholders.email")}
               required
             />
             <textarea
@@ -35,7 +35,7 @@ class Contact extends Component {
               className={css.text}
               style={{ WebkitAppearance: "none" }}
               type="text"
-              placeholder="message"
+              placeholder={t("contact.placeholders.message")}
               required
             />
           <input style={{ WebkitAppearance: "none" }} type="submit" />
