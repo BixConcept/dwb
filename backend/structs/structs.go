@@ -47,3 +47,9 @@ type Team struct {
 	Name  string `json:"name"`
 	Owner int    `json:"owner"`
 }
+
+type ContactMessage struct {
+	Name    string
+	Email   string
+	Message string
+}
