@@ -16,6 +16,10 @@
   text-align: center;
   margin: 2rem auto; // center content lol
 
+  .input {
+    margin: 0;
+  }
+
   input[type="submit"] {
     grid-area: d;
 
@@ -64,5 +68,18 @@
         color: #333;
       }
     }
+  }
+}
+
+@media (max-width: 600px) {
+  .contactForm .contactField {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 4fr 1fr;
+    grid-template-areas:
+      "a"
+      "b"
+      "c"
+      "d";
+    gap: 0.5rem;
   }
 }
