@@ -11,6 +11,8 @@ import (
 
 // Contact handles all requests to contact endpoint
 func Contact(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("\n-*- %s assignment %s -*-\n", r.Method, r.URL.Path)
+
 	createMessage(w, r)
 }
 
@@ -23,9 +25,11 @@ func createMessage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Printf("[ * ] message: %+v\n", message)
+
 	err = contact.CreateMessage(message)
 	if err != nil {
-		fmt.Printf("[ - ] error sending message: %v\n", err)
+		fmt.Printf("[ - ] error sending message: '%v'\n", err)
 		w.WriteHeader(500)
 		return
 	}

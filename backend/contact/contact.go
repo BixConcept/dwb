@@ -1,6 +1,7 @@
 package contact
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/smtp"
@@ -11,9 +12,14 @@ import (
 
 // CreateMessage sends email and stuff
 func CreateMessage(message structs.ContactMessage) error {
+
 	emails, err := db.GetAdminEmails()
 	if err != nil {
 		return err
+	}
+
+	if len(emails) < 1 {
+		return errors.New("no email addresses found")
 	}
 
 	return sendEmail(emails, message)
@@ -21,32 +27,34 @@ func CreateMessage(message structs.ContactMessage) error {
 
 func sendEmail(recipients []string, message structs.ContactMessage) error {
 	// hostname is used by PlainAuth to validate the TLS certificate.
-	hostname := "smtp.mail.eu-west-1.awsapps.com"
-	auth := smtp.PlainAuth("", "noreply@3nt3.de", "=CsfDsfKvxQ2DWrRDhNQ$g4m+LfQVeMhw-!uYy2*PEFA*yJe#m=5^d-J-a7TPJZ&", hostname)
+	hostname := "email-smtp.eu-west-1.amazonaws.com"
+	// hostname := "mail.gmx.net"
+	auth := smtp.PlainAuth("", "AKIA43UVUTYHDXCBNNNB", "BN5vgdDxOhy1ApuiSNymkh/PXzxkrnvwMMUZGj5KqoVU", hostname)
+	// auth := smtp.PlainAuth("", "niels-schlegel@gmx.de", "NielsS16nov", hostname)
 
 	mime := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
 
 	recipientsString := ""
-	for i, recipient := range recipients {
-		if i == len(recipients)-1 {
-			recipientsString += recipient
-		}
-		recipientsString += recipient + ","
+	for _, recipient := range recipients {
+		recipientsString += recipient + ", "
 	}
+	recipientsString = recipientsString[:len(recipientsString)-2]
 
-	body, err := ioutil.ReadFile("template.html")
+	fmt.Println(recipientsString)
+
+	body, err := ioutil.ReadFile("contact/template.html")
 	if err != nil {
 		return err
 	}
 
 	subjectString := fmt.Sprintf("Subject: new message by %s (%s)\r\n", message.Name, message.Email)
-	msg := []byte("From: noreply@3nt3.de\r\n" + "To: " + recipientsString + "\r\n" +
+	msg := []byte("From: norepy@3nt3.de\r\n" + "To: " + recipientsString + "\r\n" +
 		subjectString +
 		mime +
 		"\r\n" +
 		fmt.Sprintf(string(body)+"\r\n", message.Name, message.Email, message.Email, message.Name, message.Email, message.Message))
 
-	err = smtp.SendMail(hostname+":465", auth, "noreply@3nt3.de", recipients, msg)
+	err = smtp.SendMail(hostname+":587", auth, "norepy@3nt3.de", recipients, msg)
 	if err != nil {
 		return err
 	}

@@ -1,0 +1,15 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+	
+		{
+			"name": "Launch",
+			"type": "go",
+			"request": "launch",
+			"mode": "auto",
+			"program": "/Users/3nt3/go/src/gitlab.com/3nt3rt41nm3nt-gbr/dwb/main.go",
+			"env": {},
+			"args": []
+		}
+	]
+}
