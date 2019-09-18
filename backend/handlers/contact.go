@@ -11,6 +11,9 @@ import (
 
 // Contact handles all requests to contact endpoint
 func Contact(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("access-control-allow-origin", r.Header.Get("origin"))
+	w.Header().Set("access-control-allow-credentials", "true")
+
 	fmt.Printf("\n-*- %s assignment %s -*-\n", r.Method, r.URL.Path)
 
 	createMessage(w, r)
