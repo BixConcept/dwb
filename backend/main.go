@@ -33,6 +33,8 @@ func main() {
 	r.HandleFunc("/team/removeMember/", handlers.Team)
 	r.HandleFunc("/team/all", handlers.Team)
 
+	r.HandleFunc("/contact/", handlers.Contact)
+
 	// start server
 	fmt.Printf("[ ~ ] starting server on port %d\n", port)
 	log.Panic(http.ListenAndServe(fmt.Sprintf(":%d", port), r))

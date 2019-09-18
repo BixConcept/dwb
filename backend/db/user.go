@@ -3,6 +3,8 @@ package db
 import (
 	"errors"
 
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/permissions"
+
 	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -86,7 +88,27 @@ func GetUserByID(id int) (structs.User, error) {
 	}
 
 	return user, err
+}
 
+// GetAdminEmails returns every users' email address with ADMIN_PERMISSION
+func GetAdminEmails() ([]string, error) {
+	q := "SELECT email FROM users WHERE permission = $1;"
+	rows, err := Database.Query(q, permissions.ADMIN_PERMISSION)
+	if err != nil {
+		return nil, err
+	}
+
+	emails := []string{}
+	for rows.Next() {
+		email := ""
+		err := rows.Scan(&email)
+		if err != nil {
+			return nil, err
+		}
+		emails = append(emails, email)
+	}
+
+	return emails, err
 }
 
 // HashPassword hashes the password
