@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 
 import { connect } from "react-redux";
-import { getAssignments, deleteAssignment } from "../../actions/assignments";
+import { getAssignments } from "../../actions/assignments";
 
 import { withTranslation, useTranslation } from "react-i18next";
 
@@ -43,27 +43,12 @@ function Assignment(props) {
   if (props.item === undefined) return null;
 
   return (
-    <div className={css.assignmentContainer}>
-      <div
-        className={css.assignmentHeader}
-        style={{
-          backgroundColor: getColor(props.item.due_date)
-        }}
-      >
-        <h1>{props.item.subject}</h1>
-      </div>
-      <div className={css.assignmentContent}>
-        <p>{t("date", { date: new Date(props.item.due_date) })}</p>
-        <p className={css.text}>{props.item.text}</p>
-        <p className={css.author}>
-          {"- "}
-          {t("dashboard.assignments.authorText", {
-            date: t("date", { date: new Date(props.item.created_at) }),
-            author: props.item.author_name
-          })}
-        </p>
-      </div>
-    </div>
+    <tr key={props.item.id}>
+      <td>{props.item.subject}</td>
+      <td>{props.item.text}</td>
+      <td>{t("date", { date: new Date(props.item.due_date) })}</td>
+      <td>{props.item.author_name}</td>
+    </tr>
   );
 }
 
@@ -77,19 +62,25 @@ class AssignmentsView extends Component {
     return (
       <Fragment>
         <h1 className="m-heading">{t("dashboard.assignments.title")}</h1>
-        <div className={css.assignmentsContainer}>
-          {this.props.assignments &&
-            this.props.assignments
+        <table className={css.table}>
+          <thead>
+            <tr>
+              <th>{t("dashboard.assignments.table.subject")}</th>
+              <th>{t("dashboard.assignments.table.text")}</th>
+              <th>{t("dashboard.assignments.table.dueDate")}</th>
+              <th>{t("dashboard.assignments.table.author")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.assignments
               .sort((a, b) => {
                 return Date.parse(b.due_date) - Date.parse(a.due_date);
               })
-              .map(item => (
-                <Assignment
-                  item={item}
-                  deleteAssignment={this.props.deleteAssignment}
-                />
-              ))}
-        </div>
+              .map(x => {
+                return <Assignment item={x} />;
+              })}
+          </tbody>
+        </table>
       </Fragment>
     );
   }
@@ -102,6 +93,6 @@ const mapStateToProps = state => ({
 export default withTranslation()(
   connect(
     mapStateToProps,
-    { getAssignments, deleteAssignment }
+    { getAssignments }
   )(AssignmentsView)
 );
