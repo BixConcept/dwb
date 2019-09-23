@@ -1,73 +1,68 @@
 @import "../../vars";
 
 .teamMembers {
-    margin: 1rem 0;
+  margin: 1rem 0;
 
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 
-    list-style: none;
+  list-style: none;
 }
 
 .teamMember {
-    $size: 60px; // ???
+  $size: 60px; // ???
 
-    >* {
-        flex: 1;
-    }
+  > * {
+    flex: 1;
+  }
 
-    >div {
-        margin: 0 auto;
+  > div {
+    margin: 0 auto;
 
-        border-radius: 50%;
-        background-color: $primaryColor;
+    border-radius: 50%;
+    background-color: $primaryColor;
 
+    line-height: $size;
+    width: $size;
+    height: $size;
 
-        line-height: $size;
-        width: $size;
-        height: $size;
+    text-align: center;
 
-        text-align: center;
+    color: #fff;
+    font-size: calc(#{$size} / 2);
+  }
 
-        color: #fff;
-        font-size: calc(#{$size} / 2);
-    }
-
-    p {
-        margin-top: .5rem;
-        text-align: center;
-    }
+  p {
+    margin: 0.5rem 0;
+    text-align: center;
+  }
 }
-
-
 
 input,
 select {
-    width: 100%;
-    padding: 1rem;
+  width: 100%;
+  padding: 1rem;
 
-    margin: 5px 0;
+  font-size: 1rem;
+  font-weight: bold;
 
-    font-size: 1rem;
-    font-weight: bold;
+  color: $darkColor;
 
+  border: 1px solid $primaryColor;
+
+  &::placeholder {
     color: $darkColor;
-
-    border: 1px solid $primaryColor;
-
-    &::placeholder {
-        color: $darkColor;
-    }
+  }
 }
 
-input[type=submit] {
-    text-align: center;
-    background: #fff;
-    cursor: pointer;
-    transition-duration: 200ms;
+input[type="submit"] {
+  text-align: center;
+  background: #fff;
+  cursor: pointer;
+  transition-duration: 200ms;
 
-    &:hover {
-        color: #fff;
-        background: $primaryColor;
-    }
+  &:hover {
+    color: #fff;
+    background: $primaryColor;
+  }
 }

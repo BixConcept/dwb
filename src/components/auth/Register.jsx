@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Login.css";
+import "../../styles/login.module.scss";
 import PasswordShowAndHide from "./PasswordShowAndHide.jsx";
 import { register } from "../../actions/auth";
 import { connect } from "react-redux";
@@ -62,7 +62,11 @@ class Register extends Component {
             <i className="fa fa-user" />
             <i className="fa fa-lock" />
             <PasswordShowAndHide onChange={this.handleChange} />
-            <input type="submit" value="Sign up" />
+            <input
+              type="submit"
+              value="Sign up"
+              style={{ WebkitAppearance: "none" }}
+            />
           </form>
         </div>
         <GeneratePassword />

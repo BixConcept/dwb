@@ -1,0 +1,85 @@
+@import "vars";
+
+.contactHeader {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 250px;
+  height: 250px;
+  background: $primaryColor;
+  color: #fff;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.contactForm {
+  width: 80%;
+  text-align: center;
+  margin: 2rem auto; // center content lol
+
+  .input {
+    margin: 0;
+  }
+
+  input[type="submit"] {
+    grid-area: d;
+
+    text-align: center;
+    background: #fff;
+    cursor: pointer;
+    transition-duration: 200ms;
+
+    &:hover {
+      color: #fff;
+      background: $primaryColor;
+    }
+  }
+
+  .contactField {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-areas:
+      "a b"
+      "c c"
+      "d d";
+
+    .name {
+      grid-area: a;
+    }
+
+    .mail {
+      grid-area: b;
+    }
+
+    .text {
+      grid-area: c;
+      width: 100%;
+      height: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: #fff;
+      border: 1px solid #3498db;
+      resize: none;
+
+      &::placeholder {
+        color: #333;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .contactForm .contactField {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 4fr 1fr;
+    grid-template-areas:
+      "a"
+      "b"
+      "c"
+      "d";
+    gap: 0.5rem;
+  }
+}

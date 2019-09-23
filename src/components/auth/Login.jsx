@@ -5,7 +5,7 @@ import { login } from "../../actions/auth";
 
 import PasswordShowAndHide from "./PasswordShowAndHide.jsx";
 
-import "./Login.css";
+import "../../styles/login.module.scss";
 import Alert from "../Alert";
 
 class Login extends Component {
@@ -39,22 +39,33 @@ class Login extends Component {
   render() {
     return (
       <div className="main">
-        {this.props.error ? <Alert title="error" text={this.props.error} timeout={5} /> : null}
+        {this.props.error ? (
+          <Alert title="error" text={this.props.error} timeout={5} />
+        ) : null}
         <div className="logo">
           <h3>dwb</h3>
         </div>
-        <form onSubmit={this.handleSubmit} autoComplete="off">
+        <form
+          onSubmit={this.handleSubmit}
+          autoComplete="off"
+          style={{ WebkitAppearance: "none" }}
+        >
           <input
             id="username"
             onChange={this.handleChange}
             type="username"
             placeholder="username"
+            style={{ WebkitAppearance: "none" }}
             required
           />
           <i className="fa fa-user" />
           <i className="fa fa-lock" />
           <PasswordShowAndHide onChange={this.handleChange} />
-          <input type="submit" value="Log In" />
+          <input
+            type="submit"
+            value="Log In"
+            style={{ WebkitAppearance: "none" }}
+          />
           <h4>
             Not Registered? &nbsp;
             <a href="/#/register" className="CreateAcc">
