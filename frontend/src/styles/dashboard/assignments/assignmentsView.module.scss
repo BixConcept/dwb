@@ -14,29 +14,26 @@
       color: #fff;
       height: 100px;
 
-      padding: 0.5rem;
+    overflow-y: auto;
 
-      display: flex;
-      flex-direction: column;
-
-      h1 {
-        font-weight: 300;
-        line-height: 1.8rem;
-        margin-top: auto;
-      }
+    td,
+    th {
+        padding: 1rem;
     }
 
-    .assignmentContent {
-      background: $lightColor;
-      padding: 0.5rem;
+    tbody {
+        height: 100px;
 
-      height: auto;
+        overflow-y: auto;
+    }
 
-      hyphens: auto;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
+    td:nth-of-type(4),
+    th:nth-of-type(4) {
+        display: none;
+    }
 
-      border-radius: 0 0 5px 5px;
+    tbody tr:nth-child(odd) {
+        background: $lightColor;
     }
   }
 }

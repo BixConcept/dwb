@@ -80,10 +80,8 @@
   "selectLanguage.language": "language",
 
   "dashboard.assignments.title": "assignments",
-  "dashboard.assignments.authorText": "{{author}} on {{date}}",
-
-  "contact.title": "contact us",
-  "contact.placeholders.name": "name",
-  "contact.placeholders.email": "email",
-  "contact.placeholders.message": "message"
+  "dashboard.assignments.table.subject": "subject",
+  "dashboard.assignments.table.text": "assignment",
+  "dashboard.assignments.table.dueDate": "due date",
+  "dashboard.assignments.table.author": "author"
 }
