@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: dwb
+  api:
+    image: dwb
+    ports:
+      - "8000:8000"
+    restart: always

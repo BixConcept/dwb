@@ -13,15 +13,15 @@ func connectToDB(host string, port int, username string, password string) (*sql.
 	return db, err
 }
 
-func Init() {
+func Init() error {
 
 	fmt.Printf("[ ~ ] connecting to database...\n")
-	foo, err := connectToDB("localhost", 5432, "dwb", "dwb")
+	foo, err := connectToDB("postgres", 5432, "postgres", "dwb")
 	Database = foo
 
 	if err != nil {
 		fmt.Printf("[ - ] error connecting to database: %s\n", err.Error())
-		return
+		return err
 	}
 	fmt.Printf("[ + ] successfully connected to database!!!!!11elf!\n")
 
@@ -29,7 +29,7 @@ func Init() {
 	err = initAssignmentsTable()
 	if err != nil {
 		fmt.Printf("[ - ] error initializing assignments table: %s\n", err.Error())
-		return
+		return err
 	}
 	fmt.Printf("[ + ] successfully initialized assignments table!!!!!11elf!\n")
 
@@ -37,7 +37,7 @@ func Init() {
 	err = initUsersTable()
 	if err != nil {
 		fmt.Printf("[ - ] error initializing users table: %s\n", err.Error())
-		return
+		return err
 	}
 	fmt.Printf("[ + ] successfully initialized users table!!!!!11elf!\n")
 
@@ -45,7 +45,7 @@ func Init() {
 	err = initSessionsTable()
 	if err != nil {
 		fmt.Printf("[ - ] error initializing sessions table: %s\n", err.Error())
-		return
+		return err
 	}
 	fmt.Printf("[ + ] successfully initialized sessions table!!!!!11elf!\n")
 
@@ -53,8 +53,8 @@ func Init() {
 	err = initTeamsTable()
 	if err != nil {
 		fmt.Printf("[ - ] error initializing teams table: %s\n", err.Error())
-		return
+		return err
 	}
 	fmt.Printf("[ + ] successfully initialized teams table!!!!!11elf!\n")
-
+	return nil
 }

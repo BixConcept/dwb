@@ -15,7 +15,11 @@ const port int = 8000
 func main() {
 
 	// datenbank dinge (german1!!!)
-	db.Init()
+	err := db.Init()
+	if err != nil {
+		fmt.Printf("[ - ] error initializing db. exiting...")
+		return
+	}
 
 	r := mux.NewRouter()
 
