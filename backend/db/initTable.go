@@ -19,7 +19,7 @@ func initSessionsTable() error {
 }
 
 func initTeamsTable() error {
-	query := "CREATE TABLE IF NOT EXISTS teams (id serial, name text, owner int)"
+	query := "CREATE TABLE IF NOT EXISTS teams (id serial, name text, owner int, message text)"
 	_, err := Database.Exec(query)
 	return err
 }
