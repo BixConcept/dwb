@@ -111,6 +111,12 @@ func GetAdminEmails() ([]string, error) {
 	return emails, err
 }
 
+func SetPermission(userID, permission int) error {
+	query := "UPDATE users SET permission = $1 where id = $2"
+	_, err := Database.Exec(query)
+	return err
+}
+
 // HashPassword hashes the password
 // using with bcrypt algorithm
 func HashPassword(password string) (string, error) {

@@ -1,6 +1,9 @@
 package db
 
-import "gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
+import (
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/permissions"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
+)
 
 /*
 func GetTeamByOwner(ownerID int) (strcts.Team, error) {
@@ -45,9 +48,18 @@ func GetTeamByID(teamID int) (structs.Team, error) {
 }
 
 func CreateTeam(newTeam structs.Team) (structs.Team, error) {
+	// create the team
 	query := "INSERT INTO teams VALUES (default, $1, $2, $3) RETURNING id;"
 	row := Database.QueryRow(query, newTeam.Name, newTeam.Owner, &newTeam.Message)
 	err := row.Scan(&newTeam.ID)
+	if err != nil {
+		return newTeam, err
+	}
+
+	// update the users permission
+	query = "UPDATE users SET permission = $1 WHERE id = $2"
+	_, err = Database.Exec(query, permissions.TEAM_OWNER_PERMISSION, newTeam.Owner)
+
 	return newTeam, err
 }
 

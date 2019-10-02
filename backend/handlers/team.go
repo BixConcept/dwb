@@ -108,6 +108,10 @@ func createTeam(w http.ResponseWriter, r *http.Request) {
 	rawTeam.Owner = user.ID
 	fmt.Printf("[ * ] raw team: %+v\n", rawTeam)
 
+	if user.Permission < permissions.TEAM_OWNER_PERMISSION {
+
+	}
+
 	team, err := db.CreateTeam(rawTeam)
 	if err != nil {
 		fmt.Printf("[ - ] error creating team: %v\n", err)
@@ -115,13 +119,6 @@ func createTeam(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Printf("[ * ] team: %+v\n", team)
-
-	err = db.AddTeamMember(team.ID, user.ID)
-	if err != nil {
-		fmt.Printf("[ - ] error adding user to team: %v\n", err)
-		w.WriteHeader(500)
-		return
-	}
 
 	_ = json.NewEncoder(w).Encode(team)
 
