@@ -6,8 +6,13 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: dwb
+    volumes:
+      - '/home/niels/docker/dwb/db-data:/var/lib/postgresql/data'
+    ports:
+      - '5432:5432'
   api:
     image: dwb
     ports:
       - "8000:8000"
     restart: always
+
