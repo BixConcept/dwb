@@ -9,6 +9,7 @@ import CreateAssignmentForm from "./CreateAssignmentForm";
 import TeamWidget from "./TeamWidget";
 import AssignmentsWidget from "./AssignmentsWidget";
 import StatsWidget from "./StatsWidget";
+import TeamMessage from "./TeamMessage";
 
 import { withTranslation } from "react-i18next";
 
@@ -17,6 +18,9 @@ class Home extends Component {
     const { t } = this.props;
     return (
       <div className={css.wrapper}>
+        <section className={css.teamMessage}>
+          <TeamMessage />
+        </section>
         <section className={css.graph1}>
           <h1 className="s-heading">{t("dashboard.home.graph1")}</h1>
           <Chart />
