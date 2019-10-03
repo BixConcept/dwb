@@ -14,26 +14,27 @@
       color: #fff;
       height: 100px;
 
-    overflow-y: auto;
+      overflow-y: auto;
 
-    td,
-    th {
+      td,
+      th {
         padding: 1rem;
-    }
+      }
 
-    tbody {
+      tbody {
         height: 100px;
 
         overflow-y: auto;
-    }
+      }
 
-    td:nth-of-type(4),
-    th:nth-of-type(4) {
+      td:nth-of-type(4),
+      th:nth-of-type(4) {
         display: none;
-    }
+      }
 
-    tbody tr:nth-child(odd) {
+      tbody tr:nth-child(odd) {
         background: $lightColor;
+      }
     }
   }
 }
