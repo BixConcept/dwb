@@ -6,6 +6,7 @@
 
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
+    "msg msg msg msg msg msg"
     "create create assignments assignments assignments assignments"
     "create create assignments assignments assignments assignments"
     "stats stats team team team team""graph1 graph1 graph1 graph2 graph2 graph2";
@@ -41,6 +42,14 @@
   .assignments {
     grid-area: assignments;
   }
+
+  .teamMessage {
+    grid-area: msg;
+    background-color: $primaryColor;
+    color: #fff;
+
+    font-weight: bold;
+  }
 }
 
 // stats
@@ -49,7 +58,7 @@
 @media screen and (max-width: 1100px) and (min-width: 401px) {
   .wrapper {
     grid-template-columns: 1fr;
-    grid-template-areas: "assignments""create""team""stats""graph1""graph2";
+    grid-template-areas: "msg""assignments""create""team""stats""graph1""graph2";
   }
 
 }
@@ -57,7 +66,7 @@
 @media screen and (max-width: 400px) {
   .wrapper {
     grid-template-columns: 1fr;
-    grid-template-areas: "assignments""create""team""stats";
+    grid-template-areas: "msg""assignments""create""team""stats";
   }
 
 
