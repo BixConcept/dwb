@@ -3,14 +3,16 @@ import { connect } from "react-redux";
 
 export class TeamMessage extends Component {
   render() {
-    return (
-      <div>
-        message:{" "}
-        {this.props.team.team !== undefined
-          ? this.props.team.team.message
-          : null}
-      </div>
-    );
+    if (this.props.team.team !== undefined) {
+      return (
+        <div>
+          message:{" "}
+            {this.props.team.team.message}
+        </div>
+      );
+    } else {
+      return null
+    }
   }
 }
 
