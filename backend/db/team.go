@@ -1,6 +1,9 @@
 package db
 
-import "gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
+import (
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/permissions"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
+)
 
 /*
 func GetTeamByOwner(ownerID int) (strcts.Team, error) {
@@ -40,14 +43,23 @@ func GetTeamByID(teamID int) (structs.Team, error) {
 	newTeam := structs.Team{}
 	query := "SELECT * FROM teams WHERE id = $1"
 	row := Database.QueryRow(query, teamID)
-	err := row.Scan(&newTeam.ID, &newTeam.Name, &newTeam.Owner)
+	err := row.Scan(&newTeam.ID, &newTeam.Name, &newTeam.Owner, &newTeam.Message)
 	return newTeam, err
 }
 
 func CreateTeam(newTeam structs.Team) (structs.Team, error) {
-	query := "INSERT INTO teams VALUES (default, $1, $2) RETURNING id;"
-	row := Database.QueryRow(query, newTeam.Name, newTeam.Owner)
+	// create the team
+	query := "INSERT INTO teams VALUES (default, $1, $2, $3) RETURNING id;"
+	row := Database.QueryRow(query, newTeam.Name, newTeam.Owner, &newTeam.Message)
 	err := row.Scan(&newTeam.ID)
+	if err != nil {
+		return newTeam, err
+	}
+
+	// update the users permission
+	query = "UPDATE users SET permission = $1 WHERE id = $2"
+	_, err = Database.Exec(query, permissions.TEAM_OWNER_PERMISSION, newTeam.Owner)
+
 	return newTeam, err
 }
 
@@ -73,11 +85,17 @@ func GetAllTeams() ([]structs.Team, error) {
 	teams := []structs.Team{}
 	for rows.Next() {
 		team := structs.Team{}
-		err := rows.Scan(&team.ID, &team.Name, &team.Owner)
+		err := rows.Scan(&team.ID, &team.Name, &team.Owner, &team.Message)
 		if err != nil {
 			return nil, err
 		}
 		teams = append(teams, team)
 	}
 	return teams, nil
+}
+
+func SetTeamMessage(teamID int, message string) error {
+	query := "UPDATE teams SET message = $1 WHERE id = $2"
+	_, err := Database.Exec(query, message, teamID)
+	return err
 }

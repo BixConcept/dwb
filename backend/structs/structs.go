@@ -43,9 +43,10 @@ type Session struct {
 
 // Team struct
 type Team struct {
-	ID    int    `json:"id"`
-	Name  string `json:"name"`
-	Owner int    `json:"owner"`
+	ID      int    `json:"id"`
+	Name    string `json:"name"`
+	Owner   int    `json:"owner"`
+	Message string `json:"message"`
 }
 
 type ContactMessage struct {
