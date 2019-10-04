@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../styles/login.module.scss";
+import "./Login.css";
 import PasswordShowAndHide from "./PasswordShowAndHide.jsx";
 import { register } from "../../actions/auth";
 import { connect } from "react-redux";

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../styles/login.module.scss";
+import "./Login.css";
 
 export default class PasswordShowAndHide extends Component {
   constructor(props) {

@@ -1,10 +1,8 @@
 {
   "date": "{{date, DD.MM.YYYY}}",
-
   "home.showcase.title": "digitales weißes brett",
   "home.showcase.subtitle": "das kollaborative hausaufgabenhäft",
   "home.showcase.btn": "mehr anzeigen",
-
   "home.features.title": "<0>funktionen</0>",
   "home.features.0.title": "zeit sparen",
   "home.features.0.text": "da aufgaben innerhalb des teams geteilt werden, muss nur eine person den \"aufwand\" betreiben, eine aufgabe hinzuzufügen. jede andere person profitiert durch zeit für wichtigere dinge ;)",
@@ -12,18 +10,15 @@
   "home.features.1.text": "im gegensatz zu anderen anbietern verzichten wir komplett auf profit.",
   "home.features.2.title": "daten visualisieren",
   "home.features.2.text": "der einzige wirkliche grund, aus dem wir dieses tool entwickelten ist, aufgaben in form von diagrammen zu visualisieren.",
-
   "home.team.title": "<0>über</0> uns",
   "home.team.text": "wir sind ein aus menschen bestehendes team, dass dieses tool als informatikprojekt entwickelt.",
   "home.team.members.0": "3nt3 - duck",
   "home.team.members.1": "goat - määh",
   "home.team.members.2": "goat* - määääh",
-
   "nav.login": "anmelden",
   "nav.register": "registrieren",
   "nav.dashboard": "dashboard",
   "nav.logout": "abmelden",
-
   "dashboard.nav.greeting": "Moin, <0>{{name}}</0>.",
   "dashboard.nav.dashboard": "dashboard",
   "dashboard.nav.team": "gruppe",
@@ -45,13 +40,11 @@
   "dashboard.home.stats.assignmentsDue": "fällige aufgaben",
   "dashboard.home.assignments.title": "3-tagesausblick",
   "dashboard.home.assignments.noAssignments": "keine aufgaben :)",
-
   "today": "heute",
   "tomorrow": "morgen",
   "the day after tomorrow": "übermorgen",
   "future": "zukunft",
   "past": "vergangenheit",
-
   "subjects.french": "französisch 🇫🇷",
   "subjects.german": "deutsch 🇩🇪",
   "subjects.geography": "erdkunde 🗺",
@@ -74,14 +67,15 @@
   "subjects.spanish": "spanisch 🇪🇸",
   "subjects.ecology": "ökologie 🌳",
   "subjects.other": "sonstiges 🍌",
-
   "footer.contact": "kontakt",
-
   "selectLanguage.language": "sprache",
-
   "dashboard.assignments.title": "aufgaben",
   "dashboard.assignments.table.subject": "fach",
   "dashboard.assignments.table.text": "aufgabe",
   "dashboard.assignments.table.dueDate": "fällig am",
-  "dashboard.assignments.table.author": "autor"
+  "dashboard.assignments.table.author": "autor",
+  "contact.title": "kontaktiere uns",
+  "contact.placeholders.name": "name",
+  "contact.placeholders.email": "e-mail",
+  "contact.placeholders.message": "nachricht"
 }
