@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../styles/login.module.scss";
+import "./Login.css";
 import ReactDOM from "react-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
@@ -63,10 +63,10 @@ export default class GeneratePassword extends Component {
                 </CopyToClipboard>
               </div>
             ) : (
-              <button type="button" onClick={this.generatePw}>
-                Generate
+                <button type="button" onClick={this.generatePw}>
+                  Generate
               </button>
-            )}
+              )}
             <p
               id="passw"
               value={this.state.value}

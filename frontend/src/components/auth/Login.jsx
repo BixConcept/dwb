@@ -5,7 +5,7 @@ import { login } from "../../actions/auth";
 
 import PasswordShowAndHide from "./PasswordShowAndHide.jsx";
 
-import "../../styles/login.module.scss";
+import "./Login.css";
 import Alert from "../Alert";
 
 class Login extends Component {
