@@ -6,14 +6,17 @@
     "chart.js": "^2.8.0",
     "copy-to-clipboard": "^3.2.0",
     "crypto-js": "^3.1.9-1",
+    "electron-is-dev": "^1.1.0",
     "i18next": "^17.0.12",
     "i18next-browser-languagedetector": "^3.0.3",
+    "is-electron": "^2.2.0",
     "moment": "^2.24.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",
     "react-cookie": "^4.0.1",
     "react-copy-to-clipboard": "^5.0.1",
+    "react-device-detect": "^1.9.10",
     "react-dom": "^16.8.6",
     "react-i18next": "^10.12.2",
     "react-scripts": "3.0.1"
@@ -22,8 +25,10 @@
     "start": "react-scripts start --no-cache",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"BROWSER=none npm run start\" \"wait-on http://localhost:3000 && electron .\""
   },
+  "main": "public/electron.js",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -41,11 +46,15 @@
   },
   "devDependencies": {
     "axios": "^0.19.0",
+    "concurrently": "^5.0.0",
+    "electron": "^7.0.0",
+    "electron-builder": "^21.2.0",
     "react-redux": "^7.1.0",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "wait-on": "^3.3.0"
   }
 }
