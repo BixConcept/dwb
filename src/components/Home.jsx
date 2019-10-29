@@ -1,19 +1,7 @@
 import React, { Component, Fragment } from "react";
 import css from "../styles/home.module.scss";
-
 import { withTranslation, Trans } from "react-i18next";
-
-/*
-// Anti-Jakob-Abwehrsystem
-const FBINotOpenUp = e => {
-  console.log(e.key);
-  if (e.key === "F12") {
-    return !true;
-  }
-};
-
-document.onkeydown = FBINotOpenUp;
-*/
+import DownloadField from "./download/Download.jsx";
 class Home extends Component {
   constructor() {
     super();
@@ -44,8 +32,8 @@ class Home extends Component {
               </button>
             </div>
           </div>
-        </header>
-
+        </header> 
+        
         <section
           id="features"
           ref={this.featuresRef}
@@ -94,7 +82,9 @@ class Home extends Component {
             </div>
           </div>
         </section>
+        <DownloadField />
       </Fragment>
+      
     );
   }
 }
