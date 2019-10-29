@@ -13,26 +13,33 @@ class DownloadField extends Component {
             macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
             windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
             iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-            file = null;
+                file = null;
+            
+            let macPath =     "dwbFiles/dwb-.";
+            let iosPath =     "dwbFiles/dwb-.";
+            let windowsPath = "dwbFiles/dwb-.";
+            let androidPath = "dwbFiles/dwb-.";
+            let linuxPath =   "dwbFiles/dwb-.";
+
         if (macosPlatforms.indexOf(platform) !== -1) {
-          file = 'Mac OS';
+          file = macPath;
         } else if (iosPlatforms.indexOf(platform) !== -1) {
-          file = 'iOS'; 
+          file = iosPath; 
         } else if (windowsPlatforms.indexOf(platform) !== -1) {
-          file = 'Windows';
+          file = windowsPath;
         } else if (/Android/.test(userAgent)) {
-          file = 'Android';
+          file = androidPath;
         } else if (!file && /Linux/.test(platform)) {
-          file = 'Linux';
+          file = linuxPath;
         }
-        return file;
-      }
+        return file;}
+        
         let file = detactFileType();
+
         if (isElectron()) {
-            return (
-                null
-            )
+            return null
         }
+
         else {
             return (
                 <BrowserView>
