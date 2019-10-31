@@ -44,7 +44,7 @@ function Assignment(props) {
 
   return (
     <div className={css.assignment}>
-      <div className={css.header}>
+      <div className={css.header} style={{backgroundColor: getColor(props.assignment.due_date)}}>
         <h2>{props.assignment.subject}</h2>
       </div>
       <div className={css.body}>
@@ -81,7 +81,9 @@ class AssignmentsView extends Component {
       <Fragment>
         <h1 className="m-heading">{t("dashboard.assignments.title")}</h1>
         <div className={css.body}>
-          <AssignmentsList assignments={this.props.assignments}/>
+          <AssignmentsList assignments={this.props.assignments.sort((a, b) => {
+            return Date.parse(new Date(a.due_date)) < Date.parse(new Date(b.due_date))
+          })}/>
         </div>
       </Fragment>
     );
