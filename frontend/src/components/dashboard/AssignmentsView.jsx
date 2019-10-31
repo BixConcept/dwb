@@ -44,13 +44,19 @@ function Assignment(props) {
 
   return (
     <div className={css.assignment}>
-      <div className={css.header} style={{backgroundColor: getColor(props.assignment.due_date)}}>
+      <div
+        className={css.header}
+        style={{ backgroundColor: getColor(props.assignment.due_date) }}
+      >
         <h2>{props.assignment.subject}</h2>
       </div>
       <div className={css.body}>
-        <h2>{t("date", { date: new Date(props.assignment.due_date)})}</h2>
+        <h2>{t("date", { date: new Date(props.assignment.due_date) })}</h2>
         <p>{props.assignment.text}</p>
-        <p className={css.authorTag}>- by {props.assignment.author_name} on {t("date", {date: new Date(props.assignment.created_at)})}</p>
+        <p className={css.authorTag}>
+          - by {props.assignment.author_name} on{" "}
+          {t("date", { date: new Date(props.assignment.created_at) })}
+        </p>
       </div>
     </div>
   );
@@ -81,9 +87,14 @@ class AssignmentsView extends Component {
       <Fragment>
         <h1 className="m-heading">{t("dashboard.assignments.title")}</h1>
         <div className={css.body}>
-          <AssignmentsList assignments={this.props.assignments.sort((a, b) => {
-            return Date.parse(new Date(a.due_date)) < Date.parse(new Date(b.due_date))
-          })}/>
+          <AssignmentsList
+            assignments={this.props.assignments.sort((a, b) => {
+              return (
+                Date.parse(new Date(b.due_date)) -
+                Date.parse(new Date(a.due_date))
+              );
+            })}
+          />
         </div>
       </Fragment>
     );
