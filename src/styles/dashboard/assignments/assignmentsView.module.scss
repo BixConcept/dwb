@@ -1,62 +1,43 @@
 @import "../../vars";
 
-.assignmentsContainer {
+.assignmentContainer {
   display: grid;
-  grid-template-columns: repeat(3, calc(100% / 3));
-  grid-auto-rows: 1fr;
 
-  grid-gap: 0.5rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  hyphens: auto;
+}
 
-  .assignmentContainer {
-    .assignmentHeader {
-      border-radius: 5px 5px 0 0;
-      background: #3498db;
-      color: #fff;
-      height: 100px;
+.assignment {
+  $radius: 6px;
+  $padding-val: 1rem;
 
-      overflow-y: auto;
+  .header {
+    background-color: $primaryColor;
+    border-radius: $radius $radius 0 0;
 
-      td,
-      th {
-        padding: 1rem;
-      }
+    height: 70px;
 
-      tbody {
-        height: 100px;
+    display: flex;
+    align-items: center;
+    color: #fff;
 
-        overflow-y: auto;
-      }
+    padding: $padding-val;
 
-      td:nth-of-type(4),
-      th:nth-of-type(4) {
-        display: none;
-      }
+  }
 
-      tbody tr:nth-child(odd) {
-        background: $lightColor;
-      }
+  .body {
+    background-color: $lightColor;
+    border-radius: 0 0 $radius $radius;
+
+    padding: $padding-val;
+
+    .authorTag {
+      text-align: right;
+      color: grey;
+      width: 100%;
+
+      font-style: italic;
     }
-  }
-}
-
-.text {
-  font-weight: bold;
-  font-size: 1.54rem;
-}
-
-.author {
-  color: #bdc3c7;
-  text-align: right;
-}
-
-@media screen and (max-width: 600px) {
-  .assignmentsContainer {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media screen and (max-width: 800px) and (min-width: 601px) {
-  .assignmentsContainer {
-    grid-template-columns: 1fr 1fr;
   }
 }
