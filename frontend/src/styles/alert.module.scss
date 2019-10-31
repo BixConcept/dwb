@@ -1,0 +1,17 @@
+.alert * {
+  margin: 0;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+}
+.alert {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 1rem;
+  color: #fff;
+  background: #e74c3c;
+  width: 100vw;
+  height: 100px;
+}

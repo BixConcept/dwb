@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import css from "../styles/home.module.scss";
 import { withTranslation, Trans } from "react-i18next";
-import DownloadField from "./download/Download.jsx";
 class Home extends Component {
   constructor() {
     super();
@@ -82,7 +81,6 @@ class Home extends Component {
             </div>
           </div>
         </section>
-        <DownloadField />
       </Fragment>
       
     );

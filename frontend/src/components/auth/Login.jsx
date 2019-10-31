@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
 import { login } from "../../actions/auth";
@@ -38,49 +38,51 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="main">
+      <Fragment>
         {this.props.error ? (
-          <Alert title="error" text={this.props.error} timeout={5} />
+          <Alert title="error" text={this.props.error} />
         ) : null}
-        <div className="logo">
-          <h3>dwb</h3>
+        <div className="main">
+          <div className="logo">
+            <h3>dwb</h3>
+          </div>
+          <form
+            onSubmit={this.handleSubmit}
+            autoComplete="off"
+            style={{ WebkitAppearance: "none" }}
+          >
+            <input
+              id="username"
+              onChange={this.handleChange}
+              type="username"
+              placeholder="username"
+              style={{ WebkitAppearance: "none" }}
+              required
+            />
+            <i className="fa fa-user" />
+            <i className="fa fa-lock" />
+            <PasswordShowAndHide onChange={this.handleChange} />
+            <input
+              type="submit"
+              value="Log In"
+              style={{ WebkitAppearance: "none" }}
+            />
+            <h4>
+              Not Registered? &nbsp;
+              <a href="/#/register" className="CreateAcc">
+                Create an Account
+              </a>
+            </h4>
+          </form>
         </div>
-        <form
-          onSubmit={this.handleSubmit}
-          autoComplete="off"
-          style={{ WebkitAppearance: "none" }}
-        >
-          <input
-            id="username"
-            onChange={this.handleChange}
-            type="username"
-            placeholder="username"
-            style={{ WebkitAppearance: "none" }}
-            required
-          />
-          <i className="fa fa-user" />
-          <i className="fa fa-lock" />
-          <PasswordShowAndHide onChange={this.handleChange} />
-          <input
-            type="submit"
-            value="Log In"
-            style={{ WebkitAppearance: "none" }}
-          />
-          <h4>
-            Not Registered? &nbsp;
-            <a href="/#/register" className="CreateAcc">
-              Create an Account
-            </a>
-          </h4>
-        </form>
-      </div>
+      </Fragment>
     );
   }
 }
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.errors.login
+  error: state.errors.errors.login
 });
 
 export default connect(
