@@ -40,15 +40,33 @@ function getColor(a) {
 
 function Assignment(props) {
   const { t } = useTranslation();
-  if (props.item === undefined) return null;
+  if (props.assignment === undefined) return null;
 
   return (
-    <tr key={props.item.id}>
-      <td>{props.item.subject}</td>
-      <td>{props.item.text}</td>
-      <td>{t("date", { date: new Date(props.item.due_date) })}</td>
-      <td>{props.item.author_name}</td>
-    </tr>
+    <div className={css.assignment}>
+      <div className={css.header}>
+        <h2>{props.assignment.subject}</h2>
+      </div>
+      <div className={css.body}>
+        <h2>{t("date", { date: new Date(props.assignment.due_date)})}</h2>
+        <p>{props.assignment.text}</p>
+        <p className={css.authorTag}>- by {props.assignment.author_name} on {t("date", {date: new Date(props.assignment.created_at)})}</p>
+      </div>
+    </div>
+  );
+}
+
+function AssignmentsList(props) {
+  if (props.assignments === undefined) {
+    return null;
+  }
+
+  return (
+    <div className={css.assignmentContainer}>
+      {props.assignments.map(assignment => {
+        return <Assignment assignment={assignment} />;
+      })}
+    </div>
   );
 }
 
@@ -62,25 +80,9 @@ class AssignmentsView extends Component {
     return (
       <Fragment>
         <h1 className="m-heading">{t("dashboard.assignments.title")}</h1>
-        <table className={css.table}>
-          <thead>
-            <tr>
-              <th>{t("dashboard.assignments.table.subject")}</th>
-              <th>{t("dashboard.assignments.table.text")}</th>
-              <th>{t("dashboard.assignments.table.dueDate")}</th>
-              <th>{t("dashboard.assignments.table.author")}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.assignments
-              .sort((a, b) => {
-                return Date.parse(b.due_date) - Date.parse(a.due_date);
-              })
-              .map(x => {
-                return <Assignment item={x} />;
-              })}
-          </tbody>
-        </table>
+        <div className={css.body}>
+          <AssignmentsList assignments={this.props.assignments}/>
+        </div>
       </Fragment>
     );
   }
