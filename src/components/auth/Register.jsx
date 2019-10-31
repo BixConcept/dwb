@@ -45,7 +45,7 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <Error error={this.state.error} />
+        <Error error={this.props.error} />
         <div className="main">
           <div className="logo">
             <h3>dwb</h3>
