@@ -2,7 +2,7 @@ version: "3"
 
 services:
   postgres:
-    image: postgres
+    image: postgres:11
     restart: always
     environment:
       POSTGRES_PASSWORD: dwb
@@ -11,6 +11,8 @@ services:
     ports:
       - '5432:5432'
   api:
+    depends_on:
+      - postgres
     image: dwb
     ports:
       - "8000:8000"
