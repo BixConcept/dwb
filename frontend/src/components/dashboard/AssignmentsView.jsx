@@ -48,7 +48,7 @@ function Assignment(props) {
         className={css.header}
         style={{ backgroundColor: getColor(props.assignment.due_date) }}
       >
-        <h2>{props.assignment.subject}</h2>
+        <h2>{t("", props.assignment.subject)}</h2>
       </div>
       <div className={css.body}>
         <h2>{t("date", { date: new Date(props.assignment.due_date) })}</h2>
