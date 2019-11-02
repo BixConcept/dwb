@@ -4,38 +4,16 @@ import { createAssignment } from "../../actions/assignments";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import css from "../../styles/dashboard/home/createAssignmentForm.module.scss";
+import { getSubjects, getIDFromSelected } from "./subjectName";
 
 export class CreateAssignmentForm extends Component {
   subjects = [];
+  options = {};
+
   constructor(props) {
     super(props);
     this.state = {};
 
-    const { t } = this.props;
-    this.subjects = [
-      t("subjects.german"),
-      t("subjects.geography"),
-      t("subjects.history"),
-      t("subjects.math"),
-      t("subjects.politics"),
-      t("subjects.biology"),
-      t("subjects.physics"),
-      t("subjects.chemistry"),
-      t("subjects.english"),
-      t("subjects.art"),
-      t("subjects.music"),
-      t("subjects.catholic"),
-      t("subjects.protestant"),
-      t("subjects.philosophy"),
-      t("subjects.sports"),
-      t("subjects.computerScience"),
-      t("subjects.cs"),
-      t("subjects.spanish"),
-      t("subjects.ecology"),
-      t("subjects.other"),
-      t("subjects.latin"),
-      t("subjects.french")
-    ].sort();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -54,17 +32,27 @@ export class CreateAssignmentForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
     this.setState.due_date = Date.parse(this.state.due_date);
-
-    console.log(
-      document.getElementsByClassName(css.assignmentForm)[0].children[0].reset()
-    );
 
     this.props.createAssignment({
       ...this.state,
-      author_name: this.props.username
+      author_name: this.props.username,
+      subject: getIDFromSelected(this.options, this.state.subject)
     });
+  }
+
+  componentDidMount() {
+    const { t } = this.props;
+
+    this.subjects = getSubjects();
+    console.log(this.subjects);
+    for (let i = 0; i < Object.values(this.subjects).length; i++) {
+      this.options[Object.keys(this.subjects)[i]] = t(
+        "subjects." + Object.values(this.subjects)[i]
+      );
+    }
+
   }
 
   render() {
@@ -83,7 +71,7 @@ export class CreateAssignmentForm extends Component {
             <option value="" style={{ WebkitAppearance: "none" }} disabled>
               {t("dashboard.home.createAssignment.form.subject")}
             </option>
-            {this.subjects.map(subject => (
+            {Object.values(this.options).sort().map(subject => (
               <option key={subject}>{subject}</option>
             ))}
           </select>

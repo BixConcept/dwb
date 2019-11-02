@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withTranslation } from "react-i18next";
 
 import { Bar } from "react-chartjs-2";
+import { getNames } from "./subjectName";
 
 class Chart extends Component {
   state = {
@@ -15,11 +17,19 @@ class Chart extends Component {
 
     this.setState({
       chartData: {
-        labels: Object.keys(foo),
+        labels: this.getTranslatedLabels(
+          getNames(
+            Object.keys(foo).sort((a, b) => {
+              return foo[b] - foo[a];
+            })
+          )
+        ),
         datasets: [
           {
             label: "subject",
-            data: Object.values(foo),
+            data: Object.values(foo).sort((a, b) => {
+              return b - a;
+            }),
             backgroundColor: [
               "rgba(26, 188, 156,1.0)",
               "rgba(46, 204, 113,1.0)",
@@ -35,6 +45,19 @@ class Chart extends Component {
               "rgba(230, 126, 34,1.0)",
               "rgba(231, 76, 60,1.0)",
               "rgba(236, 240, 241,1.0)",
+              "rgba(46, 204, 113,1.0)",
+              "rgba(52, 152, 219,1.0)",
+              "rgba(155, 89, 182,1.0)",
+              "rgba(52, 73, 94,1.0)",
+              "rgba(22, 160, 133,1.0)",
+              "rgba(39, 174, 96,1.0)",
+              "rgba(41, 128, 185,1.0)",
+              "rgba(142, 68, 173,1.0)",
+              "rgba(44, 62, 80,1.0)",
+              "rgba(241, 196, 15,1.0)",
+              "rgba(230, 126, 34,1.0)",
+              "rgba(231, 76, 60,1.0)",
+              "rgba(236, 240, 241,1.0)"
             ]
           }
         ]
@@ -52,8 +75,6 @@ class Chart extends Component {
     });
 
     */
-
-    console.log(this.state);
   }
 
   aggregate(rawData) {
@@ -68,6 +89,18 @@ class Chart extends Component {
     });
 
     return data;
+  }
+
+  getTranslatedLabels(names) {
+    let translatedLabels = [];
+    const { t } = this.props;
+
+    for (let name of names) {
+      translatedLabels.push(t("subjects." + name));
+    }
+
+    console.log(translatedLabels);
+    return translatedLabels;
   }
 
   render() {
@@ -94,6 +127,6 @@ class Chart extends Component {
 
 const mapStateToProps = state => ({
   assignments: state.assignments.assignments
-})
+});
 
-export default connect(mapStateToProps)(Chart);
+export default withTranslation()(connect(mapStateToProps)(Chart));

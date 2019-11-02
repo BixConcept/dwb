@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { useTranslation, withTranslation } from "react-i18next";
 import { getAssignments } from "../../actions/assignments";
+import { getName } from "./subjectName";
 
 import css from "../../styles/dashboard/home/assignmentsWidget.module.scss";
 
@@ -18,7 +19,7 @@ function AssignmentGroup(props) {
             <li key={item.text}>
               <div className="white">
                 <p>
-                  {item.subject}: {item.text}
+                  {t("subjects." + getName(item.subject))}: {item.text}
                 </p>
               </div>
             </li>
