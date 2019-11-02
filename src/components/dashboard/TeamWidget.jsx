@@ -8,15 +8,32 @@ import { getTeam, addUserToTeam, createTeam } from "../../actions/teams";
 
 import css from "../../styles/dashboard/home/team.module.scss";
 
+const colors = ["#8e44ad", "#3498db", "#e67e22", "#95a5a6"].reverse();
+const getColor = permission => {
+  console.log(permission);
+  return colors[permission];
+};
+
 const TeamMemberList = props => {
   if (props.members === undefined) {
     return null;
   }
   return (
     <ul className={css.teamMembers}>
-      {props.members.map(member => {
-        return <TeamMember name={member.username} />;
-      })}
+      {props.members
+        .sort((a, b) => {
+          if (a.username.toLowerCase() > b.username.toLowerCase()) {
+            return 1;
+          } else if (a.username.toLowerCase() < b.username.toLowerCase()) {
+            return -1;
+          }
+          return 0;
+        })
+        .map(member => {
+          return (
+            <TeamMember name={member.username} permission={member.permission} />
+          );
+        })}
     </ul>
   );
 };
@@ -24,8 +41,10 @@ const TeamMemberList = props => {
 const TeamMember = props => {
   return (
     <li className={css.teamMember}>
-      <div>{props.name[0].toUpperCase()}</div>
-      <p>{props.name}</p>
+      <div style={{ backgroundColor: getColor(props.permission) }}>
+        {props.name[0].toUpperCase()}
+      </div>
+      <p>{props.name} <span style={{display: props.permission < 1 ? "none" : "inline"}}>{["", "moderator*in", "team owner", "admin"][props.permission]}</span></p>
     </li>
   );
 };
