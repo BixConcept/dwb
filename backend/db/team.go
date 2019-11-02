@@ -17,7 +17,7 @@ func GetTeamByOwner(ownerID int) (strcts.Team, error) {
 func GetTeamMembers(teamID int) ([]structs.User, error) {
 	var users []structs.User
 
-	query := "SELECT id, username FROM users WHERE is_team_member = true AND team = $1"
+	query := "SELECT id, username, permission FROM users WHERE is_team_member = true AND team = $1"
 	rows, err := Database.Query(query, teamID)
 	if err != nil {
 		return users, err
@@ -25,7 +25,7 @@ func GetTeamMembers(teamID int) ([]structs.User, error) {
 
 	for rows.Next() {
 		newUser := structs.User{}
-		err = rows.Scan(&newUser.ID, &newUser.Username)
+		err = rows.Scan(&newUser.ID, &newUser.Username, &newUser.Permission)
 		if err != nil {
 			return nil, err
 		}
