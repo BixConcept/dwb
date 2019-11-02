@@ -1,7 +1,7 @@
 package db
 
 func initAssignmentsTable() error {
-	query := "CREATE TABLE IF NOT EXISTS assignments (id serial, created_at timestamp, due_date date, text text, subject text, description text, author int, author_name text);"
+	query := "CREATE TABLE IF NOT EXISTS assignments (id serial, created_at timestamp, due_date date, text text, subject integer, description text, author int, author_name text);"
 	_, err := Database.Exec(query)
 	return err
 }
@@ -19,7 +19,7 @@ func initSessionsTable() error {
 }
 
 func initTeamsTable() error {
-	query := "CREATE TABLE IF NOT EXISTS teams (id serial, name text, owner int)"
+	query := "CREATE TABLE IF NOT EXISTS teams (id serial, name text, owner int, message text)"
 	_, err := Database.Exec(query)
 	return err
 }

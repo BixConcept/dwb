@@ -36,6 +36,7 @@ func main() {
 	r.HandleFunc("/team/addMember/", handlers.Team)
 	r.HandleFunc("/team/removeMember/", handlers.Team)
 	r.HandleFunc("/team/all", handlers.Team)
+	r.HandleFunc("/team/message", handlers.Team)
 
 	r.HandleFunc("/contact/", handlers.Contact)
 

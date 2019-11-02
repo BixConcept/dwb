@@ -12,7 +12,7 @@ type Assignment struct {
 	CreatedAt   time.Time `json:"created_at"`
 	DueDate     time.Time `json:"due_date"`
 	Text        string    `json:"text"`
-	Subject     string    `json:"subject"`
+	Subject     int       `json:"subject"`
 	Description string    `json:"description"`
 	Author      int       `json:"author"`
 	AuthorName  string    `json:"author_name"`
@@ -43,9 +43,10 @@ type Session struct {
 
 // Team struct
 type Team struct {
-	ID    int    `json:"id"`
-	Name  string `json:"name"`
-	Owner int    `json:"owner"`
+	ID      int    `json:"id"`
+	Name    string `json:"name"`
+	Owner   int    `json:"owner"`
+	Message string `json:"message"`
 }
 
 type ContactMessage struct {

@@ -21,7 +21,9 @@ func Team(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/team/addMember/" {
 			addMember(w, r)
 		} else if r.URL.Path == "/team/removeMember" {
-
+			removeMember(w, r)
+		} else if r.URL.Path == "/team/message" {
+			setMessage(w, r)
 		} else {
 			createTeam(w, r)
 		}
@@ -106,6 +108,10 @@ func createTeam(w http.ResponseWriter, r *http.Request) {
 	rawTeam.Owner = user.ID
 	fmt.Printf("[ * ] raw team: %+v\n", rawTeam)
 
+	if user.Permission < permissions.TEAM_OWNER_PERMISSION {
+
+	}
+
 	team, err := db.CreateTeam(rawTeam)
 	if err != nil {
 		fmt.Printf("[ - ] error creating team: %v\n", err)
@@ -113,13 +119,6 @@ func createTeam(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Printf("[ * ] team: %+v\n", team)
-
-	err = db.AddTeamMember(team.ID, user.ID)
-	if err != nil {
-		fmt.Printf("[ - ] error adding user to team: %v\n", err)
-		w.WriteHeader(500)
-		return
-	}
 
 	_ = json.NewEncoder(w).Encode(team)
 
@@ -175,6 +174,51 @@ func addMember(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(500)
 		return
 	}
+}
+
+func setMessage(w http.ResponseWriter, r *http.Request) {
+	session, err := extractSession(w, r)
+	if err != nil {
+		fmt.Printf("[ - ] error extracting session: %v\n", err)
+		w.WriteHeader(401)
+		return
+	}
+
+	user, err := db.GetUserByID(session.UserID)
+	if err != nil {
+		fmt.Printf("[ - ] error retrieving user from db: %v\n", err)
+		w.WriteHeader(401)
+		return
+	}
+
+	if !user.IsTeamMember {
+		fmt.Print("[ - ] %s is not a team member!\n")
+		w.WriteHeader(400)
+		return
+	}
+
+	if user.Permission < permissions.TEAM_MODERATOR_PERMISSION {
+		fmt.Printf("[ - ] permission denied. required permission: %v; actual permission: %d\n", permissions.TEAM_MODERATOR_PERMISSION, user.Permission)
+		w.WriteHeader(401)
+		return
+	}
+
+	var t structs.Team
+	err = json.NewDecoder(r.Body).Decode(&t)
+	if err != nil {
+		fmt.Printf("[ - ] error decoding json: %v\n", err)
+		w.WriteHeader(400)
+		return
+	}
+	fmt.Printf("[ * ] team message: %s\n", t.Message)
+
+	err = db.SetTeamMessage(user.Team, t.Message)
+	if err != nil {
+		fmt.Printf("[ - ] error setting message: %v\n", err)
+		w.WriteHeader(500)
+		return
+	}
+	fmt.Printf("[ + ] successfully set team message !\n")
 }
 
 func removeMember(w http.ResponseWriter, r *http.Request) {

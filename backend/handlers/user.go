@@ -57,7 +57,7 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Printf("[ * ] username: %s password: %s\n", username, password)
+	//fmt.Printf("[ * ] username: %s password: %s\n", username, password)
 
 	id, err := db.CreateUser(username, password, 0)
 	if err != nil {
@@ -167,7 +167,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Printf("[ * ] username: %s password: %s\n", username, password)
+	//fmt.Printf("[ * ] username: %s password: %s\n", username, password)
 
 	user, err := db.GetUserByName(username)
 	if err != nil {

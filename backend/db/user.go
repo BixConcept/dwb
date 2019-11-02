@@ -21,7 +21,7 @@ func CreateUser(username, password string, permission int) (int, error) {
 
 	user.PasswordHash = hashedPass
 
-	query := "INSERT INTO users  VALUES (default, $1, $2, 0, false, $3) returning id;"
+	query := "INSERT INTO users  VALUES (default, $1, $2, 0, false, $3, '') returning id;"
 	row := Database.QueryRow(query, username, hashedPass, permission)
 
 	id := 0
@@ -43,7 +43,7 @@ func GetUsers() ([]structs.User, error) {
 	for rows.Next() {
 		newUser := structs.User{}
 
-		err = rows.Scan(&newUser.ID, &newUser.Username, &newUser.PasswordHash, &newUser.Team, &newUser.IsTeamMember, &newUser.Permission)
+		err = rows.Scan(&newUser.ID, &newUser.Username, &newUser.PasswordHash, &newUser.Team, &newUser.IsTeamMember, &newUser.Permission, &newUser.Email)
 		if err != nil {
 			return users, err
 		}
@@ -109,6 +109,12 @@ func GetAdminEmails() ([]string, error) {
 	}
 
 	return emails, err
+}
+
+func SetPermission(userID, permission int) error {
+	query := "UPDATE users SET permission = $1 where id = $2"
+	_, err := Database.Exec(query)
+	return err
 }
 
 // HashPassword hashes the password
