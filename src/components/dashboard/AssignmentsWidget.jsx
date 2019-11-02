@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useTranslation, withTranslation } from "react-i18next";
-import { getAssignments, markFinished } from "../../actions/assignments";
+import { getAssignments } from "../../actions/assignments";
 
 import css from "../../styles/dashboard/home/assignmentsWidget.module.scss";
 
@@ -16,13 +16,6 @@ function AssignmentGroup(props) {
         <ul>
           {props.assignments.map(item => (
             <li key={item.text}>
-              <input
-                type="checkbox"
-                id="finished"
-                onChange={e => {
-                  props.markFinished(item.id, e.target.checked);
-                }}
-              />
               <div className="white">
                 <p>
                   {item.subject}: {item.text}
@@ -60,19 +53,16 @@ function AssignmentGroups(props) {
         title={t("today")}
         classIdentifier={css.today}
         assignments={props.groups[0].assignments}
-        markFinished={props.markFinished}
       />
       <AssignmentGroup
         title={t("tomorrow")}
         classIdentifier={css.tomorrow}
         assignments={props.groups[1].assignments}
-        markFinished={props.markFinished}
       />
       <AssignmentGroup
         title={t("the day after tomorrow")}
         classIdentifier={css.future}
         assignments={props.groups[2].assignments}
-        markFinished={props.markFinished}
       />
     </React.Fragment>
   );
@@ -142,10 +132,7 @@ class AssignmentsWidget extends React.Component {
       <div>
         <h1 className="s-heading">{t("dashboard.home.assignments.title")}</h1>
         <div className={css.days}>
-          <AssignmentGroups
-            groups={this.state.assignmentGroups}
-            markFinished={this.props.markFinished}
-          />
+          <AssignmentGroups groups={this.state.assignmentGroups} />
         </div>
       </div>
     );
@@ -159,6 +146,6 @@ const mapStateToProps = state => ({
 export default withTranslation()(
   connect(
     mapStateToProps,
-    { getAssignments, markFinished }
+    { getAssignments }
   )(AssignmentsWidget)
 );
