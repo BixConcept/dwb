@@ -3,9 +3,11 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { getAssignments } from "../../actions/assignments";
 
-import { withTranslation, useTranslation } from "react-i18next";
+import { withTranslation, useTranslation, getUsedNamespaces } from "react-i18next";
 
 import css from "../../styles/dashboard/assignments/assignmentsView.module.scss";
+
+import { getName } from "./subjectName";
 
 // red, yellow, green, grey, blue
 const colors = ["#e74c3c", "#f1c40f", "#2ecc71", "#95a5a6", "#3498db"];
@@ -48,7 +50,7 @@ function Assignment(props) {
         className={css.header}
         style={{ backgroundColor: getColor(props.assignment.due_date) }}
       >
-        <h2>{t("", props.assignment.subject)}</h2>
+        <h2>{t("subjects."+getName(props.assignment.subject))}</h2>
       </div>
       <div className={css.body}>
         <h2>{t("date", { date: new Date(props.assignment.due_date) })}</h2>
