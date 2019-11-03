@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { withTranslation, useTranslation } from "react-i18next";
 
-import { getTeam, addUserToTeam, createTeam } from "../../actions/teams";
+import { getTeam, addUserToTeam, createTeam, setTeamMessage } from "../../actions/teams";
 
 import css from "../../styles/dashboard/home/team.module.scss";
 
@@ -15,13 +15,21 @@ const getColor = permission => {
 };
 
 class SetTeamMessageTF extends Component {
+
+  constructor(props) { 
+    super(props)
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
   handleChange(e) {
     this.setState({ form: { [e.target.id]: e.target.value } });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.setTeamMessage(this.state.form.username);
+    this.props.setTeamMessage(this.state.form);
   }
 
   render() {
@@ -33,14 +41,15 @@ class SetTeamMessageTF extends Component {
           <input
             style={{ WebkitAppearance: "none" }}
             type="text"
-            id="username"
-            value={this.props.message}
+            id="message"
+            placeholder={this.props.message}
             onChange={this.handleChange}
           />
           <input
             style={{ WebkitAppearance: "none" }}
             type="submit"
             value={t("dashboard.home.team.message.form.submit")}
+            disabled={this.state === null || this.state.form.message === undefined || this.state.form.message.trim() === ""}
           />
         </form>
       </div>
@@ -49,6 +58,13 @@ class SetTeamMessageTF extends Component {
 }
 
 class AddMemberTF extends Component {
+  constructor(props) {
+    super(props)
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
   handleChange(e) {
     this.setState({ form: { [e.target.id]: e.target.value } });
   }
@@ -75,6 +91,7 @@ class AddMemberTF extends Component {
             style={{ WebkitAppearance: "none" }}
             type="submit"
             value={t("dashboard.home.team.members.form.submit")}
+            disabled={this.state === null || this.state.form.username === undefined || this.state.form.username.trim() === ""}
           />
         </form>
       </div>
@@ -223,7 +240,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getTeam,
   addUserToTeam,
-  createTeam
+  createTeam,
+  setTeamMessage
 };
 
 export default withTranslation()(

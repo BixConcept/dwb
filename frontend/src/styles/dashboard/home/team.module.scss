@@ -73,6 +73,10 @@ input[type="submit"] {
   }
 }
 
+input[disabled=""]:hover {
+  cursor: not-allowed;
+}
+
 .setTeamMessageForm {
   margin-top: 1rem;
 }
