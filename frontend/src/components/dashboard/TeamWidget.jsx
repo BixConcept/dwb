@@ -28,7 +28,7 @@ class SetTeamMessageTF extends Component {
     const { t } = this.props;
     if (this.props.permission < 1) return null;
     return (
-      <div className={css.addUserForm}>
+      <div className={css.setTeamMessageForm}>
         <form onSubmit={this.handleSubmit}>
           <input
             style={{ WebkitAppearance: "none" }}
