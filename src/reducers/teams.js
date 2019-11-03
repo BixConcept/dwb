@@ -23,7 +23,7 @@ export default function(state = initialState, action) {
       };
     case SET_TEAM_MESSAGE:
       let foo = state;
-      foo.team.team.message = action.payload
+      foo.team.team.message = action.payload.message
       return foo;
     default:
       return state;
