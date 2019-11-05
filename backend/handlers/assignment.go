@@ -76,7 +76,7 @@ func getAssignments(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Printf("[ * ] assignments: %v\n", assignments)
+	fmt.Printf("[ * ] there currently are %d assignments but i am not going to print out all of them ;)\n", len(assignments))
 
 	err = json.NewEncoder(w).Encode(assignments)
 	if err != nil {
