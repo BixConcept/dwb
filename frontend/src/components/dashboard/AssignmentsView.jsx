@@ -35,8 +35,8 @@ function getColor(a) {
   a = Date.parse(getDate(new Date(a)));
 
   if (dateIsEqual(a, Date.parse(now))) return colors[0];
-  if (dateIsEqual(a, Date.parse(now + day))) return colors[1];
-  if (dateIsEqual(a, Date.parse(now + day + day))) return colors[2];
+  if (dateIsEqual(a, Date.parse(now) + day)) return colors[1];
+  if (dateIsEqual(a, Date.parse(now) + 2 * day)) return colors[2];
   if (Date.parse(now) > a) return colors[3];
   if (Date.parse(now) < a) return colors[4];
 }
@@ -53,6 +53,7 @@ function Assignment(props) {
       >
         <h2>{t("subjects." + getName(props.assignment.subject))}</h2>
         <button
+          className="deleteBtn"
           hidden={props.hidden}
           onClick={() => {
             props.removeAssignment(props.assignment);
