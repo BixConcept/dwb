@@ -53,6 +53,7 @@ function Assignment(props) {
       >
         <h2>{t("subjects." + getName(props.assignment.subject))}</h2>
         <button
+          className="deleteBtn"
           hidden={props.hidden}
           onClick={() => {
             props.removeAssignment(props.assignment);

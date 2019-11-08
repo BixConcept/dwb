@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import css from "../../styles/dashboard/home/teamMessageWidget.module.scss";
-
 const Quote = () => {
   let quotes = [
     "Jungs, lasst den Schwanz in Ruhe! - Fr. Dr. Horn",
