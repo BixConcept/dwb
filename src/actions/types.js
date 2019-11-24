@@ -10,7 +10,12 @@ export const SET_IS_TEAM_MEMBER = "SET_IS_TEAM_MEMBER";
 
 export const GET_TEAM = "GET_TEAM";
 export const ADD_USER_TO_TEAM = "ADD_USER_TO_TEAM";
-export const CREATE_TEAM = "CREATE_TEAM"
+export const CREATE_TEAM = "CREATE_TEAM";
 
 // ERRORS
-export const GET_ERROR = "GET_ERROR"
+export const GET_ERROR = "GET_ERROR";
+
+// aDmIn
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const GET_ALL_TEAMS = "GET_ALL_TEAMS";
+export const GET_ALL_ASSIGNMENTS = "GET_ALL_ASSIGNMENTS";
