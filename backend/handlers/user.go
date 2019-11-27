@@ -196,9 +196,10 @@ func login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	cookie := http.Cookie{
-		Path:  "/",
-		Name:  "session",
-		Value: session.UUID,
+		Path:   "/",
+		Name:   "session",
+		Value:  session.UUID,
+		MaxAge: 60 * 60 * 24 * 365,
 	}
 
 	http.SetCookie(w, &cookie)
