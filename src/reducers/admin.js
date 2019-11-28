@@ -17,6 +17,11 @@ export default function(state = initialState, action) {
         ...state,
         allUsers: action.payload
       };
+    case GET_ALL_ASSIGNMENTS:
+      return {
+        ...state,
+        allAssignments: action.payload
+      };
     default:
       return state;
   }

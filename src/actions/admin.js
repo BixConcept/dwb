@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_HOST } from "..";
-import { GET_ALL_USERS, GET_ALL_TEAMS } from "./types";
+import { GET_ALL_USERS, GET_ALL_TEAMS, GET_ALL_ASSIGNMENTS } from "./types";
 
 export const getAllUsers = () => dispatch => {
   axios.get(API_HOST + "/user/all", {
@@ -8,6 +8,17 @@ export const getAllUsers = () => dispatch => {
   }).then(res => {
     dispatch({
       type: GET_ALL_USERS,
+      payload: res.data
+    });
+  });
+};
+
+export const getAllAssignments = () => dispatch => {
+  axios.get(API_HOST + "/assignment/all", {
+    withCredentials: true
+  }).then(res => {
+    dispatch({
+      type: GET_ALL_ASSIGNMENTS,
       payload: res.data
     });
   });
