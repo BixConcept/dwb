@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import "./Login.css";
 import ReactDOM from "react-dom";
+import { withTranslation } from "react-i18next";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
-export default class GeneratePassword extends Component {
+class GeneratePassword extends Component {
   // generated a random password using cryptojs
 
   constructor(props) {
@@ -46,11 +47,12 @@ export default class GeneratePassword extends Component {
   };
 
   render() {
+    const {t} = this.props;
     return (
       <div>
         <div className="pwDiv">
           <h3>
-            Don't have an idea for a password? Generate a very secure one.
+            {t("register.genPw")}
           </h3>
           <div>
             {this.state.isGen ? (
@@ -59,12 +61,12 @@ export default class GeneratePassword extends Component {
                   text={this.state.value}
                   onCopy={() => this.setState({ copied: true })}
                 >
-                  <button>Copy to clipboard</button>
+                  <button>{t("register.copyToClipboard")}</button>
                 </CopyToClipboard>
               </div>
             ) : (
                 <button type="button" onClick={this.generatePw}>
-                  Generate
+                  {t("register.gen")}
               </button>
               )}
             <p
@@ -76,7 +78,7 @@ export default class GeneratePassword extends Component {
             />
             {this.state.copied ? (
               <div>
-                <span>Copied.</span>
+                <span>{t("register.copied")}</span>
               </div>
             ) : null}
           </div>
@@ -85,3 +87,5 @@ export default class GeneratePassword extends Component {
     );
   }
 }
+
+export default withTranslation()(GeneratePassword);
