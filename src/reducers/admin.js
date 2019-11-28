@@ -22,6 +22,11 @@ export default function(state = initialState, action) {
         ...state,
         allAssignments: action.payload
       };
+    case GET_ALL_TEAMS:
+      return {
+        ...state,
+        allTeams: action.payload
+      };
     default:
       return state;
   }

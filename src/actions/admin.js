@@ -23,3 +23,14 @@ export const getAllAssignments = () => dispatch => {
     });
   });
 };
+
+export const getAllTeams = () => dispatch => {
+  axios.get(API_HOST + "/team/all", {
+    withCredentials: true
+  }).then(res => {
+    dispatch({
+      type: GET_ALL_TEAMS,
+      payload: res.data
+    });
+  });
+};
