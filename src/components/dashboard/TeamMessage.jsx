@@ -8,7 +8,8 @@ const Quote = () => {
     "Du Internetrambo! - Gebrüder Grimm",
     "DEUTSCHLAND braucht einen Platz oben inna Süd. - Wilhelm II.",
     "An der Nase eines Mannes erkennt man seinen Johannes. - Immanuel Kant",
-    "Hallo. - Jesus Christus"
+    "Hallo. - Jesus Christus",
+	"Ich schwör auf Koran, ich hau' dir dein' ganzen Eierstöcke raus - Niels"
   ];
   let getRndmQuote = quotes[Math.floor(Math.random() * quotes.length)];
   return getRndmQuote;
