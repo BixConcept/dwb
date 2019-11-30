@@ -30,8 +30,9 @@ const Quote = () => {
     "In Mexiko sagt man nicht 'Ich liebe dich.' die können dort nämlich gar kein Deutsch. - Plato",
     "Die Sieger Olympias bekamen goldene Lorbeerkränze. - David K.",
     "Smoke trees everyday. - David K.",
-    "In germany teachers don't say 'you have to learn this'. Instead they say: 'Wenn ich um 3 Uhr nachts bei dir am Bett stehe und ich dich das abfrage musst du das, wie aus der Pistole geschossen, im Halbschlaf beantworten können ohne nachzudenken.' - Jeder Lateinlehrer"
-  ];
+    "In germany teachers don't say 'you have to learn this'. Instead they say: 'Wenn ich um 3 Uhr nachts bei dir am Bett stehe und ich dich das abfrage musst du das, wie aus der Pistole geschossen, im Halbschlaf beantworten können ohne nachzudenken.' - Jeder Lateinlehrer",
+    "Niels, du bist länger und größer. - Friedrich III."
+    ];
   let getRndmQuote = quotes[Math.floor(Math.random() * quotes.length)];
   return <p className="quote">{getRndmQuote}</p>;
 };
