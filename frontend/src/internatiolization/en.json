@@ -87,6 +87,6 @@
   "auth.username" : "username",
   "auth.password" : "password",
   "login.submit" : "Log In",
-  "login.linkToRegister" : "Create one!",
+  "login.linkToRegister" : "Create an account!",
   "login.notRegistered" : "You ain't registered? " 
 }

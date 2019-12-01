@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { login } from "../../actions/auth";
 import PasswordShowAndHide from "./PasswordShowAndHide.jsx";
-import "./Login.css";
+import "../../styles/auth/auth.scss";
 import { withTranslation } from "react-i18next";
 import Alert from "../Alert";
 
@@ -20,12 +20,12 @@ class Login extends Component {
       [event.target.id]: event.target.value
     });
 
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
 
     this.props.login(this.state);
   }
