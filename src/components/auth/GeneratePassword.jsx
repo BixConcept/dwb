@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Login.css";
+import "../../styles/auth/auth.scss";
 import ReactDOM from "react-dom";
 import { withTranslation } from "react-i18next";
 import { CopyToClipboard } from "react-copy-to-clipboard";
