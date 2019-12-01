@@ -77,5 +77,9 @@
   "contact.title": "kontaktiere uns",
   "contact.placeholders.name": "name",
   "contact.placeholders.email": "e-mail",
-  "contact.placeholders.message": "nachricht"
+  "contact.placeholders.message": "nachricht",
+  "register.genPw" : "Du hast keine Idee für ein Kennwort? Generier doch eines!",
+  "register.gen" : "Generieren",
+  "register.copyToClipboard" : "In der Zwischenablage speichern",
+  "register.copied" : "Gespeichert"
 }
