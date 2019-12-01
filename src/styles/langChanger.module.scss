@@ -58,6 +58,7 @@ $gutters: null;
 }
 
 .container {
+    z-index: 9999;
   position: absolute;
   transform: translate(-100%, -50%);
 }
