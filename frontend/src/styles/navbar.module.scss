@@ -1,68 +1,62 @@
-@import '_vars.scss';
-
+@import "_vars.scss";
 
 .navbar {
-    top: 0 !important;
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 3rem;
-    background: $darkColor;
+  top: 0 !important;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background: $darkColor;
+  color: #fff;
+
+  .link {
     color: #fff;
+    text-decoration: none;
+    transition-duration: 200ms;
+  }
 
-    .link {
-        color: #fff;
-        text-decoration: none;
-        transition-duration: 200ms;
-    }
+  .link:hover {
+    color: $primaryColor;
+  }
 
-    .link:hover {
-        color: $primaryColor;
-    }
+  ul li {
+    padding: 0 1rem;
+  }
 
-    ul li {
-        padding: 0 1rem;
+  ul {
+    align-items: center;
+    display: flex;
+    list-style: none;
+  }
 
-    }
-
-    ul {
-        align-items: center;
-        display: flex;
-        list-style: none;
-        margin-bottom: 1.5rem;
-    }
-
-    h1 {
-        color: $primaryColor;
-        font-weight: bolder;
-    }
+  h1 {
+    color: $primaryColor;
+    font-weight: bolder;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .navbar {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 200px;
-        h1 {
-            padding: 1 0;
-        }
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+  }
+
+  h1 { margin: .2rem 0;}
+  .navbar ul {
+    flex-direction: column-reverse;
+    &::nth-child(:last-child) {
+        padding-bottom: 1.5em;
+      }
+
+    li {
+      text-align: center;
+      padding: .3rem 0;
+      transition-duration: 200ms;
+
+      
     }
-
-    .navbar ul {
-        flex-direction: column-reverse;
-
-        li {
-            text-align: center;
-            padding: .5rem 0;
-
-
-
-            transition-duration: 200ms;
-        }
-        &::nth-child(:last-child) {
-            padding-bottom: 1rem;
-        }
-    }
+  }
 }
