@@ -73,9 +73,9 @@ class Home extends Component {
                 </h1>
                 <p>{t("home.team.text")}</p>
                 <ul className={css.teamMembers}>
-                  <li>{t("home.team.members.0")}</li>
-                  <li>{t("home.team.members.1")}</li>
-                  <li>{t("home.team.members.2")}</li>
+                  <li><a href="https://twitter.com/nielsdingsbums">{t("home.team.members.0")}</a></li>
+                  <li><a href="https://www.instagram.com/anuzzz_senpai/">{t("home.team.members.1")}</a></li>
+                  <li><a href="https://github.com/sanberksoysal">{t("home.team.members.2")}</a></li>
                 </ul>
               </div>
             </div>
