@@ -59,9 +59,4 @@ class App extends Component {
   }
 }
 
-export default withCookies(
-  connect(
-    null,
-    { setAuthenticated }
-  )(App)
-);
+export default withCookies(connect(null, { setAuthenticated })(App));

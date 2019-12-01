@@ -1,19 +1,13 @@
-import {
-  GET_ASSIGNMENTS,
-  CREATE_ASSIGNMENT,
-  DELETE_ASSIGNMENT
-} from "./types";
+import { GET_ASSIGNMENTS, CREATE_ASSIGNMENT, DELETE_ASSIGNMENT } from "./types";
 import axios from "axios";
 
-import {
-  API_HOST
-} from "../index";
+import { API_HOST } from "../index";
 
 // GET_ASSIGNMENTS
 export const getAssignments = () => dispatch => {
   fetch(API_HOST + "/assignment/", {
-      credentials: "include"
-    })
+    credentials: "include"
+  })
     .then(res => res.json())
     .then(res => {
       dispatch({
@@ -42,17 +36,21 @@ export const createAssignment = assignment => dispatch => {
         dispatch({
           type: "createAssignment",
           error: "error creating assignment."
-        })
-      })
-    })
+        });
+      });
+    });
 };
 
 // delete ASSIGNMENT
 
 export const deleteAssignment = assignment => dispatch => {
-  //console.log(assignment)
+  console.log(assignment);
   axios
-    .delete(`https://api.3nt3.de/assignment/${assignment.id}/`)
+    // I really hate this line.
+    // why is there no real string formatting?
+    .delete(API_HOST + "/assignment/" + assignment.id.toString(), {
+      withCredentials: true
+    })
     .then(res => {
       console.log(assignment);
       dispatch({
