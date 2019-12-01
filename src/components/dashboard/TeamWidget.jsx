@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { withTranslation, useTranslation } from "react-i18next";
+import { withTranslation } from "react-i18next";
 
 import { getTeam, addUserToTeam, createTeam, setTeamMessage } from "../../actions/teams";
 

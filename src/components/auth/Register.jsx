@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "../../styles/auth/auth.scss";
 import PasswordShowAndHide from "./PasswordShowAndHide.jsx";
 import { register } from "../../actions/auth";
 import { connect } from "react-redux";
-import GeneratePassword from "./GeneratePassword";
 import { withTranslation } from "react-i18next";
 import Alert from "../Alert.jsx";
 
