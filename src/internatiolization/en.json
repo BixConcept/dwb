@@ -81,5 +81,11 @@
   "register.genPw": "Don't have an idea for a password? Generate a very secure one.",
   "register.gen" : "Generate",
   "register.copyToClipboard" : "Copy to clipboard",
-  "register.copied" : "Copied"
+  "register.copied" : "Copied",
+  "register.signup" : "Sign Up",
+  "auth.username" : "username",
+  "auth.password" : "password",
+  "login.submit" : "Log In",
+  "login.linkToRegister" : "Create one!",
+  "login.notRegistered" : "You ain't registered? " 
 }

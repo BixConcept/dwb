@@ -80,6 +80,12 @@
   "contact.placeholders.message": "nachricht",
   "register.genPw" : "Du hast keine Idee für ein Kennwort? Generier doch eines!",
   "register.gen" : "Generieren",
-  "register.copyToClipboard" : "In der Zwischenablage speichern",
-  "register.copied" : "Gespeichert"
+  "register.copyToClipboard" : "Kopieren",
+  "register.copied" : "Gespeichert",
+  "register.signup": "Registrieren",
+  "auth.username" : "nutzername",
+  "auth.password" : "passwort",
+  "login.submit" : "Einloggen",
+  "login.linkToRegister" : "Erstelle einen!",
+  "login.notRegistered" : "Du hast keinen Account?"
 }
