@@ -36,6 +36,7 @@
   "dashboard.home.team.subtitle": "gruppenmitglieder:",
   "dashboard.home.team.members.form.input": "benutzernamen eingeben",
   "dashboard.home.team.members.form.submit": "gruppenmitglied hinzufügen",
+  "dashboard.home.team.message.form.submit": "gruppennachricht setzen",
   "dashboard.home.stats.title": "statistiken",
   "dashboard.home.stats.assignmentsDue": "fällige aufgaben o. Ä.",
   "dashboard.home.assignments.title": "3-tagesausblick",
