@@ -83,5 +83,9 @@
   "register.copyToClipboard" : "Copy to clipboard",
   "register.copied" : "Copied",
   "register.signup" : "Sign Up",
-  "auth.username" : "Username"
+  "auth.username" : "username",
+  "auth.password" : "password",
+  "login.submit" : "Log In",
+  "login.linkToRegister" : "Create one!",
+  "login.notRegistered" : "You ain't registered? " 
 }

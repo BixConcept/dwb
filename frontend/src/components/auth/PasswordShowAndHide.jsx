@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./Login.css";
+import { withTranslation } from "react-i18next";
 
-export default class PasswordShowAndHide extends Component {
+
+class PasswordShowAndHide extends Component {
   constructor(props) {
     super(props);
 
@@ -43,12 +45,13 @@ export default class PasswordShowAndHide extends Component {
   };
 
   render() {
+    const {t} = this.props;
     return (
       <div>
         <input
           type={this.state.hidden ? "password" : "text"}
           onChange={this.props.onChange}
-          placeholder="password"
+          placeholder={t("auth.password")}
           autoComplete="off"
           id="password"
           required
@@ -64,3 +67,5 @@ export default class PasswordShowAndHide extends Component {
     );
   }
 }
+
+export default withTranslation()(PasswordShowAndHide);
