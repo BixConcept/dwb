@@ -1,8 +1,9 @@
 @import '_vars.scss';
 
-.navbar {
-    width: 100%;
 
+.navbar {
+    top: 0 !important;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,12 +23,14 @@
 
     ul li {
         padding: 0 1rem;
+
     }
 
     ul {
         align-items: center;
         display: flex;
         list-style: none;
+        margin-bottom: 1.5rem;
     }
 
     h1 {
@@ -41,9 +44,9 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
+        min-height: 200px;
         h1 {
-            padding: .5rem 0;
+            padding: 1 0;
         }
     }
 
@@ -53,13 +56,13 @@
         li {
             text-align: center;
             padding: .5rem 0;
-            width: 100vw;
 
-            &:hover {
-                background: darken($darkColor, 50%);
-            }
+
 
             transition-duration: 200ms;
+        }
+        &::nth-child(:last-child) {
+            padding-bottom: 1rem;
         }
     }
 }
