@@ -79,14 +79,9 @@
   }
 }
 
-.downloadBtn {
-  background-color: #3498db;
-  border: none;
-  border-radius: 1px;
-  padding: 12px 30px;
-  cursor: pointer;
-  font-size: 1.7rem;
-
+.teamMembers {
+  margin: 5px 10px;
+  font-size: 1.5rem;
   &:visited,
   &:hover {
     color: white;
