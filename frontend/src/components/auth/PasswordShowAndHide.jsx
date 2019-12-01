@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Login.css";
+import "../../styles/auth/auth.scss";
 import { withTranslation } from "react-i18next";
 
 
