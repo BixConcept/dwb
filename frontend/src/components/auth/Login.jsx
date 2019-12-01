@@ -1,11 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-
 import { login } from "../../actions/auth";
-
 import PasswordShowAndHide from "./PasswordShowAndHide.jsx";
-
 import "./Login.css";
+import { withTranslation } from "react-i18next";
 import Alert from "../Alert";
 
 class Login extends Component {
@@ -37,12 +35,14 @@ class Login extends Component {
   }
 
   render() {
+    const {t} = this.props;
     return (
       <Fragment>
         {this.props.error ? (
           <Alert title="error" text={this.props.error} />
         ) : null}
         <div className="main">
+        <h1>{t("login.submit")}</h1>
           <div className="logo">
             <h3>dwb</h3>
           </div>
@@ -55,7 +55,7 @@ class Login extends Component {
               id="username"
               onChange={this.handleChange}
               type="username"
-              placeholder="username"
+              placeholder={t("auth.username")}
               style={{ WebkitAppearance: "none" }}
               required
             />
@@ -64,13 +64,13 @@ class Login extends Component {
             <PasswordShowAndHide onChange={this.handleChange} />
             <input
               type="submit"
-              value="Log In"
+              value={t("login.submit")}
               style={{ WebkitAppearance: "none" }}
             />
             <h4>
-              Not Registered? &nbsp;
+              {t("login.notRegistered")} &nbsp;
               <a href="/#/register" className="CreateAcc">
-                Create an Account
+                {t("login.linkToRegister")}
               </a>
             </h4>
           </form>
@@ -85,7 +85,7 @@ const mapStateToProps = state => ({
   error: state.errors.errors.login
 });
 
-export default connect(
+export default withTranslation()(connect(
   mapStateToProps,
   { login }
-)(Login);
+)(Login));
