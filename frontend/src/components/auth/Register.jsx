@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "../../styles/auth/auth.scss";
 import PasswordShowAndHide from "./PasswordShowAndHide.jsx";
 import { register } from "../../actions/auth";
