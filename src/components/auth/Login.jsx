@@ -42,6 +42,7 @@ class Login extends Component {
           <Alert title="error" text={this.props.error} />
         ) : null}
         <div className="main">
+        <h1>{t("login.submit")}</h1>
           <div className="logo">
             <h3>dwb</h3>
           </div>

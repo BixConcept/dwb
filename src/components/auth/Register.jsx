@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./Login.css";
 import PasswordShowAndHide from "./PasswordShowAndHide.jsx";
 import { register } from "../../actions/auth";
@@ -45,9 +45,10 @@ class Register extends Component {
   render() {
     const {t} = this.props;
     return (
-      <div>
+      <Fragment>
         <Error error={this.props.error} />
         <div className="main">
+          <h1>{t("register.signup")}</h1>
           <div className="logo">
             <h3>dwb</h3>
           </div>
@@ -70,8 +71,7 @@ class Register extends Component {
             />
           </form>
         </div>
-        <GeneratePassword />
-      </div>
+      </Fragment>
     );
   }
 }
