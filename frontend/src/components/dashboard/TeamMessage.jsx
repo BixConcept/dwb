@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import css from "../../styles/dashboard/home/teamMessageWidget.module.scss";
 
- /*
+ 
 const colors = ["#22a6b3", "#6ab04c", "#eb4d4b", "#f0932b", "#95afc0", "#ff4444", "#eef00a", "#d600ff", "#e74c3c", "#f1c40f", "#bdc3c7", "#3498db", "#EA2027", "#FFC312", "#fed330"];
 let i = 0;
+let x = document.getElementById("quote");
+console.log(x) /*
 setInterval(function () {
-  let x = document.getElementsByClassName("quote")[0];
     changeText();
 }, 102,4);
 
@@ -34,7 +35,7 @@ const Quote = () => {
     "Niels, du bist länger und größer. - Friedrich III."
     ];
   let getRndmQuote = quotes[Math.floor(Math.random() * quotes.length)];
-  return <p className="quote">{getRndmQuote}</p>;
+  return <p id="quote">{getRndmQuote}</p>;
 };
 
 export class TeamMessage extends Component {
