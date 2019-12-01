@@ -10,7 +10,8 @@ export const SET_IS_TEAM_MEMBER = "SET_IS_TEAM_MEMBER";
 
 export const GET_TEAM = "GET_TEAM";
 export const ADD_USER_TO_TEAM = "ADD_USER_TO_TEAM";
-export const CREATE_TEAM = "CREATE_TEAM"
+export const CREATE_TEAM = "CREATE_TEAM";
+export const SET_TEAM_MESSAGE = "SET_TEAM_MESSAGE";
 
 // ERRORS
-export const GET_ERROR = "GET_ERROR"
+export const GET_ERROR = "GET_ERROR";

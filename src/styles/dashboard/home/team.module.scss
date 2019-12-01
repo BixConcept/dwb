@@ -72,3 +72,11 @@ input[type="submit"] {
     background: $primaryColor;
   }
 }
+
+input[disabled=""]:hover {
+  cursor: not-allowed;
+}
+
+.setTeamMessageForm {
+  margin-top: 1rem;
+}
