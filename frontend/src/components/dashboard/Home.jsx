@@ -19,7 +19,7 @@ class Home extends Component {
     return (
       <div className={css.wrapper}>
         <section className={css.teamMessage}>
-          <TeamMessage />
+          <TeamMessage key={Math.random().toString()}/>
         </section>
         <section className={css.graph1}>
           <h1 className="s-heading">{t("dashboard.home.graph1")}</h1>
