@@ -29,10 +29,8 @@ class App extends Component {
   }
 
   setAuthenticated(props) {
-    //    let session = props.cookies.get("session");
-    //    console.log(`authenticated: ${session !== undefined}`);
-    //    if (session !== undefined) this.props.setAuthenticated(true);
-
+    //let session = props.cookies.get("session");
+    //console.log(`authenticated: ${session !== undefined}`);
     this.props.setAuthenticated(true);
   }
 
