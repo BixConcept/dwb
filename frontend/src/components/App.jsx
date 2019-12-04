@@ -18,20 +18,18 @@ import { connect } from "react-redux";
 import { CookiesProvider, withCookies } from "react-cookie";
 
 import Footer from "./Footer";
+import { API_HOST } from "..";
 
 class App extends Component {
   componentDidMount() {
     this.setAuthenticated(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setAuthenticated(nextProps);
-  }
-
   setAuthenticated(props) {
-    //let session = props.cookies.get("session");
-    //console.log(`authenticated: ${session !== undefined}`);
-    this.props.setAuthenticated(true);
+    fetch(API_HOST + "/user/", { credentials: "include" })
+      .then(r => {
+        this.props.setAuthenticated(r.ok);
+    })
   }
 
   render() {
