@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/gorilla/mux"
 	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
@@ -77,18 +78,14 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Printf("[ * ] session: %+v\n", session)
 
-	sessionCookie := &http.Cookie{
+	sessionCookie := http.Cookie{
 		Path:   "/",
 		Name:   "session",
 		Value:  session.UUID,
-		MaxAge: 60 * 60 * 24 * 30 * 12,
+		Expires: time.Now().AddDate(1, 0, 0),
 	}
 
-	// remove for test purposes
-	//http.SetCookie(w, sessionCookie)
-
-	w.Header().Set("set-cookie", sessionCookie.String())
-
+	http.SetCookie(w, &sessionCookie)
 }
 
 func getUserBySession(w http.ResponseWriter, r *http.Request) {
@@ -199,7 +196,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		Path:   "/",
 		Name:   "session",
 		Value:  session.UUID,
-		MaxAge: 60 * 60 * 24 * 365,
+		Expires: time.Now().AddDate(1, 0, 0),
 	}
 
 	http.SetCookie(w, &cookie)
