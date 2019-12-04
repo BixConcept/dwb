@@ -83,6 +83,7 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 		Name:   "session",
 		Value:  session.UUID,
 		Expires: time.Now().AddDate(1, 0, 0),
+		Domain: "3nt3.de",
 	}
 
 	http.SetCookie(w, &sessionCookie)
@@ -197,6 +198,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		Name:   "session",
 		Value:  session.UUID,
 		Expires: time.Now().AddDate(1, 0, 0),
+		Domain: "3nt3.de",
 	}
 
 	http.SetCookie(w, &cookie)
