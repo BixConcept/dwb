@@ -79,6 +79,7 @@
   "contact.placeholders.name": "name",
   "contact.placeholders.email": "email",
   "contact.placeholders.message": "message",
+  "imprint.title": "imprint",
   "register.genPw": "Don't have an idea for a password? Generate a very secure one.",
   "register.gen" : "Generate",
   "register.copyToClipboard" : "Copy to clipboard",
