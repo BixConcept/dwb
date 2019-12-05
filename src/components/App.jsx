@@ -7,6 +7,8 @@ import Login from "./auth/Login.jsx";
 import Register from "./auth/Register.jsx";
 import Dashboard from "./dashboard/Dashboard.jsx";
 import Contact from "./Contact.jsx";
+import Imprint from "./Imprint";
+
 // router
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -47,6 +49,8 @@ class App extends Component {
                 <Route path="/dashboard" component={Dashboard} />
 
                 <Route path="/contact" component={Contact} />
+
+                <Route path="/imprint" component={Imprint} />
               </Switch>
             </div>
             <Footer />
