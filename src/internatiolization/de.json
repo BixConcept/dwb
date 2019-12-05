@@ -79,6 +79,7 @@
   "contact.placeholders.name": "name",
   "contact.placeholders.email": "e-mail",
   "contact.placeholders.message": "nachricht",
+  "imprint.title": "Impressum",
   "register.genPw" : "Du hast keine Idee für ein Kennwort? Generier doch eines!",
   "register.gen" : "Generieren",
   "register.copyToClipboard" : "Kopieren",
