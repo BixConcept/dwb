@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import css from "../styles/imprint.module.scss";
+import css from "../styles/privacyNotice.module.scss";
 import { withTranslation } from "react-i18next";
 
 
@@ -132,8 +132,6 @@ class PrivacyNotice extends Component {
           <p>Um die Sicherheit Ihrer Daten bei der Übertragung zu schützen, verwenden wir dem aktuellen Stand der Technik entsprechende Verschlüsselungsverfahren (z. B. SSL) über HTTPS.</p>
           <p></p><h2>Änderung unserer Datenschutzbestimmungen</h2>
           <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen, z.B. bei der Einführung neuer Services. Für Ihren erneuten Besuch gilt dann die neue Datenschutzerklärung.</p>
-          <h2>Fragen an den Datenschutzbeauftragten</h2>
-          <p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine E-Mail oder wenden Sie sich direkt an die für den Datenschutz verantwortliche Person in unserer Organisation:</p>
         </div>
       </div>
     );
