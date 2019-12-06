@@ -21,6 +21,7 @@ import { CookiesProvider, withCookies } from "react-cookie";
 
 import Footer from "./Footer";
 import { API_HOST } from "..";
+import PrivacyNotice from "./PrivacyNotice";
 
 class App extends Component {
   componentDidMount() {
@@ -31,7 +32,7 @@ class App extends Component {
     fetch(API_HOST + "/user/", { credentials: "include" })
       .then(r => {
         this.props.setAuthenticated(r.ok);
-    })
+      })
   }
 
   render() {
@@ -51,6 +52,7 @@ class App extends Component {
                 <Route path="/contact" component={Contact} />
 
                 <Route path="/imprint" component={Imprint} />
+                <Route path="/privacy-notice" component={PrivacyNotice} />
               </Switch>
             </div>
             <Footer />
