@@ -16,6 +16,9 @@ class Footer extends Component {
               <Link to="/imprint">{t("imprint.title")}</Link>
             </li>
             <li>
+              <Link to="/privacy-notice">{t("privacyNotice.title")}</Link>
+            </li>
+            <li>
               <Link to="/contact">{t("footer.contact")}</Link>
             </li>
           </ul>
