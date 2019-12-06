@@ -3,14 +3,8 @@ import React, { Component } from "react";
 import css from "../styles/imprint.module.scss";
 import { withTranslation } from "react-i18next";
 
-import { API_HOST } from "../index";
 
 class Imprint extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-
   render() {
     const { t } = this.props;
     return (
