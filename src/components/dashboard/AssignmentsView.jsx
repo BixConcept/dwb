@@ -65,6 +65,7 @@ function Assignment(props) {
       <div className={css.body}>
         <h2>{t("date", { date: new Date(props.assignment.due_date) })}</h2>
         <p>{props.assignment.text}</p>
+        {props.assignment.file !== undefined ? <a>props.assignment.file</a> : null}
         <p className={css.authorTag}>
           - by {props.assignment.author_name} on{" "}
           {t("date", { date: new Date(props.assignment.created_at) })}

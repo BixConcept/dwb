@@ -20,9 +20,14 @@ export const getAssignments = () => dispatch => {
 
 // CREATE_ASSIGNMENTS
 export const createAssignment = assignment => dispatch => {
-  assignment.due_date = new Date(assignment.due_date);
+  assignment.assignment.due_date = new Date(assignment.due_date);
+
+  const formData = new FormData();
+  formData.append("data", JSON.stringify(assignment.assignment));
+  formData.append("upload_file", assignment.file)
+
   axios
-    .post(API_HOST + "/assignment/", JSON.stringify(assignment), {
+    .post(API_HOST + "/assignment/", formData, {
       withCredentials: true
     })
     .then(res => {

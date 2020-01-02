@@ -23,8 +23,15 @@ export class CreateAssignmentForm extends Component {
   };
 
   handleChange(e) {
+    if (e.target.type === "file") {
+      this.setState({
+        file: e.target.files[0]
+      })
+      return
+    }
+
     this.setState({
-      [e.target.id]: e.target.value
+      assignment: {...this.state.assignment, [e.target.id]: e.target.value }
     });
 
     console.log(this.state);
@@ -37,8 +44,11 @@ export class CreateAssignmentForm extends Component {
 
     this.props.createAssignment({
       ...this.state,
-      author_name: this.props.username,
-      subject: getIDFromSelected(this.options, this.state.subject)
+      assignment: {
+        ...this.state.assignment,
+        author_name: this.props.username,
+        subject: getIDFromSelected(this.options, this.state.subject)
+      },
     });
   }
 
@@ -92,6 +102,7 @@ export class CreateAssignmentForm extends Component {
             onChange={this.handleChange}
             autoComplete="off"
           />
+          <input type="file" name="file" id="file" onChange={this.handleChange}/>
           <input
             style={{ WebkitAppearance: "none" }}
             type="submit"
