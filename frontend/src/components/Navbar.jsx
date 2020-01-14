@@ -28,7 +28,7 @@ class Navbar extends Component {
   }
 
   updateLinks(authenticated) {
-  const { t } = this.props;
+    const { t } = this.props;
     if (authenticated) {
       this.setState({
         items: [
@@ -108,8 +108,5 @@ const mapStateToProps = state => ({
 });
 
 export default withTranslation()(
-  connect(
-    mapStateToProps,
-    { logout }
-  )(withCookies(Navbar))
+  connect(mapStateToProps, { logout })(withCookies(Navbar))
 );
