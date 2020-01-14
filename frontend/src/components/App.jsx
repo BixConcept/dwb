@@ -7,6 +7,8 @@ import Login from "./auth/Login.jsx";
 import Register from "./auth/Register.jsx";
 import Dashboard from "./dashboard/Dashboard.jsx";
 import Contact from "./Contact.jsx";
+import Imprint from "./Imprint";
+
 // router
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -18,20 +20,19 @@ import { connect } from "react-redux";
 import { CookiesProvider, withCookies } from "react-cookie";
 
 import Footer from "./Footer";
+import { API_HOST } from "..";
+import PrivacyNotice from "./PrivacyNotice";
 
 class App extends Component {
   componentDidMount() {
     this.setAuthenticated(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setAuthenticated(nextProps);
-  }
-
   setAuthenticated(props) {
-    //let session = props.cookies.get("session");
-    //console.log(`authenticated: ${session !== undefined}`);
-    this.props.setAuthenticated(true);
+    fetch(API_HOST + "/user/", { credentials: "include" })
+      .then(r => {
+        this.props.setAuthenticated(r.ok);
+      })
   }
 
   render() {
@@ -49,6 +50,9 @@ class App extends Component {
                 <Route path="/dashboard" component={Dashboard} />
 
                 <Route path="/contact" component={Contact} />
+
+                <Route path="/imprint" component={Imprint} />
+                <Route path="/privacy-notice" component={PrivacyNotice} />
               </Switch>
             </div>
             <Footer />

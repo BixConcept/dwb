@@ -13,6 +13,12 @@ class Footer extends Component {
           <ul>
             <li>&copy; 2019 3nt3rt41nm3nt GbR</li>
             <li>
+              <Link to="/imprint">{t("imprint.title")}</Link>
+            </li>
+            <li>
+              <Link to="/privacy-notice">{t("privacyNotice.title")}</Link>
+            </li>
+            <li>
               <Link to="/contact">{t("footer.contact")}</Link>
             </li>
           </ul>
