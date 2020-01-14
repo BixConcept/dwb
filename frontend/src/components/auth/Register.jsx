@@ -50,7 +50,7 @@ class Register extends Component {
       <Fragment>
         <Error error={this.props.error} />
         <div className="main">
-          <h1>{t("register.signup")}</h1>
+          <h1 className={"headline"}>{t("register.signup")}</h1>
           <div className="logo">
             <h3>dwb</h3>
           </div>
