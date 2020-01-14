@@ -27,7 +27,7 @@ class LangChanger extends Component {
 
             <ul className={css.dropdown}>
               <li>
-                <p onClick={() => this.changeLng("de")}>deutsch <span role="img" aria-label="german">🇩</span></p>
+                <p onClick={() => this.changeLng("de")}>deutsch <span role="img" aria-label="german">🇩🇪</span></p>
               </li>
               <li>
                 <p onClick={() => this.changeLng("en")}>english <span role="img" aria-label="english">🇬🇧</span></p>
