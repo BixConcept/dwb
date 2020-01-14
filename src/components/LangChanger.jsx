@@ -23,7 +23,7 @@ class LangChanger extends Component {
           <button className={css.btn}>
             <span>{t("selectLanguage.language")}</span> 
             <p>&nbsp;</p>
-            <i class="fas fa-language"></i>
+            <i className="fas fa-language"></i>
 
             <ul className={css.dropdown}>
               <li>

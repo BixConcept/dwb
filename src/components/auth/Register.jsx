@@ -6,6 +6,9 @@ import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import Alert from "../Alert.jsx";
 
+// import GeneratePassword from "./GeneratePassword";
+
+
 function Error(props) {
   if (!props.error) return null;
   return <Alert text={props.error} title="error" />;
@@ -47,7 +50,7 @@ class Register extends Component {
       <Fragment>
         <Error error={this.props.error} />
         <div className="main">
-          <h1>{t("register.signup")}</h1>
+          <h1 className={"headline"}>{t("register.signup")}</h1>
           <div className="logo">
             <h3>dwb</h3>
           </div>
