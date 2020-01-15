@@ -1,6 +1,8 @@
 FROM golang:latest
 
-COPY . /dwb
+COPY . /
+CMD "go get ."
+CMD "go build -o /dwb"
 
 EXPOSE 8000
-ENTRYPOINT /dwb/dwb
+ENTRYPOINT [ "/dwb" ]

@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/mux"
 	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
 	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/handlers"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/metrics"
 )
 
 const port int = 8000
@@ -39,6 +40,8 @@ func main() {
 	r.HandleFunc("/team/message", handlers.Team)
 
 	r.HandleFunc("/contact/", handlers.Contact)
+
+	r.HandleFunc("/metrics", metrics.MetricsHandler)
 
 	// start server
 	fmt.Printf("[ ~ ] starting server on port %d\n", port)
