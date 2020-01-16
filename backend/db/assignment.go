@@ -64,9 +64,18 @@ func GetAssignmentsByTeam(teamID int) ([]structs.Assignment, error) {
 	return assignments, nil
 }
 
+func GetAssignmentByFile(fileName string) (structs.Assignment, error) {
+	query := "select * from assignments where file_path = $1;"
+	row := Database.QueryRow(query, fileName)
+
+	var a structs.Assignment
+	err := row.Scan(&a.ID, &a.CreatedAt, &a.DueDate, &a.Text, &a.Subject, &a.Description, &a.Author, &a.AuthorName, &a.File, &a.FileName)
+	return a, err
+}
+
 func CreateAssignment(assignment structs.Assignment) error {
-	query := "insert into assignments values (default, now(), $1, $2, $3, $4, $5, $6)"
-	_, err := Database.Exec(query, assignment.DueDate, assignment.Text, assignment.Subject, assignment.Description, assignment.Author, assignment.AuthorName)
+	query := "insert into assignments values (default, now(), $1, $2, $3, $4, $5, $6, $7, $8)"
+	_, err := Database.Exec(query, assignment.DueDate, assignment.Text, assignment.Subject, assignment.Description, assignment.Author, assignment.AuthorName, assignment.File, assignment.FileName)
 	return err
 }
 
@@ -86,7 +95,7 @@ func GetAllAssignments() ([]structs.Assignment, error) {
 	assignments := []structs.Assignment{}
 	for rows.Next() {
 		a := structs.Assignment{}
-		err := rows.Scan(&a.ID, &a.CreatedAt, &a.DueDate, &a.Text, &a.Subject, &a.Description, &a.Author, &a.AuthorName)
+		err := rows.Scan(&a.ID, &a.CreatedAt, &a.DueDate, &a.Text, &a.Subject, &a.Description, &a.Author, &a.AuthorName, &a.File, &a.FileName)
 		if err != nil {
 			return nil, err
 		}

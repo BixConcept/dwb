@@ -16,6 +16,8 @@ type Assignment struct {
 	Description string    `json:"description"`
 	Author      int       `json:"author"`
 	AuthorName  string    `json:"author_name"`
+	File        bool      `json:"file"`
+	FileName    string    `json:"file_name"`
 }
 
 // User struct
