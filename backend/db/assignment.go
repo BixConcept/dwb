@@ -13,7 +13,7 @@ func GetAssignmentsByOwner(ownerID int) ([]structs.Assignment, error) {
 	for rows.Next() {
 		assignment := structs.Assignment{}
 
-		err := rows.Scan(&assignment.ID, &assignment.CreatedAt, &assignment.DueDate, &assignment.Text, &assignment.Subject, &assignment.Description, &assignment.Author, &assignment.AuthorName)
+		err := rows.Scan(&assignment.ID, &assignment.CreatedAt, &assignment.DueDate, &assignment.Text, &assignment.Subject, &assignment.Description, &assignment.Author, &assignment.AuthorName, &assignment.File, &assignment.FileName)
 		if err != nil {
 			return nil, err
 		}
@@ -54,7 +54,7 @@ func GetAssignmentsByTeam(teamID int) ([]structs.Assignment, error) {
 
 		for rows.Next() {
 			a := structs.Assignment{}
-			err := rows.Scan(&a.ID, &a.CreatedAt, &a.DueDate, &a.Text, &a.Subject, &a.Description, &a.Author, &a.AuthorName)
+			err := rows.Scan(&a.ID, &a.CreatedAt, &a.DueDate, &a.Text, &a.Subject, &a.Description, &a.Author, &a.AuthorName, &a.File, &a.FileName)
 			if err != nil {
 				return nil, err
 			}
