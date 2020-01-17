@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/mux"
 	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
 	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/handlers"
+	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/metrics"
 )
 
 const port int = 8000
@@ -40,7 +41,12 @@ func main() {
 
 	r.HandleFunc("/contact/", handlers.Contact)
 
+	r.HandleFunc("/metrics", metrics.MetricsHandler)
+
+	r.HandleFunc("/file", handlers.GetFile)
+	r.HandleFunc("/file/{path}", handlers.GetFile)
+
 	// start server
-	fmt.Printf("[ ~ ] starting server on port %d\n", port)
+	fmt.Printf("[ ~ ] starting srver on port %d\n", port)
 	log.Panic(http.ListenAndServe(fmt.Sprintf(":%d", port), r))
 }

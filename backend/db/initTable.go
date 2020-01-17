@@ -1,7 +1,7 @@
 package db
 
 func initAssignmentsTable() error {
-	query := "CREATE TABLE IF NOT EXISTS assignments (id serial, created_at timestamp, due_date date, text text, subject integer, description text, author int, author_name text);"
+	query := "CREATE TABLE IF NOT EXISTS assignments (id serial, created_at timestamp, due_date date, text text, subject integer, description text, author int, author_name text, file BOOLEAN, file_path text);"
 	_, err := Database.Exec(query)
 	return err
 }

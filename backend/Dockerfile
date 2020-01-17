@@ -1,6 +1,6 @@
 FROM golang:latest
 
-COPY . /dwb
+ADD dwb /dwb
 
 EXPOSE 8000
-ENTRYPOINT /dwb/dwb
+ENTRYPOINT [ "/dwb" ]
