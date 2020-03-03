@@ -19,7 +19,8 @@ const Quote = () => {
     "Niels, du bist länger und größer. --Friedrich III.",
     "Maurizio, Hose runter! --Anon",
     "Fr. Herrmann ist eine Zuckerschnecke... --David K.",
-    "Wir danken dem großen Meister dafür, dass er die Sonne erfunden hat - sonst wäre es immer so dunkel und kalt. --CSU über Franz Josef Strauß"
+    "Wir danken dem großen Meister dafür, dass er die Sonne erfunden hat - sonst wäre es immer so dunkel und kalt. --CSU über Franz Josef Strauß",
+	"Mein Skateboard ist weg! Wo ist mein Skateboard?? --Fr. Wolf-Krautwald"
   ];
   let getRndmQuote = quotes[Math.floor(Math.random() * quotes.length)];
   return <p id="quote">{getRndmQuote}</p>;
