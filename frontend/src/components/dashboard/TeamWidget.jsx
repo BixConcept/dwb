@@ -4,7 +4,12 @@ import { connect } from "react-redux";
 
 import { withTranslation } from "react-i18next";
 
-import { getTeam, addUserToTeam, createTeam, setTeamMessage } from "../../actions/teams";
+import {
+  getTeam,
+  addUserToTeam,
+  createTeam,
+  setTeamMessage
+} from "../../actions/teams";
 
 import css from "../../styles/dashboard/home/team.module.scss";
 
@@ -15,12 +20,11 @@ const getColor = permission => {
 };
 
 class SetTeamMessageTF extends Component {
+  constructor(props) {
+    super(props);
 
-  constructor(props) { 
-    super(props)
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -29,7 +33,8 @@ class SetTeamMessageTF extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.setTeamMessage(this.state.form);
+    setTeamMessage(this.state.form);
+    this.props.team.message = this.state.form.message
   }
 
   render() {
@@ -37,7 +42,7 @@ class SetTeamMessageTF extends Component {
     if (this.props.permission < 1) return null;
     return (
       <div className={css.setTeamMessageForm}>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className={css.form}>
           <input
             style={{ WebkitAppearance: "none" }}
             type="text"
@@ -49,7 +54,11 @@ class SetTeamMessageTF extends Component {
             style={{ WebkitAppearance: "none" }}
             type="submit"
             value={t("dashboard.home.team.message.form.submit")}
-            disabled={this.state === null || this.state.form.message === undefined || this.state.form.message.trim() === ""}
+            disabled={
+              this.state === null ||
+              this.state.form.message === undefined ||
+              this.state.form.message.trim() === ""
+            }
           />
         </form>
       </div>
@@ -59,10 +68,10 @@ class SetTeamMessageTF extends Component {
 
 class AddMemberTF extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -79,7 +88,7 @@ class AddMemberTF extends Component {
     if (this.props.permission < 1) return null;
     return (
       <div className={css.addUserForm}>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className={css.form}>
           <input
             style={{ WebkitAppearance: "none" }}
             type="text"
@@ -91,53 +100,17 @@ class AddMemberTF extends Component {
             style={{ WebkitAppearance: "none" }}
             type="submit"
             value={t("dashboard.home.team.members.form.submit")}
-            disabled={this.state === null || this.state.form.username === undefined || this.state.form.username.trim() === ""}
+            disabled={
+              this.state === null ||
+              this.state.form.username === undefined ||
+              this.state.form.username.trim() === ""
+            }
           />
         </form>
       </div>
     );
   }
 }
-
-const TeamMemberList = props => {
-  if (props.members === undefined) {
-    return null;
-  }
-  return (
-    <ul className={css.teamMembers}>
-      {props.members
-        .sort((a, b) => {
-          if (a.username.toLowerCase() > b.username.toLowerCase()) {
-            return 1;
-          } else if (a.username.toLowerCase() < b.username.toLowerCase()) {
-            return -1;
-          }
-          return 0;
-        })
-        .map(member => {
-          return (
-            <TeamMember name={member.username} permission={member.permission} />
-          );
-        })}
-    </ul>
-  );
-};
-
-const TeamMember = props => {
-  return (
-    <li className={css.teamMember}>
-      <div style={{ backgroundColor: getColor(props.permission) }}>
-        {props.name[0].toUpperCase()}
-      </div>
-      <p>
-        {props.name}{" "}
-        <span style={{ display: props.permission < 1 ? "none" : "inline" }}>
-          {["", "moderator*in", "team owner", "admin"][props.permission]}
-        </span>
-      </p>
-    </li>
-  );
-};
 
 export class TeamWidget extends Component {
   static propTypes = {
@@ -206,8 +179,6 @@ export class TeamWidget extends Component {
       return (
         <div>
           <div>
-            <h2 className="xs-heading">{t("dashboard.home.team.subtitle")}</h2>
-            <TeamMemberList members={this.props.team.members} />
             <AddMemberTF
               t={t}
               addUserToTeam={this.props.addUserToTeam}
@@ -245,8 +216,5 @@ const mapDispatchToProps = {
 };
 
 export default withTranslation()(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(TeamWidget)
+  connect(mapStateToProps, mapDispatchToProps)(TeamWidget)
 );

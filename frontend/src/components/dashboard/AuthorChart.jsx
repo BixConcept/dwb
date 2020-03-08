@@ -33,10 +33,10 @@ class Chart extends Component {
 
     this.setState({
       chartData: {
-        labels: Object.keys(foo),
+        labels: Object.keys(foo).sort((a, b) => -foo[a] + foo[b]),
         datasets: [
           {
-            data: Object.values(foo),
+            data: Object.values(foo).sort((a, b) => -a + b),
             backgroundColor: [
               "rgba(26, 188, 156,1.0)",
               "rgba(46, 204, 113,1.0)",
@@ -51,26 +51,12 @@ class Chart extends Component {
               "rgba(241, 196, 15,1.0)",
               "rgba(230, 126, 34,1.0)",
               "rgba(231, 76, 60,1.0)",
-              "rgba(236, 240, 241,1.0)",
+              "rgba(236, 240, 241,1.0)"
             ]
           }
         ]
       }
     });
-
-    /*
-    this.setState({
-      dataluuuuuv: {
-      labels: ["soos", "fdsa"],
-        label: "author",
-        data: Object.values(foo),
-        backgroundColor: "rgba(255,99,132,0.2)"
-      }
-    });
-
-    */
-
-    console.log(this.state);
   }
 
   aggregate(rawData) {
@@ -88,28 +74,12 @@ class Chart extends Component {
   }
 
   render() {
-    return (
-      <Pie
-        data={this.state.chartData}
-        options={{
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  min: 0 // minimum will be 0, unless there is a lower value.
-                }
-              }
-            ]
-          }
-        }}
-
-        />
-    );
+    return <Pie data={this.state.chartData} options={{ legend: false }} />;
   }
 }
 
 const mapStateToProps = state => ({
   assignments: state.assignments.assignments
-})
+});
 
 export default connect(mapStateToProps)(Chart);

@@ -8,7 +8,6 @@ import AuthorChart from "./AuthorChart";
 import CreateAssignmentForm from "./CreateAssignmentForm";
 import TeamWidget from "./TeamWidget";
 import AssignmentsWidget from "./AssignmentsWidget";
-import StatsWidget from "./StatsWidget";
 import TeamMessage from "./TeamMessage";
 
 import { withTranslation } from "react-i18next";
@@ -38,10 +37,6 @@ class Home extends Component {
         <section className={css.team}>
           <h1 className="s-heading">{t("dashboard.home.team.title")}</h1>
           <TeamWidget />
-        </section>
-        <section className={css.stats}>
-          <h1 className="s-heading">{t("dashboard.home.stats.title")}</h1>
-          <StatsWidget />
         </section>
         <section className={css.assignments}>
           <AssignmentsWidget />
