@@ -28,29 +28,26 @@ export class TeamMessage extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     this.setState({
       quote: quotes[Math.floor(Math.random() * quotes.length)]
     });
   }
 
   render() {
-    if (this.props.message !== undefined) {
-      return (
-        <div className={css.messageContainer}>
-          {this.props.message ? (
-            <p className={css.message}>{this.props.message}</p>
-          ) : null}
-          <p>{this.state.quote}</p>
-        </div>
-      );
-    } else {
-      return null;
-    }
+    return (
+      <div className={css.messageContainer}>
+        {this.props.team ? (
+          <p className={css.message}>{this.props.team.message}</p>
+        ) : null}
+        <p>{this.state.quote}</p>
+      </div>
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  message: state.teams.team.message
+  team: state.teams.team.team
 });
 
 export default connect(mapStateToProps)(TeamMessage);

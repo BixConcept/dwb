@@ -1,4 +1,9 @@
-import { GET_TEAM, CREATE_TEAM, ADD_USER_TO_TEAM, SET_TEAM_MESSAGE } from "../actions/types";
+import {
+  GET_TEAM,
+  CREATE_TEAM,
+  ADD_USER_TO_TEAM,
+  SET_TEAM_MESSAGE
+} from "../actions/types";
 
 const initialState = {
   team: {}
@@ -23,7 +28,7 @@ export default function(state = initialState, action) {
       };
     case SET_TEAM_MESSAGE:
       let foo = state;
-      foo.team.team.message = action.payload.message
+      foo.team.message = action.payload;
       return foo;
     default:
       return state;
