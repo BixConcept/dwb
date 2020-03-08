@@ -8,11 +8,10 @@ import { getSubjects, getIDFromSelected } from "./subjectName";
 
 export class CreateAssignmentForm extends Component {
   subjects = [];
-  options = {};
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { options: [] };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -27,7 +26,7 @@ export class CreateAssignmentForm extends Component {
       [e.target.id]: e.target.value
     });
 
-    console.log(this.state);
+    //console.log(this.state);
   }
 
   handleSubmit(e) {
@@ -38,21 +37,27 @@ export class CreateAssignmentForm extends Component {
     this.props.createAssignment({
       ...this.state,
       author_name: this.props.username,
-      subject: getIDFromSelected(this.options, this.state.subject)
+      subject: getIDFromSelected(this.state.options, this.state.subject)
     });
   }
-
   componentDidMount() {
+    console.log("update");
     const { t } = this.props;
 
-    this.subjects = getSubjects();
-    console.log(this.subjects);
-    for (let i = 0; i < Object.values(this.subjects).length; i++) {
-      this.options[Object.keys(this.subjects)[i]] = t(
-        "subjects." + Object.values(this.subjects)[i]
+    const subjects = getSubjects();
+    console.log(subjects);
+
+    let options = [];
+    for (let i = 0; i < Object.values(subjects).length; i++) {
+      options[Object.keys(subjects)[i]] = t(
+        "subjects." + Object.values(subjects)[i]
       );
+      //console.log(options)
     }
 
+    this.setState({
+      options
+    })
   }
 
   render() {
@@ -71,9 +76,11 @@ export class CreateAssignmentForm extends Component {
             <option value="" style={{ WebkitAppearance: "none" }} disabled>
               {t("dashboard.home.createAssignment.form.subject")}
             </option>
-            {Object.values(this.options).sort().map(subject => (
-              <option key={subject}>{subject}</option>
-            ))}
+            {Object.values(this.state.options)
+              .sort()
+              .map(subject => (
+                <option key={subject}>{subject}</option>
+              ))}
           </select>
           <input
             style={{ WebkitAppearance: "none" }}
@@ -91,6 +98,7 @@ export class CreateAssignmentForm extends Component {
             id="due_date"
             onChange={this.handleChange}
             autoComplete="off"
+            required
           />
           <input
             style={{ WebkitAppearance: "none" }}
@@ -108,8 +116,5 @@ const mapStateToProps = state => ({
 });
 
 export default withTranslation()(
-  connect(
-    mapStateToProps,
-    { createAssignment }
-  )(CreateAssignmentForm)
+  connect(mapStateToProps, { createAssignment })(CreateAssignmentForm)
 );

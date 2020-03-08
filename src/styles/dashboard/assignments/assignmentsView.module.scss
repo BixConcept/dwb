@@ -3,7 +3,7 @@
 .assignmentContainer {
   display: grid;
 
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 1rem;
   hyphens: auto;
 }
@@ -58,6 +58,12 @@
 
       font-style: italic;
     }
+  }
+}
+
+@media (max-width: 1400px) and (min-width: 1001px) {
+  .assignmentContainer {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 

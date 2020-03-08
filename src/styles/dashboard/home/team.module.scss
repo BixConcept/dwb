@@ -1,53 +1,17 @@
 @import "../../vars";
 
-.teamMembers {
-  margin: 1rem 0;
-
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-
-  list-style: none;
-}
-
-.teamMember {
-  $size: 60px; // ???
-
+.form {
+  display: flex;
+  flex-direction: column;
   > * {
-    flex: 1;
-  }
-
-  > div {
-    margin: 0 auto;
-
-    border-radius: 50%;
-
-    line-height: $size;
-    width: $size;
-    height: $size;
-
-    text-align: center;
-
-    color: #fff;
-    font-size: calc(#{$size} / 2);
-  }
-
-  p {
-    margin: 0.5rem 0;
-    text-align: center;
-
-    span {
-      background-color: $primaryColor;
-      color: #fff;
-      border-radius: 4px;
-      padding: 0 5px;
-    }
+    margin: 5px 0;
   }
 }
 
 input,
 select {
-  width: 100%;
   padding: 1rem;
+  width: 100%;
 
   font-size: 1rem;
   font-weight: bold;

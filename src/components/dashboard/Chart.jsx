@@ -6,11 +6,7 @@ import { Bar } from "react-chartjs-2";
 import { getNames } from "./subjectName";
 
 class Chart extends Component {
-  state = {
-    dataluuuuuv: {
-      label: "foo"
-    }
-  };
+  state = {};
 
   componentWillReceiveProps(newProps) {
     let foo = this.aggregate(newProps.assignments);
@@ -26,7 +22,6 @@ class Chart extends Component {
         ),
         datasets: [
           {
-            label: "subject",
             data: Object.values(foo).sort((a, b) => {
               return b - a;
             }),
@@ -44,7 +39,6 @@ class Chart extends Component {
               "rgba(241, 196, 15,1.0)",
               "rgba(230, 126, 34,1.0)",
               "rgba(231, 76, 60,1.0)",
-              "rgba(236, 240, 241,1.0)",
               "rgba(46, 204, 113,1.0)",
               "rgba(52, 152, 219,1.0)",
               "rgba(155, 89, 182,1.0)",
@@ -56,25 +50,12 @@ class Chart extends Component {
               "rgba(44, 62, 80,1.0)",
               "rgba(241, 196, 15,1.0)",
               "rgba(230, 126, 34,1.0)",
-              "rgba(231, 76, 60,1.0)",
-              "rgba(236, 240, 241,1.0)"
+              "rgba(231, 76, 60,1.0)"
             ]
           }
         ]
       }
     });
-
-    /*
-    this.setState({
-      dataluuuuuv: {
-      labels: ["soos", "fdsa"],
-        label: "subject",
-        data: Object.values(foo),
-        backgroundColor: "rgba(255,99,132,0.2)"
-      }
-    });
-
-    */
   }
 
   aggregate(rawData) {
@@ -99,7 +80,6 @@ class Chart extends Component {
       translatedLabels.push(t("subjects." + name));
     }
 
-    console.log(translatedLabels);
     return translatedLabels;
   }
 
@@ -109,6 +89,7 @@ class Chart extends Component {
         className=""
         data={this.state.chartData}
         options={{
+          legend: false,
           responsive: true,
           scales: {
             yAxes: [

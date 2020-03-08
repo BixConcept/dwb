@@ -16,7 +16,7 @@ import { Trans, withTranslation } from "react-i18next";
 // Views
 import Home from "./Home.jsx";
 import AssignmentsView from "./AssignmentsView.jsx";
-import TeamView from "./TeamView.jsx";
+import TeamView from "./team/TeamView.jsx";
 
 class Dashboard extends Component {
   static propTypes = {
@@ -54,12 +54,14 @@ class Dashboard extends Component {
       <div className={css.dashboard}>
         <aside>
           <h1>
-            <Trans i18nKey="dashboard.nav.greeting">
-              <span className="text-primary">
-                {{ name: this.props.user.username }}
-              </span>
-              !
-            </Trans>
+            {this.props.user.username !== undefined ? (
+              <Trans i18nKey="dashboard.nav.greeting">
+                <span className="text-primary">
+                  {{ name: this.props.user.username }}
+                </span>
+                !
+              </Trans>
+            ) : null}
           </h1>
           <ul>
             <li>
@@ -70,6 +72,11 @@ class Dashboard extends Component {
             <li>
               <Link className={css.link} to="/dashboard/assignments">
                 {t("dashboard.nav.assignments")}
+              </Link>
+            </li>
+            <li>
+              <Link className={css.link} to="/dashboard/team">
+                {t("dashboard.nav.team")}
               </Link>
             </li>
           </ul>
@@ -98,12 +105,9 @@ const mapStateToProps = state => ({
 });
 
 export default withTranslation()(
-  connect(
-    mapStateToProps,
-    {
-      getAssignments,
-      deleteAssignment,
-      getUser
-    }
-  )(withCookies(Dashboard))
+  connect(mapStateToProps, {
+    getAssignments,
+    deleteAssignment,
+    getUser
+  })(withCookies(Dashboard))
 );
