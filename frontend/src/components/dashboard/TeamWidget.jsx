@@ -33,8 +33,8 @@ class SetTeamMessageTF extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    setTeamMessage(this.state.form);
-    this.props.team.message = this.state.form.message
+    this.props.setTeamMessage(this.state.form);
+    console.log(this.props)
   }
 
   render() {

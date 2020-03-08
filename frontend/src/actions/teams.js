@@ -89,6 +89,7 @@ export const setTeamMessage = message => dispatch => {
       });
     })
     .catch(err => {
+      console.error("error setting team message", err);
       dispatch({
         type: "setTeamMessage",
         error: "error setting team message."
