@@ -23,12 +23,7 @@ const quotes = [
 
 export class TeamMessage extends Component {
   state = {};
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
-    console.log(this.props);
     this.setState({
       quote: quotes[Math.floor(Math.random() * quotes.length)]
     });

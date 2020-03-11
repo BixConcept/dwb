@@ -26,10 +26,8 @@ class Chart extends Component {
   };
 
   componentWillReceiveProps(newProps) {
-    console.log(newProps.assignments);
 
     let foo = this.aggregate(newProps.assignments);
-    console.log(Object.keys(foo));
 
     this.setState({
       chartData: {

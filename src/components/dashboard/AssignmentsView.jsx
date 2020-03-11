@@ -87,6 +87,7 @@ function AssignmentsList(props) {
             assignment={assignment}
             removeButtonHidden={props.permission > 1}
             removeAssignment={props.removeAssignment}
+            key={assignment.id}
           />
         );
       })}
@@ -128,8 +129,7 @@ const mapStateToProps = state => ({
 });
 
 export default withTranslation()(
-  connect(
-    mapStateToProps,
-    { getAssignments, getUser, deleteAssignment }
-  )(AssignmentsView)
+  connect(mapStateToProps, { getAssignments, getUser, deleteAssignment })(
+    AssignmentsView
+  )
 );

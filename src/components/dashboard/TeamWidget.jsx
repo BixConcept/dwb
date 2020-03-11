@@ -13,11 +13,6 @@ import {
 
 import css from "../../styles/dashboard/home/team.module.scss";
 
-const colors = ["#8e44ad", "#3498db", "#e67e22", "#95a5a6"].reverse();
-const getColor = permission => {
-  console.log(permission);
-  return colors[permission];
-};
 
 class SetTeamMessageTF extends Component {
   constructor(props) {
@@ -34,7 +29,6 @@ class SetTeamMessageTF extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.setTeamMessage(this.state.form);
-    console.log(this.props)
   }
 
   render() {

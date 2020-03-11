@@ -31,14 +31,11 @@ class Register extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
 
     this.props.register(this.state);
   }
 
   componentWillReceiveProps(newProps) {
-    console.log(newProps);
-
     if (newProps.isAuthenticated) this.props.history.push("/dashboard");
     this.setState({
       error: newProps.error

@@ -41,11 +41,9 @@ export class CreateAssignmentForm extends Component {
     });
   }
   componentDidMount() {
-    console.log("update");
     const { t } = this.props;
 
     const subjects = getSubjects();
-    console.log(subjects);
 
     let options = [];
     for (let i = 0; i < Object.values(subjects).length; i++) {
