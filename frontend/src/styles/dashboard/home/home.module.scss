@@ -10,7 +10,7 @@
   //   "create create create ateam team team"
   //   "stats stats team team team team" "graph1 graph1 graph1 graph2 graph2 graph2";
 
-  grid-template-areas: "msg msg" "assignments assignments" "create team" "graph1 graph2";
+  grid-template-areas: "msg msg" "assignments assignments" "create team" "graph1 graph2" "ag ag";
 
   grid-gap: 40px;
 
@@ -28,6 +28,11 @@
 
   .graph2 {
     grid-area: graph2;
+  }
+
+  .activityGraph {
+    height: 500px;
+    grid-area: ag;
   }
 
   .create {
@@ -64,14 +69,14 @@
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
   .wrapper {
     grid-template-columns: 1fr;
     grid-template-areas: "msg" "assignments" "create" "team";
-  }
-
-  .graph1,
-  .graph2 {
-    display: none;
+    .graph1,
+    .graph2,
+    .activityGraph {
+      display: none;
+    }
   }
 }

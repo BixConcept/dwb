@@ -42,10 +42,6 @@ class GeneratePassword extends Component {
     this.setState({ value, copied: false });
   };
 
-  onClick = ({ target: { innerHTML } }) => {
-    console.log(`Click on "${innerHTML}"`);
-  };
-
   render() {
     const {t} = this.props;
     return (

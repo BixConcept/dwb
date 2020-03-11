@@ -6,7 +6,12 @@ import { Bar } from "react-chartjs-2";
 import { getNames } from "./subjectName";
 
 class Chart extends Component {
-  state = {};
+  state = {
+    chartData: {
+      labels: [],
+      datasets: [{ data: [] }]
+    }
+  };
 
   componentWillReceiveProps(newProps) {
     let foo = this.aggregate(newProps.assignments);

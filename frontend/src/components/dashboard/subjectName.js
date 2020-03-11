@@ -9,7 +9,6 @@ export const getNames = ids => {
   for (let id of ids) {
     foo.push(getName(id));
   }
-  console.log(foo);
   return foo;
 };
 

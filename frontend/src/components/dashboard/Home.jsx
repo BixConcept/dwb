@@ -4,6 +4,7 @@ import css from "../../styles/dashboard/home/home.module.scss";
 
 import Chart from "./Chart";
 import AuthorChart from "./AuthorChart";
+import ActivityGraph from "./ActivityGraph"
 
 import CreateAssignmentForm from "./CreateAssignmentForm";
 import TeamWidget from "./TeamWidget";
@@ -40,6 +41,10 @@ class Home extends Component {
         </section>
         <section className={css.assignments}>
           <AssignmentsWidget />
+        </section>
+        <section className={css.activityGraph}>
+          <h1>{t("dashboard.home.activityGraph.title")}</h1>
+          <ActivityGraph />
         </section>
       </div>
     );

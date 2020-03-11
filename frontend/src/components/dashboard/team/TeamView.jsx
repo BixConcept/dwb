@@ -69,7 +69,6 @@ class TeamView extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(nextProps.team);
     return { team: nextProps.team };
   }
 
