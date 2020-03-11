@@ -50,7 +50,7 @@ class ActivityGraph extends React.Component {
               aggregate(getLabels(), nextProps.assignments, "due_date")
             ),
             backgroundColor: ["rgba(52, 152, 219,.5)"],
-            lineTension: 0,
+            // lineTension: 0,
           },
           {
             label: "assignments created",
@@ -58,7 +58,7 @@ class ActivityGraph extends React.Component {
               aggregate(getLabels(), nextProps.assignments, "created_at")
             ),
             backgroundColor: ["rgba(231, 76, 60,.5)"],
-            lineTension: 0,
+            // lineTension: 0,
           }
         ]
       }
