@@ -80,7 +80,7 @@
   "dashboard.assignments.table.text": "assignment",
   "dashboard.assignments.table.dueDate": "due date",
   "dashboard.assignments.table.author": "author",
-  "dashboard.home.activityGraph.title": "activity (14 days)",
+  "dashboard.home.activityGraph.title": "activity (14 days - max)",
   "contact.title": "contact us",
   "contact.placeholders.name": "name",
   "contact.placeholders.email": "email",

@@ -3,14 +3,28 @@ import { connect } from "react-redux";
 
 import { Line } from "react-chartjs-2";
 
-const getLabels = () => {
+const getLabels = (assignment) => {
   const now = Date.now();
   const day = 1000 * 60 * 60 * 24;
 
+  let maxDate = new Date("1970-01-01");
+  for (let a of assignment) {
+    const due_date = new Date(a.due_date);
+    if (due_date > maxDate) {
+      maxDate = due_date;
+    }
+  }
+
+  let numDates = Math.round((maxDate - now) / day)
+  console.log(`number of dates: ${numDates}`)
+  if (numDates < 31) {
+    numDates = 31
+  }
+
   let dates = [];
 
-  for (let i = 31; i > 0; i--) {
-    dates.push(new Date(now - day * (i - 1)).toISOString().substring(0, 10));
+  for (let i = numDates + 14; i > 0; i--) {
+    dates.push(new Date(maxDate - day * (i - 1)).toISOString().substring(0, 10));
   }
 
   return dates;
@@ -22,9 +36,13 @@ const aggregate = (dates, rawData, key) => {
   for (let date of dates) {
     data[date] = 0;
     for (let assignment of rawData) {
-      const dateString = assignment[key].substring(0, 10);
-      if (date === dateString) {
-        data[date] += 1;
+      try {
+        const dateString = assignment[key].substring(0, 10);
+        if (date === dateString) {
+          data[date] += 1;
+        }
+      } catch {
+        return {}
       }
     }
   }
@@ -42,23 +60,23 @@ class ActivityGraph extends React.Component {
     if (nextProps.assignments === undefined) return null;
     return {
       chartData: {
-        labels: getLabels(),
+        labels: getLabels(nextProps.assignments),
         datasets: [
           {
             label: "assignments due",
             data: Object.values(
-              aggregate(getLabels(), nextProps.assignments, "due_date")
+              aggregate(getLabels(nextProps.assignments), nextProps.assignments, "due_date")
             ),
             backgroundColor: ["rgba(52, 152, 219,.5)"],
-            // lineTension: 0,
+            lineTension: 0,
           },
           {
             label: "assignments created",
             data: Object.values(
-              aggregate(getLabels(), nextProps.assignments, "created_at")
+              aggregate(getLabels(nextProps.assignments), nextProps.assignments, "created_at")
             ),
             backgroundColor: ["rgba(231, 76, 60,.5)"],
-            // lineTension: 0,
+            lineTension: 0,
           }
         ]
       }
