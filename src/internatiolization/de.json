@@ -42,7 +42,7 @@
   "dashboard.home.assignments.title": "3-tagesausblick",
   "dashboard.home.assignments.noAssignments": "keine aufgaben :)",
   "dashboard.team.title": "gruppe",
-  "dashboard.home.activityGraph.title": "aktivität (14 tage)",
+  "dashboard.home.activityGraph.title": "aktivität (letzte 14 tage - max)",
   "permission.user": "Benutzer*in",
   "permission.moderator": "Moderator*in",
   "permission.teamOwner": "Gruppenadministrator*in",
