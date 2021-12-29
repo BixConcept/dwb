@@ -7,7 +7,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
+	"3nt3rt41nmn3nt/dwb/db"
 )
 
 func User(w http.ResponseWriter, r *http.Request) {

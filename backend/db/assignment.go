@@ -1,6 +1,6 @@
 package db
 
-import "gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
+import "3nt3rt41nmn3nt/dwb/structs"
 
 func GetAssignmentsByOwner(ownerID int) ([]structs.Assignment, error) {
 	query := "SELECT * FROM assignments WHERE author = $1;"

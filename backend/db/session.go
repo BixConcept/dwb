@@ -1,13 +1,13 @@
 package db
 
 import (
+	"3nt3rt41nmn3nt/dwb/structs"
 	uuid "github.com/satori/go.uuid"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
 )
 
 func CreateSession(userID int) (structs.Session, error) {
 
-	sessionIDRaw, _ := uuid.NewV4()
+	sessionIDRaw := uuid.NewV4()
 	sessionID := sessionIDRaw.String()
 
 	newSession := structs.Session{

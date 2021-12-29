@@ -3,7 +3,7 @@ package structs
 import (
 	"time"
 
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/permissions"
+	"3nt3rt41nmn3nt/dwb/permissions"
 )
 
 // Assignment struct

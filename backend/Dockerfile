@@ -1,6 +1,17 @@
-FROM golang:latest
+FROM golang:1.17 as builder
 
-ADD dwb /dwb
+# first (build) stage
+
+WORKDIR /app
+COPY . .
+RUN go mod download
+RUN CGO_ENABLED=0 go build -o dwb
+
+# final (target) stage
+
+FROM alpine:3.10
+COPY --from=builder /app/dwb /
 
 EXPOSE 8000
-ENTRYPOINT [ "/dwb" ]
+CMD ["/dwb"]
+

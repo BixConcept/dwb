@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/contact"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
+	"3nt3rt41nmn3nt/dwb/contact"
+	"3nt3rt41nmn3nt/dwb/structs"
 )
 
 // Contact handles all requests to contact endpoint

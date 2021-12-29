@@ -6,9 +6,9 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/permissions"
+	"3nt3rt41nmn3nt/dwb/db"
+	"3nt3rt41nmn3nt/dwb/structs"
+	"3nt3rt41nmn3nt/dwb/permissions"
 )
 
 func Assignment(w http.ResponseWriter, r *http.Request) {

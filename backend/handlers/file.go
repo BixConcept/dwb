@@ -5,9 +5,9 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/permissions"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
+	"3nt3rt41nmn3nt/dwb/db"
+	"3nt3rt41nmn3nt/dwb/permissions"
+	"3nt3rt41nmn3nt/dwb/structs"
 
 	"github.com/gorilla/mux"
 )

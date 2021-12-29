@@ -5,15 +5,16 @@ import (
 	"log"
 	"net/http"
 
+	"3nt3rt41nmn3nt/dwb/db"
+	"3nt3rt41nmn3nt/dwb/handlers"
+	"3nt3rt41nmn3nt/dwb/metrics"
 	"github.com/gorilla/mux"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/handlers"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/metrics"
 )
 
 const port int = 8000
 
 func main() {
+	fmt.Println("starting to do things.")
 
 	// datenbank dinge (german1!!!)
 	err := db.Init()

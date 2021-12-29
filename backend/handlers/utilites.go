@@ -7,8 +7,8 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/db"
-	"gitlab.com/3nt3rt41nm3nt-gbr/dwb/structs"
+	"3nt3rt41nmn3nt/dwb/db"
+	"3nt3rt41nmn3nt/dwb/structs"
 )
 
 func extractSession(w http.ResponseWriter, r *http.Request) (structs.Session, error) {
