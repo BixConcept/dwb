@@ -192,7 +192,7 @@ func setMessage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if !user.IsTeamMember {
-		fmt.Print("[ - ] %s is not a team member!\n")
+		fmt.Printf("[ - ] %s is not a team member!\n")
 		w.WriteHeader(400)
 		return
 	}
@@ -237,7 +237,7 @@ func removeMember(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if !user.IsTeamMember {
-		fmt.Print("[ - ] %s is not a team member!\n")
+		fmt.Printf("[ - ] %s is not a team member!\n")
 		w.WriteHeader(400)
 		return
 	}
