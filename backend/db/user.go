@@ -7,7 +7,6 @@ import (
 
 	"3nt3rt41nmn3nt/dwb/structs"
 	"golang.org/x/crypto/bcrypt"
-	"math"
 )
 
 // CreateUser -> append a user to 'users' table
