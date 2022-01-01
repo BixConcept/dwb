@@ -10,6 +10,7 @@ import (
 	"3nt3rt41nmn3nt/dwb/structs"
 )
 
+// TODO: refactor this. We should use middlewares instead of this weirdness
 func Team(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("access-control-allow-origin", r.Header.Get("origin"))
 	w.Header().Set("access-control-allow-credentials", "true")
@@ -108,10 +109,6 @@ func createTeam(w http.ResponseWriter, r *http.Request) {
 	rawTeam.Owner = user.ID
 	fmt.Printf("[ * ] raw team: %+v\n", rawTeam)
 
-	if user.Permission < permissions.TEAM_OWNER_PERMISSION {
-
-	}
-
 	team, err := db.CreateTeam(rawTeam)
 	if err != nil {
 		fmt.Printf("[ - ] error creating team: %v\n", err)
@@ -120,8 +117,13 @@ func createTeam(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Printf("[ * ] team: %+v\n", team)
 
-	_ = json.NewEncoder(w).Encode(team)
+	if err = db.AddTeamMember(team.ID, user.ID); err != nil {
+		fmt.Printf("[ - ] error adding user to team: %v\n", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 
+	_ = json.NewEncoder(w).Encode(team)
 }
 
 func addMember(w http.ResponseWriter, r *http.Request) {

@@ -7,9 +7,10 @@ import (
 
 	"3nt3rt41nmn3nt/dwb/structs"
 	"golang.org/x/crypto/bcrypt"
+	"math"
 )
 
-// CreateUser -> append an user to 'users' table
+// CreateUser -> append a user to 'users' table
 func CreateUser(username, password string, permission int) (int, error) {
 	user := structs.User{}
 
@@ -90,7 +91,7 @@ func GetUserByID(id int) (structs.User, error) {
 	return user, err
 }
 
-// GetAdminEmails returns every users' email address with ADMIN_PERMISSION
+// GetAdminEmails returns an email address for every use with ADMIN_PERMISSION
 func GetAdminEmails() ([]string, error) {
 	q := "SELECT email FROM users WHERE permission = $1;"
 	rows, err := Database.Query(q, permissions.ADMIN_PERMISSION)
@@ -111,6 +112,7 @@ func GetAdminEmails() ([]string, error) {
 	return emails, err
 }
 
+// SetPermission sets the specified user's permission level
 func SetPermission(userID, permission int) error {
 	query := "UPDATE users SET permission = $1 where id = $2"
 	_, err := Database.Exec(query)
@@ -118,7 +120,7 @@ func SetPermission(userID, permission int) error {
 }
 
 // HashPassword hashes the password
-// using with bcrypt algorithm
+// using the bcrypt algorithm
 func HashPassword(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	return string(bytes), err
