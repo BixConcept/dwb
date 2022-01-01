@@ -6,7 +6,7 @@ class LangChanger extends Component {
     super(props);
 
     this.state = {
-      language: ""
+      language: "",
     };
   }
 
@@ -21,16 +21,31 @@ class LangChanger extends Component {
       <I18nextProvider>
         <div className={css.container}>
           <button className={css.btn}>
-            <span>{t("selectLanguage.language")}</span> 
+            <span>{t("selectLanguage.language")}</span>
             <p>&nbsp;</p>
             <i className="fas fa-language"></i>
 
             <ul className={css.dropdown}>
               <li>
-                <p onClick={() => this.changeLng("de")}>deutsch <span role="img" aria-label="german">🇩🇪</span></p>
+                <p onClick={() => this.changeLng("de")}>
+                  deutsch{" "}
+                  <span role="img" aria-label="german">
+                    🇩🇪
+                  </span>
+                </p>
               </li>
               <li>
-                <p onClick={() => this.changeLng("en")}>english <span role="img" aria-label="english">🇬🇧</span></p>
+                <p onClick={() => this.changeLng("en")}>
+                  english{" "}
+                  <span role="img" aria-label="english">
+                    🇬🇧
+                  </span>
+                </p>
+              </li>
+              <li>
+                <p onClick={() => this.changeLng("la")}>
+                  lingua latina <span role="img" aria-label="latin"></span>
+                </p>
               </li>
             </ul>
           </button>

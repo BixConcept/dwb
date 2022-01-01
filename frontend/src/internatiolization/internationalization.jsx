@@ -3,17 +3,21 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 import de from "./de.json";
 import en from "./en.json";
+import la from "./la.json";
 
 var moment = require("moment");
 
 i18n.use(LanguageDetector).init({
   resources: {
     en: {
-      translations: en
+      translations: en,
     },
     de: {
-      translations: de
-    }
+      translations: de,
+    },
+    la: {
+      translations: la,
+    },
   },
 
   fallbackLng: "en",
@@ -31,12 +35,12 @@ i18n.use(LanguageDetector).init({
         return moment(val).format(format);
       }
       return val;
-    }
+    },
   },
 
   react: {
-    wait: true
-  }
+    wait: true,
+  },
 });
 
 export default i18n;
