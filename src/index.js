@@ -8,7 +8,8 @@ import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./internatiolization/internationalization.jsx";
 
-export const API_HOST = "https://dwb.3nt3.xyz/api";
+// export const API_HOST = "https://dwb.3nt3.xyz/api";
+export const API_HOST = "http://localhost:8000";
 
 ReactDOM.render(
   <Provider store={store}>
