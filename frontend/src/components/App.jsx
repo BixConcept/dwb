@@ -10,7 +10,7 @@ import Contact from "./Contact.jsx";
 import Imprint from "./Imprint";
 
 // router
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 // redux
 import { setAuthenticated } from "../actions/auth";
@@ -42,18 +42,18 @@ class App extends Component {
           <Fragment>
             <div className="content">
               <Navbar />
-              <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
+              <Routes>
+                <Route exact path="/" element={<Home/>} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/register" element={<Register/>} />
 
-                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/dashboard" element={<Dashboard/>} />
 
-                <Route path="/contact" component={Contact} />
+                <Route path="/contact" element={<Contact/>} />
 
-                <Route path="/imprint" component={Imprint} />
-                <Route path="/privacy-notice" component={PrivacyNotice} />
-              </Switch>
+                <Route path="/imprint" element={<Imprint/>} />
+                <Route path="/privacy-notice" element={<PrivacyNotice />} /> 
+              </Routes>
             </div>
             <Footer />
           </Fragment>
