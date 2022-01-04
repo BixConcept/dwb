@@ -103,8 +103,9 @@ $gutters: null;
     text-align: left;
     opacity: 0;
     visibility: hidden;
-    transition: 0.3s ease;
+    transition: 0.2s ease;
 
+    // this makes the triangle shape
     &:before {
       content: "";
       position: absolute;
@@ -127,16 +128,18 @@ $gutters: null;
       background: $white;
       padding: 0 20px;
       color: #000;
+
+      margin: 0;
+
       &:first-child {
-        border-radius: 4px 4px 0 0;
+        border-radius: 4px 4px 0 4px;
       }
 
-      &:last-child {
-        border-radius: 0 0 4px 4px;
+      border: $white solid ;
+      border-width: 1px;
 
-        p {
-          border-bottom: 0;
-        }
+      &:last-child {
+        border-radius: 0 4px 4px 0;
       }
     }
 
