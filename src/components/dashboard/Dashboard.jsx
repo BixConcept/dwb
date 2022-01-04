@@ -10,7 +10,7 @@ import { getUser } from "../../actions/auth";
 // css
 import css from "../../styles/dashboard/dashboard.module.scss";
 
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 import { Trans, withTranslation } from "react-i18next";
 
 // Views
@@ -82,14 +82,14 @@ class Dashboard extends Component {
           </ul>
         </aside>
         <main>
-          <Switch>
+          <Routes>
             <Route
               path={`/dashboard/assignments`}
               component={AssignmentsView}
             />
             <Route path={`/dashboard/team`} component={TeamView} />
             <Route component={Home} />
-          </Switch>
+          </Routes>
         </main>
       </div>
     );
