@@ -11,7 +11,10 @@ class Footer extends Component {
       <footer className={css.footer}>
         <div className="container">
           <ul>
-            <li>&copy; 2019 3nt3rt41nm3nt GbR</li>
+            <li>&copy; 2021 3nt3rt41nm3nt GbR</li>
+            <li>
+              <a href="https://gitlab.com/3nt3rt41nm3nt-gbr/dwb-front/-/blob/development/LICENSE">LICENSE</a>
+            </li>
             <li>
               <Link to="/imprint">{t("imprint.title")}</Link>
             </li>
