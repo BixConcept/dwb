@@ -22,6 +22,8 @@ import { CookiesProvider, withCookies } from "react-cookie";
 import Footer from "./Footer";
 import { API_HOST } from "..";
 import PrivacyNotice from "./PrivacyNotice";
+import AssignmentsView from "./dashboard/AssignmentsView";
+import TeamView from "./dashboard/team/TeamView";
 
 class App extends Component {
   componentDidMount() {
@@ -29,10 +31,9 @@ class App extends Component {
   }
 
   setAuthenticated(props) {
-    fetch(API_HOST + "/user/", { credentials: "include" })
-      .then(r => {
-        this.props.setAuthenticated(r.ok);
-      })
+    fetch(API_HOST + "/user/", { credentials: "include" }).then((r) => {
+      this.props.setAuthenticated(r.ok);
+    });
   }
 
   render() {
@@ -43,16 +44,19 @@ class App extends Component {
             <div className="content">
               <Navbar />
               <Routes>
-                <Route exact path="/" element={<Home/>} />
-                <Route path="/login" element={<Login/>} />
-                <Route path="/register" element={<Register/>} />
+                <Route exact path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
 
-                <Route path="/dashboard" element={<Dashboard/>} />
+                <Route path="/dashboard" element={<Dashboard />}>
+                  <Route path="assignments" element={<AssignmentsView />} />
+                  <Route path="team" element={<TeamView />} />
+                </Route>
 
-                <Route path="/contact" element={<Contact/>} />
+                <Route path="/contact" element={<Contact />} />
 
-                <Route path="/imprint" element={<Imprint/>} />
-                <Route path="/privacy-notice" element={<PrivacyNotice />} /> 
+                <Route path="/imprint" element={<Imprint />} />
+                <Route path="/privacy-notice" element={<PrivacyNotice />} />
               </Routes>
             </div>
             <Footer />

@@ -10,13 +10,8 @@ import { getUser } from "../../actions/auth";
 // css
 import css from "../../styles/dashboard/dashboard.module.scss";
 
-import { Route, Routes, Link } from "react-router-dom";
+import {  Outlet, Link } from "react-router-dom";
 import { Trans, withTranslation } from "react-i18next";
-
-// Views
-import Home from "./Home.jsx";
-import AssignmentsView from "./AssignmentsView.jsx";
-import TeamView from "./team/TeamView.jsx";
 
 class Dashboard extends Component {
   static propTypes = {
@@ -82,14 +77,7 @@ class Dashboard extends Component {
           </ul>
         </aside>
         <main>
-          <Routes>
-            <Route
-              path={`/dashboard/assignments`}
-              component={AssignmentsView}
-            />
-            <Route path={`/dashboard/team`} component={TeamView} />
-            <Route component={Home} />
-          </Routes>
+          <Outlet />
         </main>
       </div>
     );
