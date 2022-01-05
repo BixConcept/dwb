@@ -411,7 +411,7 @@ class PrivacyNotice extends Component {
             <a
               title="Google Analytics Opt-Out-Cookie setzen"
               onClick="gaOptout();alert('Google Analytics wurde deaktiviert');"
-              href="#"
+              href="#asdf"
             >
               diesen Link anklicken
             </a>

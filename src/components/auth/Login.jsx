@@ -1,91 +1,65 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { login } from "../../actions/auth";
+import React, { Component, Fragment, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import PasswordShowAndHide from "./PasswordShowAndHide.jsx";
 import "../../styles/auth/auth.scss";
-import { withTranslation } from "react-i18next";
 import Alert from "../Alert";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { login } from "../../actions/auth";
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
+function Login(props) {
+  const [inputs, setInputs] = useState("");
+  const { t } = useTranslation();
+  const error = useSelector((state) => state.errors.login);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
 
-    this.state = {};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleChange(event) {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-
-    // console.log(this.state);
-  }
-
-  handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(this.state);
+    dispatch(login());
+    console.log(isAuthenticated);
+  };
 
-    this.props.login(this.state);
-  }
+  const handleChange = (event) => {
+    setInputs({ ...inputs, [event.target.id]: event.target.value });
+  };
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.isAuthenticated) this.props.history.push("/dashboard");
-  }
-
-  render() {
-    const {t} = this.props;
-    return (
-      <Fragment>
-        {this.props.error ? (
-          <Alert title="error" text={this.props.error} />
-        ) : null}
-        <div className="main">
+  return (
+    <Fragment>
+      {error ? <Alert title="error" text={error} /> : null}
+      <div className="main">
         <h1>{t("login.submit")}</h1>
-          <div className="logo">
-            <h3>dwb</h3>
-          </div>
-          <form
-            onSubmit={this.handleSubmit}
-            autoComplete="off"
-            style={{ WebkitAppearance: "none" }}
-          >
-            <input
-              id="username"
-              onChange={this.handleChange}
-              type="username"
-              placeholder={t("auth.username")}
-              style={{ WebkitAppearance: "none" }}
-              required
-            />
-            <i className="fa fa-user" />
-            <i className="fa fa-lock" />
-            <PasswordShowAndHide onChange={this.handleChange} />
-            <input
-              type="submit"
-              value={t("login.submit")}
-              style={{ WebkitAppearance: "none" }}
-            />
-            <h4>
-              {t("login.notRegistered")} &nbsp;
-              <a href="/#/register" className="CreateAcc">
-                {t("login.linkToRegister")}
-              </a>
-            </h4>
-          </form>
+        <div className="logo">
+          <h3>dwb</h3>
         </div>
-      </Fragment>
-    );
-  }
+        <form
+          onSubmit={handleSubmit}
+          autoComplete="off"
+          style={{ WebkitAppearance: "none" }}
+        >
+          <input
+            type="username"
+            id="username"
+            onChange={handleChange}
+            placeholder={t("auth.username")}
+            style={{ WebkitAppearance: "none" }}
+            required
+          />
+          <i className="fa fa-user"></i>
+          <i className="fa fa-lock"></i>
+          <PasswordShowAndHide onChange={handleChange} />
+          <input
+            type="submit"
+            value={t("login.submit")}
+            style={{ WebkitAppearance: "none" }}
+          />
+          <h4>
+            {t("login.notRegistered")} &nbsp; <Link to="/register" />
+          </h4>
+        </form>
+      </div>
+    </Fragment>
+  );
 }
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  error: state.errors.errors.login
-});
-
-export default withTranslation()(connect(
-  mapStateToProps,
-  { login }
-)(Login));
+export default Login;
