@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PasswordShowAndHide from "./PasswordShowAndHide.jsx";
 import "../../styles/auth/auth.scss";
