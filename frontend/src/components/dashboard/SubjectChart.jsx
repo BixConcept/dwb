@@ -2,15 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 
+import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { getNames } from "./subjectName";
 
-class Chart extends Component {
+class SubjectChart extends Component {
   state = {
     chartData: {
       labels: [],
-      datasets: [{ data: [] }]
-    }
+      datasets: [{ data: [] }],
+    },
   };
 
   componentWillReceiveProps(newProps) {
@@ -55,18 +56,18 @@ class Chart extends Component {
               "rgba(44, 62, 80,1.0)",
               "rgba(241, 196, 15,1.0)",
               "rgba(230, 126, 34,1.0)",
-              "rgba(231, 76, 60,1.0)"
-            ]
-          }
-        ]
-      }
+              "rgba(231, 76, 60,1.0)",
+            ],
+          },
+        ],
+      },
     });
   }
 
   aggregate(rawData) {
     let data = {};
 
-    rawData.forEach(element => {
+    rawData.forEach((element) => {
       if (data[element.subject] === undefined) {
         data[element.subject] = 1;
         return;
@@ -93,26 +94,24 @@ class Chart extends Component {
       <Bar
         className=""
         data={this.state.chartData}
-        options={{
-          legend: false,
-          responsive: true,
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  min: 0 // minimum will be 0, unless there is a lower value.
-                }
-              }
-            ]
-          }
-        }}
+        // options={{
+        //   legend: false,
+        //   responsive: true,
+        //   scales: {
+        //     y: {
+        //       ticks: {
+        //         min: 0, // minimum will be 0, unless there is a lower value.
+        //       },
+        //     },
+        //   },
+        // }}
       />
     );
   }
 }
 
-const mapStateToProps = state => ({
-  assignments: state.assignments.assignments
+const mapStateToProps = (state) => ({
+  assignments: state.assignments.assignments,
 });
 
-export default withTranslation()(connect(mapStateToProps)(Chart));
+export default withTranslation()(connect(mapStateToProps)(SubjectChart));

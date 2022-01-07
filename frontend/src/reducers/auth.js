@@ -26,7 +26,7 @@ export default function(state = initialState, action) {
     case GET_USER:
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
       };
     case SET_AUTHENTICATED:
       return {

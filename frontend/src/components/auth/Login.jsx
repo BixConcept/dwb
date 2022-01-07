@@ -4,7 +4,7 @@ import PasswordShowAndHide from "./PasswordShowAndHide.jsx";
 import "../../styles/auth/auth.scss";
 import Alert from "../Alert";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../actions/auth";
 
 function Login(props) {
@@ -13,11 +13,14 @@ function Login(props) {
   const error = useSelector((state) => state.errors.login);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(login());
-    console.log(isAuthenticated);
+    if (isAuthenticated) {
+      navigate("/login");
+    }
   };
 
   const handleChange = (event) => {
