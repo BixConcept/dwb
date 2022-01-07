@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, StrictMode } from "react";
 import "../styles/main.scss";
 
 import Navbar from "./Navbar.jsx";
@@ -24,6 +24,7 @@ import { API_HOST } from "..";
 import PrivacyNotice from "./PrivacyNotice";
 import AssignmentsView from "./dashboard/AssignmentsView";
 import TeamView from "./dashboard/team/TeamView";
+import DashboardHome from "./dashboard/Home";
 
 class App extends Component {
   componentDidMount() {
@@ -40,27 +41,30 @@ class App extends Component {
     return (
       <CookiesProvider>
         <Router>
-          <Fragment>
-            <div className="content">
-              <Navbar />
-              <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
+          <StrictMode>
+            <Fragment>
+              <div className="content">
+                <Navbar />
+                <Routes>
+                  <Route exact path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
 
-                <Route path="/dashboard" element={<Dashboard />}>
-                  <Route path="assignments" element={<AssignmentsView />} />
-                  <Route path="team" element={<TeamView />} />
-                </Route>
+                  <Route path="/dashboard" element={<Dashboard />}>
+                    <Route path="" element={<DashboardHome />} />
+                    <Route path="assignments" element={<AssignmentsView />} />
+                    <Route path="team" element={<TeamView />} />
+                  </Route>
 
-                <Route path="/contact" element={<Contact />} />
+                  <Route path="/contact" element={<Contact />} />
 
-                <Route path="/imprint" element={<Imprint />} />
-                <Route path="/privacy-notice" element={<PrivacyNotice />} />
-              </Routes>
-            </div>
-            <Footer />
-          </Fragment>
+                  <Route path="/imprint" element={<Imprint />} />
+                  <Route path="/privacy-notice" element={<PrivacyNotice />} />
+                </Routes>
+              </div>
+              <Footer />
+            </Fragment>
+          </StrictMode>
         </Router>
       </CookiesProvider>
     );
