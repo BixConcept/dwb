@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import css from "../styles/home.module.scss";
-import { withTranslation, Trans, useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 function Home(props) {
   const { t } = useTranslation();
