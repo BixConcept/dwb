@@ -1,0 +1,103 @@
+@import './_vars.scss';
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+html {
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+
+a {
+    text-decoration: none;
+    transition-duration: 200ms;
+}
+
+.content {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+}
+
+/* utility */
+.container {
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+.l-heading {
+    font-size: 6rem;
+}
+
+.m-heading {
+    font-size: 3rem;
+}
+
+.s-heading {
+    font-size: 2rem;
+}
+
+.xs-heading {
+    font-size: 1.2rem;
+}
+
+.text-primary {
+    color: $primaryColor;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.p-1 {
+    padding: 1rem;
+}
+
+.p-2 {
+    padding: 2rem;
+}
+
+.p-3 {
+    padding: 3rem;
+}
+
+
+.bg-light {
+    background-color: $lightColor;
+    color: $darkColor;
+}
+
+
+.bg-dark {
+    background-color: $darkColor;
+    color: $lightColor;
+}
+
+@media (max-width: 800px) and (min-width: 600px) {
+    .l-heading {
+        font-size: 4rem
+    }
+}
+
+
+@media (max-width: calc(600px - 1px)) {
+    .l-heading {
+        font-size: 2.4rem;
+    }
+
+    .m-heading {
+        font-size: 2rem
+    }
+
+    .s-heading {
+        font-size: 1.5rem
+    }
+}

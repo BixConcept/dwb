@@ -1,0 +1,80 @@
+@import "../../vars";
+
+.assignmentContainer {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  hyphens: auto;
+}
+
+.assignment {
+  $radius: 6px;
+  $padding-val: 1rem;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      background-color: #ff7262;
+      color: #fff;
+      width: 60px;
+      height: 35px;
+      border: none;
+      border-radius: 3px;
+
+      cursor: pointer;
+
+      transition-duration: 100ms;
+
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+
+    background-color: $primaryColor;
+    border-radius: $radius $radius 0 0;
+
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    color: #fff;
+
+    padding: $padding-val;
+  }
+
+  .body {
+    background-color: $lightColor;
+    border-radius: 0 0 $radius $radius;
+
+    padding: $padding-val;
+
+    .authorTag {
+      text-align: right;
+      color: grey;
+      width: 100%;
+
+      font-style: italic;
+    }
+  }
+}
+
+@media (max-width: 1400px) and (min-width: 1001px) {
+  .assignmentContainer {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 1000px) and (min-width: 701px) {
+  .assignmentContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .assignmentContainer {
+    grid-template-columns: 1fr;
+  }
+}

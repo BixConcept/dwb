@@ -1,0 +1,48 @@
+@import "_vars.scss";
+
+.footer {
+  padding: 1.5rem 0;
+
+  background-color: darken($darkColor, 5%);
+  color: $lightColor;
+
+  a {
+    color: $lightColor;
+  }
+
+  a:hover {
+    color: $primaryColor;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    list-style: none;
+  }
+
+  ul li {
+    padding: 0 1rem;
+  }
+
+  ul:last-child,
+  ul:nth-child(1) {
+    padding: 0 !important;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .footer {
+    ul {
+      flex-direction: column;
+
+      li {
+        padding: 15px 0;
+      }
+      li:first-child {
+        color: $primaryColor;
+      }
+    }
+  }
+}

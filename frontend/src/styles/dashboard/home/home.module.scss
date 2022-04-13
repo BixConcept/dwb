@@ -1,0 +1,82 @@
+@import "../../vars";
+
+.wrapper {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+  // grid-template-areas:
+  //   "msg msg msg msg msg msg"
+  //   "create create create team team team"
+  //   "create create create ateam team team"
+  //   "stats stats team team team team" "graph1 graph1 graph1 graph2 graph2 graph2";
+
+  grid-template-areas: "msg msg" "assignments assignments" "create team" "graph1 graph2" "ag ag";
+
+  grid-gap: 40px;
+
+  section {
+    background: #f4f4f4;
+    padding: 1rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #e0e0e0;
+  }
+
+  .graph1 {
+    grid-area: graph1;
+  }
+
+  .graph2 {
+    grid-area: graph2;
+  }
+
+  .activityGraph {
+    height: 500px;
+    grid-area: ag;
+  }
+
+  .create {
+    grid-area: create;
+  }
+
+  .team {
+    grid-area: team;
+  }
+
+  .stats {
+    grid-area: stats;
+  }
+
+  .assignments {
+    grid-area: assignments;
+  }
+
+  .teamMessage {
+    grid-area: msg;
+    background-color: $primaryColor;
+    color: #fff;
+
+    font-weight: bold;
+  }
+}
+
+// stats
+
+@media screen and (max-width: 1100px) and (min-width: 401px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas: "msg" "create" "assignments" "team" "graph1" "graph2";
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas: "msg" "assignments" "create" "team";
+    .graph1,
+    .graph2,
+    .activityGraph {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@import "../../vars";
+
+.message {
+    font-weight: bold !important;
+    margin-bottom: 10px;
+}
+
+.messageContainer {
+    hyphens: auto;
+    font-weight: normal;
+}

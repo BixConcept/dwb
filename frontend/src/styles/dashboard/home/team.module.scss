@@ -1,0 +1,46 @@
+@import "../../vars";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  > * {
+    margin: 5px 0;
+  }
+}
+
+input,
+select {
+  padding: 1rem;
+  width: 100%;
+
+  font-size: 1rem;
+  font-weight: bold;
+
+  color: $darkColor;
+
+  border: 1px solid $primaryColor;
+
+  &::placeholder {
+    color: $darkColor;
+  }
+}
+
+input[type="submit"] {
+  text-align: center;
+  background: #fff;
+  cursor: pointer;
+  transition-duration: 200ms;
+
+  &:hover {
+    color: #fff;
+    background: $primaryColor;
+  }
+}
+
+input[disabled=""]:hover {
+  cursor: not-allowed;
+}
+
+.setTeamMessageForm {
+  margin-top: 1rem;
+}
