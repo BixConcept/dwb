@@ -1,0 +1,15 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+	
+		{
+			"name": "Launch",
+			"type": "go",
+			"request": "launch",
+			"mode": "auto",
+			"program": "/Users/3nt3/go/src/3nt3rt41nmn3nt/dwb/main.go",
+			"env": {},
+			"args": []
+		}
+	]
+}
